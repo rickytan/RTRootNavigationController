@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RTRootNavigationController_Example' do
+  pod 'RTRootNavigationController', :path => '../'
+
+  target 'RTRootNavigationController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
