@@ -18,7 +18,7 @@ you can have each view controller a individual navigation bar.
                        DESC
 
   s.homepage         = 'https://github.com/rickytan/RTRootNavigationController'
-  s.screenshots      = 'https://github.com/rickytan/RTRootNavigationController/ScreenShot/1.png'
+  s.screenshots      = 'https://raw.githubusercontent.com/rickytan/RTRootNavigationController/master/ScreenShot/1.png', 'https://raw.githubusercontent.com/rickytan/RTRootNavigationController/master/ScreenShot/2.gif'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'rickytan' => 'ricky.tan.xin@gmail.com' }
   s.source           = { :git => 'https://github.com/rickytan/RTRootNavigationController.git', :tag => s.version.to_s }
