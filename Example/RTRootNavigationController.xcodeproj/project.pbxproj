@@ -21,13 +21,14 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		92EF8773226AC3C8447549CD /* libPods-RTRootNavigationController_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2E54253637C8361C8AD641 /* libPods-RTRootNavigationController_Example.a */; };
 		9C16AF1F1D09518100873B86 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C16AF1E1D09518100873B86 /* Launch.storyboard */; };
 		9C16AF221D09551E00873B86 /* RTPushRemoveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF211D09551E00873B86 /* RTPushRemoveViewController.m */; };
 		9C16AF251D0957D400873B86 /* RTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF241D0957D400873B86 /* RTTableViewController.m */; };
 		9C16AF281D095EC700873B86 /* RTStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF271D095EC700873B86 /* RTStaticTableViewController.m */; };
+		9C16AF2C1D097CEB00873B86 /* RTCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF2B1D097CEB00873B86 /* RTCustomNavigationBar.m */; };
 		9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */; };
 		9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C31D09152900693F14 /* RTCollectionViewController.m */; };
-		EF0472CCB4F2C92A450761AC /* Pods_RTRootNavigationController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8481FEB9EAB68E472535DC12 /* Pods_RTRootNavigationController_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C2E54253637C8361C8AD641 /* libPods-RTRootNavigationController_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTRootNavigationController_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		272D83BC22FD01EA4BF5AB9C /* Pods-RTRootNavigationController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4B6ECD73E96DEED1827971A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* RTRootNavigationController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTRootNavigationController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +65,6 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		67C2BF2B52D3057E8417FB63 /* RTRootNavigationController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RTRootNavigationController.podspec; path = ../RTRootNavigationController.podspec; sourceTree = "<group>"; };
-		8481FEB9EAB68E472535DC12 /* Pods_RTRootNavigationController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9C16AF1E1D09518100873B86 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		9C16AF201D09551E00873B86 /* RTPushRemoveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPushRemoveViewController.h; sourceTree = "<group>"; };
@@ -72,6 +73,8 @@
 		9C16AF241D0957D400873B86 /* RTTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTTableViewController.m; sourceTree = "<group>"; };
 		9C16AF261D095EC700873B86 /* RTStaticTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStaticTableViewController.h; sourceTree = "<group>"; };
 		9C16AF271D095EC700873B86 /* RTStaticTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStaticTableViewController.m; sourceTree = "<group>"; };
+		9C16AF2A1D097CEB00873B86 /* RTCustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCustomNavigationBar.h; sourceTree = "<group>"; };
+		9C16AF2B1D097CEB00873B86 /* RTCustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCustomNavigationBar.m; sourceTree = "<group>"; };
 		9C7832BF1D09111F00693F14 /* RTHideNavigationBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTHideNavigationBarViewController.h; sourceTree = "<group>"; };
 		9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTHideNavigationBarViewController.m; sourceTree = "<group>"; };
 		9C7832C21D09152900693F14 /* RTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCollectionViewController.h; sourceTree = "<group>"; };
@@ -88,7 +91,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				EF0472CCB4F2C92A450761AC /* Pods_RTRootNavigationController_Example.framework in Frameworks */,
+				92EF8773226AC3C8447549CD /* libPods-RTRootNavigationController_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +145,7 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				8481FEB9EAB68E472535DC12 /* Pods_RTRootNavigationController_Example.framework */,
+				0C2E54253637C8361C8AD641 /* libPods-RTRootNavigationController_Example.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,19 +158,9 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F59C195388D20070C39A /* RTAppDelegate.h */,
 				6003F59D195388D20070C39A /* RTAppDelegate.m */,
-				9C7832C21D09152900693F14 /* RTCollectionViewController.h */,
-				9C7832C31D09152900693F14 /* RTCollectionViewController.m */,
-				9C7832BF1D09111F00693F14 /* RTHideNavigationBarViewController.h */,
-				9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */,
-				9C16AF201D09551E00873B86 /* RTPushRemoveViewController.h */,
-				9C16AF211D09551E00873B86 /* RTPushRemoveViewController.m */,
-				9C16AF261D095EC700873B86 /* RTStaticTableViewController.h */,
-				9C16AF271D095EC700873B86 /* RTStaticTableViewController.m */,
-				9C16AF231D0957D400873B86 /* RTTableViewController.h */,
-				9C16AF241D0957D400873B86 /* RTTableViewController.m */,
-				6003F5A5195388D20070C39A /* RTViewController.h */,
-				6003F5A6195388D20070C39A /* RTViewController.m */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				9C16AF291D097CD100873B86 /* ViewControllers */,
+				9C16AF2D1D097D4200873B86 /* Views */,
 			);
 			name = "Example for RTRootNavigationController";
 			path = RTRootNavigationController;
@@ -211,6 +204,34 @@
 				B930DAFF5ACFE0FF66B80F25 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		9C16AF291D097CD100873B86 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9C7832C21D09152900693F14 /* RTCollectionViewController.h */,
+				9C7832C31D09152900693F14 /* RTCollectionViewController.m */,
+				9C7832BF1D09111F00693F14 /* RTHideNavigationBarViewController.h */,
+				9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */,
+				9C16AF201D09551E00873B86 /* RTPushRemoveViewController.h */,
+				9C16AF211D09551E00873B86 /* RTPushRemoveViewController.m */,
+				9C16AF261D095EC700873B86 /* RTStaticTableViewController.h */,
+				9C16AF271D095EC700873B86 /* RTStaticTableViewController.m */,
+				9C16AF231D0957D400873B86 /* RTTableViewController.h */,
+				9C16AF241D0957D400873B86 /* RTTableViewController.m */,
+				6003F5A5195388D20070C39A /* RTViewController.h */,
+				6003F5A6195388D20070C39A /* RTViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9C16AF2D1D097D4200873B86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9C16AF2A1D097CEB00873B86 /* RTCustomNavigationBar.h */,
+				9C16AF2B1D097CEB00873B86 /* RTCustomNavigationBar.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C16AF2C1D097CEB00873B86 /* RTCustomNavigationBar.m in Sources */,
 				9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */,
 				6003F59E195388D20070C39A /* RTAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* RTViewController.m in Sources */,
@@ -494,6 +516,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RTRootNavigationController/RTRootNavigationController-Prefix.pch";
 				INFOPLIST_FILE = "RTRootNavigationController/RTRootNavigationController-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -510,6 +533,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RTRootNavigationController/RTRootNavigationController-Prefix.pch";
 				INFOPLIST_FILE = "RTRootNavigationController/RTRootNavigationController-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

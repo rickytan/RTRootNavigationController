@@ -58,6 +58,8 @@
  *  @param animated       use animation or not
  *  @param block          animation complete callback block
  */
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated complete:(void(^)(BOOL finished))block;
+- (void)pushViewController:(UIViewController *)viewController
+                  animated:(BOOL)animated
+                  complete:(void(^)(BOOL finished))block;
 
 @end

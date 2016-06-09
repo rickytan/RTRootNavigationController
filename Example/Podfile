@@ -1,4 +1,5 @@
-use_frameworks!
+
+platform :ios, '7.0'
 
 target 'RTRootNavigationController_Example' do
   pod 'RTRootNavigationController', :path => '../'

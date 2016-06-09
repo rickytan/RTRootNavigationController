@@ -70,7 +70,10 @@
 @property (nonatomic, strong) UINavigationController *containerNavigatioinController;
 
 + (instancetype)containerControllerWithController:(UIViewController *)controller;
++ (instancetype)containerControllerWithController:(UIViewController *)controller navigationBarClass:(Class)navigationBarClass;
+
 - (instancetype)initWithController:(UIViewController *)controller;
+- (instancetype)initWithController:(UIViewController *)controller navigationBarClass:(Class)navigationBarClass;
 
 @end
 
@@ -85,9 +88,16 @@ static inline UIViewController *RTSafeUnwrapViewController(UIViewController *con
     return controller;
 }
 
-static inline UIViewController *RTSafeWrapViewController(UIViewController *controller) {
+__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller) {
     if (![controller isKindOfClass:[RTContainerControllerInternal class]]) {
         return [RTContainerControllerInternal containerControllerWithController:controller];
+    }
+    return controller;
+}
+
+__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass) {
+    if (![controller isKindOfClass:[RTContainerControllerInternal class]]) {
+        return [RTContainerControllerInternal containerControllerWithController:controller navigationBarClass:navigationBarClass];
     }
     return controller;
 }
@@ -100,16 +110,31 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
     return [[self alloc] initWithController:controller];
 }
 
++ (instancetype)containerControllerWithController:(UIViewController *)controller navigationBarClass:(Class)navigationBarClass
+{
+    return [[self alloc] initWithController:controller
+                         navigationBarClass:navigationBarClass];
+}
+
 - (instancetype)initWithController:(UIViewController *)controller
+                navigationBarClass:(Class)navigationBarClass
 {
     self = [super init];
     if (self) {
         self.contentViewController = controller;
-        self.containerNavigatioinController = [[RTContainerNavigationControllerInternal alloc] initWithRootViewController:controller];
+        self.containerNavigatioinController = [[RTContainerNavigationControllerInternal alloc] initWithNavigationBarClass:navigationBarClass
+                                                                                                             toolbarClass:nil];
+        self.containerNavigatioinController.viewControllers = @[controller];
+
         [self addChildViewController:self.containerNavigatioinController];
         [self.containerNavigatioinController didMoveToParentViewController:self];
     }
     return self;
+}
+
+- (instancetype)initWithController:(UIViewController *)controller
+{
+    return [self initWithController:controller navigationBarClass:nil];
 }
 
 - (void)viewDidLoad
@@ -303,7 +328,7 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
 - (void)pushViewController:(UIViewController *)viewController
                   animated:(BOOL)animated
 {
-    [super pushViewController:RTSafeWrapViewController(viewController)
+    [super pushViewController:RTSafeWrapViewController(viewController, viewController.rt_navigationBarClass)
                      animated:animated];
 }
 

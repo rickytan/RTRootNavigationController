@@ -6,7 +6,10 @@
 //  Copyright © 2016年 rickytan. All rights reserved.
 //
 
+#import <RTRootNavigationController/RTRootNavigationController.h>
+
 #import "RTTableViewController.h"
+#import "RTCustomNavigationBar.h"
 
 @interface RTTableViewController ()
 
@@ -27,6 +30,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (Class)rt_navigationBarClass
+{
+    return [RTCustomNavigationBar class];
 }
 
 #pragma mark - Table view data source

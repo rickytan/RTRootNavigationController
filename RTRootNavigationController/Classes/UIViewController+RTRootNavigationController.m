@@ -36,6 +36,11 @@
     return [objc_getAssociatedObject(self, @selector(rt_disableInteractivePop)) boolValue];
 }
 
+- (Class)rt_navigationBarClass
+{
+    return nil;
+}
+
 - (RTRootNavigationController *)rt_navigationController
 {
     UIViewController *vc = self;

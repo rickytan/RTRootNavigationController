@@ -28,6 +28,8 @@ IB_DESIGNABLE
 @property (nonatomic, assign) IBInspectable BOOL rt_disableInteractivePop;
 @property (nonatomic, readonly, strong) RTRootNavigationController *rt_navigationController;
 
+- (Class)rt_navigationBarClass;
+
 - (UIBarButtonItem *)customBackItemWithTarget:(id)target action:(SEL)action;
 
 @end
