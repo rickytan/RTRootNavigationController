@@ -181,6 +181,17 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationBar.translucent = self.navigationController.navigationBar.isTranslucent;
+    self.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
+    self.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+    self.navigationBar.backgroundColor = self.navigationController.navigationBar.backgroundColor;
+    [self.navigationBar setBackgroundImage:[self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault]
+                             forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
+    self.navigationBar.shadowImage = self.navigationController.navigationBar.shadowImage;
+    self.navigationBar.backIndicatorImage = self.navigationController.navigationBar.backIndicatorImage;
+    self.navigationBar.backIndicatorTransitionMaskImage = self.navigationController.navigationBar.backIndicatorTransitionMaskImage;
 }
 
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
@@ -508,12 +519,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 
 #pragma mark - UIGestureRecognizerDelegate
-
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return NO;
-}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {

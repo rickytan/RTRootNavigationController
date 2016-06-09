@@ -15,6 +15,8 @@
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRect:rect];
     bezierPath.lineWidth = 4.f;
     [[UIColor orangeColor] setStroke];
+    [[UIColor whiteColor] setFill];
+    [bezierPath fill];
     [bezierPath stroke];
 }
 
