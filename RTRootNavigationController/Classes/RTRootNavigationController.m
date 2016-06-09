@@ -364,8 +364,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers
                   animated:(BOOL)animated
 {
-    [super setViewControllers:[viewControllers rt_map:^id(id obj) {
-        return RTSafeWrapViewController(obj);
+    [super setViewControllers:[viewControllers rt_map:^id(__kindof UIViewController * obj) {
+        return RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
     }]
                      animated:animated];
 }

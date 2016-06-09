@@ -6,7 +6,10 @@
 //  Copyright © 2016年 rickytan. All rights reserved.
 //
 
+#import <RTRootNavigationController/RTRootNavigationController.h>
+
 #import "RTStaticTableViewController.h"
+#import "RTCustomNavigationBar.h"
 
 @interface RTStaticTableViewController ()
 

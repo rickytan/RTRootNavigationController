@@ -8,21 +8,17 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RTRootNavigationController'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of RTRootNavigationController.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
+  s.version          = '0.5.0'
+  s.summary          = 'Transparently make every view controller has its own navigation bar'
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+More and more apps use custom navigation bar for each different view controller, instead of one common, gloabal navigation bar.
+
+This project just help develops to solve this problem in a tricky way, develops use this navigation controller in a farmilar way just like you used to be, and
+you can have each view controller a individual navigation bar.
                        DESC
 
   s.homepage         = 'https://github.com/rickytan/RTRootNavigationController'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.screenshots      = 'https://github.com/rickytan/RTRootNavigationController/ScreenShot/1.png'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'rickytan' => 'ricky.tan.xin@gmail.com' }
   s.source           = { :git => 'https://github.com/rickytan/RTRootNavigationController.git', :tag => s.version.to_s }
