@@ -115,6 +115,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="cDS-IL-MDS" kind="push" id="dFa-qV-oFQ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -124,11 +127,60 @@
                             <outlet property="delegate" destination="zEC-62-hlf" id="4Vs-MC-JAs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="bqk-bQ-gFX"/>
+                    <navigationItem key="navigationItem" title="Root" id="bqk-bQ-gFX"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAk-PV-8yr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="340" y="791"/>
+        </scene>
+        <!--Horizontal Scroll-->
+        <scene sceneID="VHD-s1-pbL">
+            <objects>
+                <collectionViewController id="cDS-IL-MDS" customClass="RTCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Gkt-Nx-0Hk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xHd-mG-xKU">
+                            <size key="itemSize" width="64" height="64"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Zuc-Qh-uV8">
+                                <rect key="frame" x="10" y="74" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXk-cn-R54">
+                                            <rect key="frame" x="11" y="22" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.75294117650000003" green="0.75294117650000003" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="IXk-cn-R54" firstAttribute="centerY" secondItem="Zuc-Qh-uV8" secondAttribute="centerY" id="YIU-2d-OwO"/>
+                                    <constraint firstItem="IXk-cn-R54" firstAttribute="centerX" secondItem="Zuc-Qh-uV8" secondAttribute="centerX" id="kAf-OX-z6s"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="cDS-IL-MDS" id="e4h-mv-9Po"/>
+                            <outlet property="delegate" destination="cDS-IL-MDS" id="e7t-r2-IwN"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Horizontal Scroll" id="PsD-w9-k1x"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GM1-dt-1mn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="548" y="1997"/>
         </scene>
         <!--ABCD-->
         <scene sceneID="ibM-2x-5R6">
@@ -187,7 +239,7 @@
                             <constraint firstItem="QIB-Rh-ZLH" firstAttribute="leading" secondItem="sjG-Fv-vCe" secondAttribute="leadingMargin" constant="20" id="yG4-2r-0yT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="woS-bY-DPi"/>
+                    <navigationItem key="navigationItem" title="XYZ" id="woS-bY-DPi"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEE-Ej-IY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

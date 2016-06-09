@@ -21,7 +21,9 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		9C16AF1F1D09518100873B86 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C16AF1E1D09518100873B86 /* Launch.storyboard */; };
 		9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */; };
+		9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C31D09152900693F14 /* RTCollectionViewController.m */; };
 		EF0472CCB4F2C92A450761AC /* Pods_RTRootNavigationController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8481FEB9EAB68E472535DC12 /* Pods_RTRootNavigationController_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,8 +62,11 @@
 		67C2BF2B52D3057E8417FB63 /* RTRootNavigationController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RTRootNavigationController.podspec; path = ../RTRootNavigationController.podspec; sourceTree = "<group>"; };
 		8481FEB9EAB68E472535DC12 /* Pods_RTRootNavigationController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9C16AF1E1D09518100873B86 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		9C7832BF1D09111F00693F14 /* RTHideNavigationBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTHideNavigationBarViewController.h; sourceTree = "<group>"; };
 		9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTHideNavigationBarViewController.m; sourceTree = "<group>"; };
+		9C7832C21D09152900693F14 /* RTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCollectionViewController.h; sourceTree = "<group>"; };
+		9C7832C31D09152900693F14 /* RTCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCollectionViewController.m; sourceTree = "<group>"; };
 		B930DAFF5ACFE0FF66B80F25 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E673A1E7286DF41634452940 /* Pods-RTRootNavigationController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,9 +142,12 @@
 			isa = PBXGroup;
 			children = (
 				6003F5A8195388D20070C39A /* Images.xcassets */,
+				9C16AF1E1D09518100873B86 /* Launch.storyboard */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F59C195388D20070C39A /* RTAppDelegate.h */,
 				6003F59D195388D20070C39A /* RTAppDelegate.m */,
+				9C7832C21D09152900693F14 /* RTCollectionViewController.h */,
+				9C7832C31D09152900693F14 /* RTCollectionViewController.m */,
 				9C7832BF1D09111F00693F14 /* RTHideNavigationBarViewController.h */,
 				9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */,
 				6003F5A5195388D20070C39A /* RTViewController.h */,
@@ -273,6 +281,7 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				9C16AF1F1D09518100873B86 /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */,
 				6003F59E195388D20070C39A /* RTAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* RTViewController.m in Sources */,
 				9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */,

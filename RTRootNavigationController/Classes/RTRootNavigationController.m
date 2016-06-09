@@ -64,6 +64,7 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
     return controller;
 }
 
+
 @implementation RTContainerControllerInternal
 
 + (instancetype)containerControllerWithController:(UIViewController *)controller
@@ -77,7 +78,6 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
     if (self) {
         self.contentViewController = controller;
         self.containerNavigatioinController = [[RTContainerNavigationControllerInternal alloc] initWithRootViewController:controller];
-        self.containerNavigatioinController.navigationBarHidden = NO;
         [self addChildViewController:self.containerNavigatioinController];
         [self.containerNavigatioinController didMoveToParentViewController:self];
     }
@@ -87,7 +87,7 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor yellowColor];
+    self.containerNavigatioinController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.containerNavigatioinController.view];
 }
 
@@ -101,19 +101,9 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
 
 @implementation RTContainerNavigationControllerInternal
 
-- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
-{
-    self = [super initWithRootViewController:rootViewController];
-    if (self) {
-        self.navigationItem.title = rootViewController.title;
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor greenColor];
 }
 
 - (void)pushViewController:(UIViewController *)viewController
@@ -127,6 +117,13 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
         [super pushViewController:viewController
                          animated:animated];
     }
+}
+
+- (id)forwardingTargetForSelector:(SEL)aSelector
+{
+    if ([self.navigationController respondsToSelector:aSelector])
+        return self.navigationController;
+    return nil;
 }
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
@@ -153,27 +150,6 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
                              animated:animated];
 }
 
-//- (UIViewController *)topViewController
-//{
-//    if (self.navigationController)
-//        return self.navigationController.topViewController;
-//    return [super topViewController];
-//}
-
-//- (UIViewController *)visibleViewController
-//{
-//    if (self.navigationController)
-//        return self.navigationController.visibleViewController;
-//    return [super visibleViewController];
-//}
-
-//- (NSArray <__kindof UIViewController *> *)viewControllers
-//{
-//    if (self.navigationController)
-//        return self.navigationController.viewControllers;
-//    return [super viewControllers];
-//}
-
 - (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers animated:(BOOL)animated
 {
     if (self.navigationController)
@@ -194,14 +170,11 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
 
 #pragma mark - Methods
 
-- (void)_commonInit
-{
-
-}
-
 - (void)removeViewController:(UIViewController *)controller
 {
-
+    NSMutableArray *controllers = [self.rt_viewControllers mutableCopy];
+    [controllers removeObject:controller];
+    self.viewControllers = [NSArray arrayWithArray:controllers];
 }
 
 - (void)onBack:(id)sender
@@ -232,14 +205,8 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
+    
     self.delegate = self;
-
-    self.popGestureDelegate = self.interactivePopGestureRecognizer.delegate;
-//    SEL action = NSSelectorFromString([@[@"handl", @"eNavig", @"ationTr", @"ansition:"] componentsJoinedByString:@""]);
-//    self.popPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.popGestureDelegate action:action];
-//    self.popPanGesture.maximumNumberOfTouches = 1;
-
     self.navigationBarHidden = YES;
 }
 
@@ -318,12 +285,18 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
         viewController.navigationItem.leftBarButtonItem = [viewController customBackItemWithTarget:self
                                                                                             action:@selector(onBack:)];
     }
+
+    if ([self.rt_delegate respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
+        [self.rt_delegate navigationController:navigationController
+                        willShowViewController:viewController
+                                      animated:animated];
+    }
 }
 
 - (void)navigationController:(UINavigationController *)navigationController
        didShowViewController:(UIViewController *)viewController
-                    animated:(BOOL)animated {
-
+                    animated:(BOOL)animated
+{
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     viewController = RTSafeUnwrapViewController(viewController);
     if (viewController.rt_disableInteractivePop || viewController.navigationController.navigationBarHidden) {
@@ -334,14 +307,63 @@ static inline UIViewController *RTSafeWrapViewController(UIViewController *contr
         self.interactivePopGestureRecognizer.enabled = !isRootVC;
     }
 
+    if ([self.rt_delegate respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
+        [self.rt_delegate navigationController:navigationController
+                         didShowViewController:viewController
+                                      animated:animated];
+    }
 }
+
+- (UIInterfaceOrientationMask)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController
+{
+
+    if ([self.rt_delegate respondsToSelector:@selector(navigationControllerSupportedInterfaceOrientations:)]) {
+        return [self.rt_delegate navigationControllerSupportedInterfaceOrientations:navigationController];
+    }
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)navigationControllerPreferredInterfaceOrientationForPresentation:(UINavigationController *)navigationController
+{
+
+    if ([self.rt_delegate respondsToSelector:@selector(navigationControllerPreferredInterfaceOrientationForPresentation:)]) {
+        return [self.rt_delegate navigationControllerPreferredInterfaceOrientationForPresentation:navigationController];
+    }
+    return UIInterfaceOrientationPortrait;
+}
+
+- (id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                          interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController
+{
+    if ([self.rt_delegate respondsToSelector:@selector(navigationController:interactionControllerForAnimationController:)]) {
+        return [self.rt_delegate navigationController:navigationController
+          interactionControllerForAnimationController:animationController];
+    }
+    return nil;
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                   animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                fromViewController:(UIViewController *)fromVC
+                                                  toViewController:(UIViewController *)toVC
+{
+    if ([self.rt_delegate respondsToSelector:@selector(navigationController:animationControllerForOperation:fromViewController:toViewController:)]) {
+        return [self.rt_delegate navigationController:navigationController
+                      animationControllerForOperation:operation
+                                   fromViewController:fromVC
+                                     toViewController:toVC];
+    }
+    return nil;
+}
+
+
 
 #pragma mark - UIGestureRecognizerDelegate
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    return YES;
+    return NO;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
