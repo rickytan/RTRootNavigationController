@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  RTRootNavigationController: aacd0693d2b2df0d7555665e56382dbe0a5d94d1
+  RTRootNavigationController: f97f06a950ad55cb88bb2c6ec21e96c2cae433fc
 
 COCOAPODS: 0.39.0

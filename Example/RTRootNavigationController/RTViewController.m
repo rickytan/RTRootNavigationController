@@ -6,6 +6,8 @@
 //  Copyright (c) 2016 rickytan. All rights reserved.
 //
 
+#import <RTRootNavigationController/RTRootNavigationController.h>
+
 #import "RTViewController.h"
 
 @interface RTViewController ()
@@ -19,6 +21,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.title = @"Test VC";
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor blueColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+- (UIBarButtonItem *)customBackItemWithTarget:(id)target action:(SEL)action
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [button sizeToFit];
+    [button addTarget:target
+               action:action
+     forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
 - (void)didReceiveMemoryWarning
