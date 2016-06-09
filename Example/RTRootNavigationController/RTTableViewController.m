@@ -24,6 +24,8 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     self.navigationController.navigationBar.tintColor = self.view.tintColor;
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: self.view.tintColor};
 }
 
 - (void)didReceiveMemoryWarning {

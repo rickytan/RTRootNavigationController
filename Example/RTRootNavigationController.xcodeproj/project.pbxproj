@@ -27,6 +27,8 @@
 		9C16AF251D0957D400873B86 /* RTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF241D0957D400873B86 /* RTTableViewController.m */; };
 		9C16AF281D095EC700873B86 /* RTStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF271D095EC700873B86 /* RTStaticTableViewController.m */; };
 		9C16AF2C1D097CEB00873B86 /* RTCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF2B1D097CEB00873B86 /* RTCustomNavigationBar.m */; };
+		9C2994E91D09B83C007722C1 /* RTItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2994E81D09B83C007722C1 /* RTItemListViewController.m */; };
+		9C2994EC1D09B84B007722C1 /* RTItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2994EB1D09B84B007722C1 /* RTItemDetailViewController.m */; };
 		9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */; };
 		9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C31D09152900693F14 /* RTCollectionViewController.m */; };
 /* End PBXBuildFile section */
@@ -75,6 +77,10 @@
 		9C16AF271D095EC700873B86 /* RTStaticTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStaticTableViewController.m; sourceTree = "<group>"; };
 		9C16AF2A1D097CEB00873B86 /* RTCustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCustomNavigationBar.h; sourceTree = "<group>"; };
 		9C16AF2B1D097CEB00873B86 /* RTCustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCustomNavigationBar.m; sourceTree = "<group>"; };
+		9C2994E71D09B83C007722C1 /* RTItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTItemListViewController.h; sourceTree = "<group>"; };
+		9C2994E81D09B83C007722C1 /* RTItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTItemListViewController.m; sourceTree = "<group>"; };
+		9C2994EA1D09B84B007722C1 /* RTItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTItemDetailViewController.h; sourceTree = "<group>"; };
+		9C2994EB1D09B84B007722C1 /* RTItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTItemDetailViewController.m; sourceTree = "<group>"; };
 		9C7832BF1D09111F00693F14 /* RTHideNavigationBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTHideNavigationBarViewController.h; sourceTree = "<group>"; };
 		9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTHideNavigationBarViewController.m; sourceTree = "<group>"; };
 		9C7832C21D09152900693F14 /* RTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCollectionViewController.h; sourceTree = "<group>"; };
@@ -213,6 +219,10 @@
 				9C7832C31D09152900693F14 /* RTCollectionViewController.m */,
 				9C7832BF1D09111F00693F14 /* RTHideNavigationBarViewController.h */,
 				9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */,
+				9C2994EA1D09B84B007722C1 /* RTItemDetailViewController.h */,
+				9C2994EB1D09B84B007722C1 /* RTItemDetailViewController.m */,
+				9C2994E71D09B83C007722C1 /* RTItemListViewController.h */,
+				9C2994E81D09B83C007722C1 /* RTItemListViewController.m */,
 				9C16AF201D09551E00873B86 /* RTPushRemoveViewController.h */,
 				9C16AF211D09551E00873B86 /* RTPushRemoveViewController.m */,
 				9C16AF261D095EC700873B86 /* RTStaticTableViewController.h */,
@@ -386,6 +396,7 @@
 			files = (
 				9C16AF2C1D097CEB00873B86 /* RTCustomNavigationBar.m in Sources */,
 				9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */,
+				9C2994EC1D09B84B007722C1 /* RTItemDetailViewController.m in Sources */,
 				6003F59E195388D20070C39A /* RTAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* RTViewController.m in Sources */,
 				9C16AF251D0957D400873B86 /* RTTableViewController.m in Sources */,
@@ -393,6 +404,7 @@
 				9C16AF281D095EC700873B86 /* RTStaticTableViewController.m in Sources */,
 				9C16AF221D09551E00873B86 /* RTPushRemoveViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				9C2994E91D09B83C007722C1 /* RTItemListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

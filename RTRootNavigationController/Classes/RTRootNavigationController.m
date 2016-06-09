@@ -65,7 +65,7 @@
 @end
 
 
-@interface RTContainerControllerInternal : UIViewController
+@interface RTContainerController ()
 @property (nonatomic, strong) __kindof UIViewController *contentViewController;
 @property (nonatomic, strong) UINavigationController *containerNavigatioinController;
 
@@ -82,28 +82,28 @@
 
 
 static inline UIViewController *RTSafeUnwrapViewController(UIViewController *controller) {
-    if ([controller isKindOfClass:[RTContainerControllerInternal class]]) {
-        return ((RTContainerControllerInternal *)controller).contentViewController;
+    if ([controller isKindOfClass:[RTContainerController class]]) {
+        return ((RTContainerController *)controller).contentViewController;
     }
     return controller;
 }
 
 __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller) {
-    if (![controller isKindOfClass:[RTContainerControllerInternal class]]) {
-        return [RTContainerControllerInternal containerControllerWithController:controller];
+    if (![controller isKindOfClass:[RTContainerController class]]) {
+        return [RTContainerController containerControllerWithController:controller];
     }
     return controller;
 }
 
 __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass) {
-    if (![controller isKindOfClass:[RTContainerControllerInternal class]]) {
-        return [RTContainerControllerInternal containerControllerWithController:controller navigationBarClass:navigationBarClass];
+    if (![controller isKindOfClass:[RTContainerController class]]) {
+        return [RTContainerController containerControllerWithController:controller navigationBarClass:navigationBarClass];
     }
     return controller;
 }
 
 
-@implementation RTContainerControllerInternal
+@implementation RTContainerController
 
 + (instancetype)containerControllerWithController:(UIViewController *)controller
 {
@@ -269,11 +269,20 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         [super setViewControllers:viewControllers animated:animated];
 }
 
+- (void)setDelegate:(id<UINavigationControllerDelegate>)delegate
+{
+    if (self.navigationController)
+        self.navigationController.delegate = delegate;
+    else
+        [super setDelegate:delegate];
+}
+
 @end
 
 
 @interface RTRootNavigationController () <UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, assign) id<UIGestureRecognizerDelegate> popGestureDelegate;
+@property (nonatomic, weak) id<UINavigationControllerDelegate> rt_delegate;
 @property (nonatomic, copy) void(^animationBlock)(BOOL finished);
 @end
 
@@ -310,7 +319,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     [super viewDidLoad];
 
-    self.delegate = self;
+    [super setDelegate:self];
     self.navigationBarHidden = YES;
 }
 
@@ -379,6 +388,11 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         return RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
     }]
                      animated:animated];
+}
+
+- (void)setDelegate:(id<UINavigationControllerDelegate>)delegate
+{
+    self.rt_delegate = delegate;
 }
 
 #pragma mark - Public Methods

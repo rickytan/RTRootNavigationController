@@ -22,12 +22,13 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+RTRootNavigationController.h"
 
-/*!
- *  @brief DO NOT change the RTRootNavigationController.delegate directly, instead use rt_delegate
- */
-@interface RTRootNavigationController : UINavigationController
 
-@property (nonatomic, weak) id<UINavigationControllerDelegate> rt_delegate;
+@interface RTContainerController : UIViewController
+@property (nonatomic, readonly, strong) __kindof UIViewController *contentViewController;
+@end
+
+
+@interface RTRootNavigationController : UINavigationController
 
 /*!
  *  @brief use this property instead of `visibleViewController` to get the current visiable content view controller
