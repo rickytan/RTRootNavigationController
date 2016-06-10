@@ -63,4 +63,27 @@
                   animated:(BOOL)animated
                   complete:(void(^)(BOOL finished))block;
 
+/*!
+ *  @brief Pop to a specific view controller with a complete handler
+ *
+ *  @param viewController The view controller to pop  to
+ *  @param animated       use animation or not
+ *  @param block          complete handler
+ *
+ *  @return A array of UIViewControllers poped from the stack
+ */
+- (NSArray <__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController
+                                                      animated:(BOOL)animated
+                                                      complete:(void(^)(BOOL finished))block;
+
+/*!
+ *  @brief Pop to root view controller with a complete handler
+ *
+ *  @param animated use animation or not
+ *  @param block    complete handler
+ *
+ *  @return A array of UIViewControllers poped from the stack
+ */
+- (NSArray <__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
+                                                                  complete:(void(^)(BOOL finished))block;
 @end

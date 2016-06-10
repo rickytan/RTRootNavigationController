@@ -320,7 +320,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     [super viewDidLoad];
 
     [super setDelegate:self];
-    self.navigationBarHidden = YES;
+    [super setNavigationBarHidden:YES
+                         animated:NO];
 }
 
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
@@ -343,6 +344,12 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         }
     }
     return controller;
+}
+
+- (void)setNavigationBarHidden:(__unused BOOL)hidden
+                      animated:(__unused BOOL)animated
+{
+    // Override to protect
 }
 
 - (void)pushViewController:(UIViewController *)viewController
@@ -375,8 +382,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         }
     }];
     if (controllerToPop) {
-        return [super popToViewController:controllerToPop
-                                 animated:animated];
+        return [[super popToViewController:controllerToPop
+                                 animated:animated] rt_map:^id(id obj) {
+            return RTSafeUnwrapViewController(obj);
+        }];
     }
     return nil;
 }
@@ -440,6 +449,28 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     self.animationBlock = block;
     [self pushViewController:viewController
                     animated:animated];
+}
+
+- (NSArray <__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController
+                                                      animated:(BOOL)animated
+                                                      complete:(void (^)(BOOL))block
+{
+    if (self.animationBlock) {
+        self.animationBlock(NO);
+    }
+    self.animationBlock = block;
+    return [self popToViewController:viewController
+                            animated:animated];
+}
+
+- (NSArray <__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
+                                                                  complete:(void (^)(BOOL))block
+{
+    if (self.animationBlock) {
+        self.animationBlock(NO);
+    }
+    self.animationBlock = block;
+    return [self popToRootViewControllerAnimated:animated];
 }
 
 #pragma mark - UINavigationController Delegate
