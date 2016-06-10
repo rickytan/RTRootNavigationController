@@ -17,10 +17,25 @@ you can have each view controller a individual navigation bar.
 * Unwind support
 * Rotation support
 * Interactive pop enable and disable support
+* `Interface Builde` support
 
 ![screenshot](./ScreenShot/1.png)
 
 ![scrreecap](./ScreenShot/2.gif)
+
+## Usage
+
+As an advise, please set `RTRootNavigationController` as your rootViewController:
+
+```objective-c
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+
+    UIViewController *yourController = ...;
+    self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewController:yourController];
+    return YES;
+}
+```
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 

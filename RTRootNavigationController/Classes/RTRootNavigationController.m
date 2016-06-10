@@ -169,9 +169,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                       fromViewController:(UIViewController *)fromViewController
                                               withSender:(id)sender
 {
-    if ([self.contentViewController respondsToSelector:action])
-        return self.contentViewController;
-    return nil;
+    return [self.contentViewController viewControllerForUnwindSegueAction:action
+                                                       fromViewController:fromViewController
+                                                               withSender:sender];
 }
 
 @end

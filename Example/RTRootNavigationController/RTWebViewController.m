@@ -149,7 +149,7 @@
     [self.spinnerView stopAnimating];
     self.indicateLabel.text = [NSString stringWithFormat:@"Site provided by:\n%@", webView.request.URL.host];
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    
+
     self.toolbarItems[0].enabled = webView.canGoBack;
     self.toolbarItems[2].enabled = webView.canGoForward;
 }
