@@ -580,6 +580,9 @@
                             <color key="textShadowColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="useSystemBackBarButtonItem" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="zEC-62-hlf" kind="relationship" relationship="rootViewController" id="OjB-2h-gJw"/>
                     </connections>

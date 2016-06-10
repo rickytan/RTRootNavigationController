@@ -27,8 +27,16 @@
 @property (nonatomic, readonly, strong) __kindof UIViewController *contentViewController;
 @end
 
-
+IB_DESIGNABLE
 @interface RTRootNavigationController : UINavigationController
+
+/*!
+ *  @brief use system original back bar item or custom back bar item returned by `- (UIBarButtonItem *)customBackItemWithTarget:(id)target action:(SEL)action`, default is NO
+ *  @warning Set this to YES will increase memory usage!
+ */
+@property (nonatomic, assign) IBInspectable BOOL useSystemBackBarButtonItem;
+
+@property (nonatomic, assign) IBInspectable BOOL transferNavigationBarAttributes;   // Weather each individual navigation bar uses the visual style of root navigation bar. Default is YES
 
 /*!
  *  @brief use this property instead of `visibleViewController` to get the current visiable content view controller
