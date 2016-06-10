@@ -55,6 +55,20 @@ As an advise, please set `RTRootNavigationController` as your rootViewController
 }
 ```
 
+you can override following method to customize back bar button item (**Recommended**):
+```objective-c
+- (UIBarButtonItem *)customBackItemWithTarget:(id)target
+                                       action:(SEL)action
+{
+    return [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
+                                            style:UIBarButtonItemStylePlain
+                                           target:target
+                                           action:action];
+}
+```
+
+or just set `useSystemBackBarButtonItem` to **YES** and use the default one.
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
