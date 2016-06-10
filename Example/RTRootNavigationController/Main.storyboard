@@ -180,6 +180,26 @@
                                             <segue destination="h6O-Eh-Am6" kind="push" id="wOV-EM-IGH"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Gyk-z1-gg3" style="IBUITableViewCellStyleDefault" id="5Ag-8k-FVj">
+                                        <rect key="frame" x="0.0" y="308" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Ag-8k-FVj" id="h7t-4t-cJL">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="With toolbar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gyk-z1-gg3">
+                                                    <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="UBA-dV-kX4" kind="push" id="d23-AT-fag"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -227,6 +247,25 @@
                 <exit id="ogd-d2-OF2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="621" y="2611"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="G0H-v4-9JC">
+            <objects>
+                <viewController id="UBA-dV-kX4" customClass="RTWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n6M-tr-RRq"/>
+                        <viewControllerLayoutGuide type="bottom" id="NEI-wQ-DWr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zip-u8-CYh">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qMr-Rg-QxI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vMw-vA-mhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-677" y="1825"/>
         </scene>
         <!--List-->
         <scene sceneID="XTj-ye-u6i">
