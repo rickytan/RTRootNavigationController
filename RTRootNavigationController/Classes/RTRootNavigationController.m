@@ -25,9 +25,9 @@
 @class RTContainerControllerInternal, RTContainerNavigationControllerInternal;
 
 
-@interface NSArray (RTRootNavigationController)
-- (NSArray *)rt_map:(id(^)(id obj))block;
-- (BOOL)rt_some:(BOOL(^)(id obj))block;
+@interface NSArray<ObjectType> (RTRootNavigationController)
+- (NSArray *)rt_map:(id(^)(ObjectType obj))block;
+- (BOOL)rt_any:(BOOL(^)(ObjectType obj))block;
 @end
 
 @implementation NSArray (RTRootNavigationController)
@@ -47,7 +47,7 @@
     return [NSArray arrayWithArray:array];
 }
 
-- (BOOL)rt_some:(BOOL (^)(id))block
+- (BOOL)rt_any:(BOOL (^)(id))block
 {
     if (!block)
         return NO;
@@ -203,6 +203,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                                                withSender:sender];
 }
 
+- (BOOL)hidesBottomBarWhenPushed
+{
+    return self.contentViewController.hidesBottomBarWhenPushed;
+}
+
+- (NSString *)title
+{
+    return self.contentViewController.title;
+}
+
 @end
 
 @implementation RTContainerNavigationControllerInternal
@@ -231,6 +241,14 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.navigationBar.backIndicatorImage               = self.navigationController.navigationBar.backIndicatorImage;
         self.navigationBar.backIndicatorTransitionMaskImage = self.navigationController.navigationBar.backIndicatorTransitionMaskImage;
     }
+}
+
+- (UITabBarController *)tabBarController
+{
+    UITabBarController *tabController = [super tabBarController];
+    return !tabController.tabBar.isTranslucent || [self.rt_navigationController.rt_viewControllers rt_any:^BOOL(__kindof UIViewController *obj) {
+        return obj.hidesBottomBarWhenPushed;
+    }] ? nil : tabController;
 }
 
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
