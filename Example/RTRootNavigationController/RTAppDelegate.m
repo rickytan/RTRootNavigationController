@@ -6,13 +6,28 @@
 //  Copyright (c) 2016 rickytan. All rights reserved.
 //
 
+#import <RTRootNavigationController/RTRootNavigationController.h>
+
 #import "RTAppDelegate.h"
+
 
 @implementation RTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    /*
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main"
+                                                    bundle:nil];
+    UITabBarController *tabController = [[UITabBarController alloc] init];
+    //tabController.tabBar.translucent = NO;
+    tabController.viewControllers = @[[[RTRootNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Root"]],
+                                      [[RTRootNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Remove"]],
+                                      [[RTRootNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Scroll"]],
+                                      [[RTRootNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"List"]]];
+    self.window.rootViewController = tabController;
+     */
     return YES;
 }
 
