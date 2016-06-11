@@ -27,6 +27,8 @@
 @property (nonatomic, readonly, strong) __kindof UIViewController *contentViewController;
 @end
 
+
+
 IB_DESIGNABLE
 @interface RTRootNavigationController : UINavigationController
 
@@ -58,7 +60,7 @@ IB_DESIGNABLE
  *
  *  @param controller the content view controller
  */
-- (void)removeViewController:(UIViewController *)controller;
+- (void)removeViewController:(UIViewController *)controller NS_REQUIRES_SUPER;
 
 /*!
  *  @brief Push a view controller and do sth. when animation is done
@@ -78,7 +80,7 @@ IB_DESIGNABLE
  *  @param animated       use animation or not
  *  @param block          complete handler
  *
- *  @return A array of UIViewControllers poped from the stack
+ *  @return A array of UIViewControllers(content controller) poped from the stack
  */
 - (NSArray <__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController
                                                       animated:(BOOL)animated
@@ -90,7 +92,7 @@ IB_DESIGNABLE
  *  @param animated use animation or not
  *  @param block    complete handler
  *
- *  @return A array of UIViewControllers poped from the stack
+ *  @return A array of UIViewControllers(content controller) poped from the stack
  */
 - (NSArray <__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
                                                                   complete:(void(^)(BOOL finished))block;
