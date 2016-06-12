@@ -1,5 +1,5 @@
 PODS:
-  - RTRootNavigationController (0.1.0)
+  - RTRootNavigationController (0.5.6)
 
 DEPENDENCIES:
   - RTRootNavigationController (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  RTRootNavigationController: f97f06a950ad55cb88bb2c6ec21e96c2cae433fc
+  RTRootNavigationController: 1e24f7cd33ed6161463503d509113566f318b88d
 
 COCOAPODS: 0.39.0

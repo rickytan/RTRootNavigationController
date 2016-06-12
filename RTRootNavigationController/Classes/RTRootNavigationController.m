@@ -26,23 +26,23 @@
 
 
 @interface NSArray<ObjectType> (RTRootNavigationController)
-- (NSArray *)rt_map:(id(^)(ObjectType obj))block;
+- (NSArray *)rt_map:(id(^)(ObjectType obj, NSUInteger index))block;
 - (BOOL)rt_any:(BOOL(^)(ObjectType obj))block;
 @end
 
 @implementation NSArray (RTRootNavigationController)
 
-- (NSArray *)rt_map:(id (^)(id obj))block
+- (NSArray *)rt_map:(id (^)(id obj, NSUInteger index))block
 {
     if (!block) {
-        block = ^(id obj) {
+        block = ^(id obj, NSUInteger index) {
             return obj;
         };
     }
-
+    
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.count];
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
-        [array addObject:block(obj)];
+        [array addObject:block(obj, idx)];
     }];
     return [NSArray arrayWithArray:array];
 }
@@ -51,7 +51,7 @@
 {
     if (!block)
         return NO;
-
+    
     __block BOOL result = NO;
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
         if (block(obj)) {
@@ -75,6 +75,11 @@
 + (instancetype)containerControllerWithController:(UIViewController *)controller
                                navigationBarClass:(Class)navigationBarClass
                         withPlaceholderController:(BOOL)yesOrNo;
++ (instancetype)containerControllerWithController:(UIViewController *)controller
+                               navigationBarClass:(Class)navigationBarClass
+                        withPlaceholderController:(BOOL)yesOrNo
+                                backBarButtonItem:(UIBarButtonItem *)backItem
+                                        backTitle:(NSString *)backTitle;
 
 - (instancetype)initWithController:(UIViewController *)controller;
 - (instancetype)initWithController:(UIViewController *)controller navigationBarClass:(Class)navigationBarClass;
@@ -88,6 +93,21 @@
 static inline UIViewController *RTSafeUnwrapViewController(UIViewController *controller) {
     if ([controller isKindOfClass:[RTContainerController class]]) {
         return ((RTContainerController *)controller).contentViewController;
+    }
+    return controller;
+}
+
+__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller,
+                                                                                     Class navigationBarClass,
+                                                                                     BOOL withPlaceholder,
+                                                                                     UIBarButtonItem *backItem,
+                                                                                     NSString *backTitle) {
+    if (![controller isKindOfClass:[RTContainerController class]]) {
+        return [RTContainerController containerControllerWithController:controller
+                                                     navigationBarClass:navigationBarClass
+                                              withPlaceholderController:withPlaceholder
+                                                      backBarButtonItem:backItem
+                                                              backTitle:backTitle];
     }
     return controller;
 }
@@ -133,24 +153,54 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                   withPlaceholderController:yesOrNo];
 }
 
++ (instancetype)containerControllerWithController:(UIViewController *)controller
+                               navigationBarClass:(Class)navigationBarClass
+                        withPlaceholderController:(BOOL)yesOrNo
+                                backBarButtonItem:(UIBarButtonItem *)backItem
+                                        backTitle:(NSString *)backTitle
+{
+    return [[self alloc] initWithController:controller
+                         navigationBarClass:navigationBarClass
+                  withPlaceholderController:yesOrNo
+                          backBarButtonItem:backItem
+                                  backTitle:backTitle];
+}
+
 - (instancetype)initWithController:(UIViewController *)controller
                 navigationBarClass:(Class)navigationBarClass
          withPlaceholderController:(BOOL)yesOrNo
+                 backBarButtonItem:(UIBarButtonItem *)backItem
+                         backTitle:(NSString *)backTitle
 {
     self = [super init];
     if (self) {
         self.contentViewController = controller;
         self.containerNavigatioinController = [[RTContainerNavigationControllerInternal alloc] initWithNavigationBarClass:navigationBarClass
                                                                                                              toolbarClass:nil];
-        if (yesOrNo)
-            self.containerNavigatioinController.viewControllers = @[[UIViewController new], controller];
+        if (yesOrNo) {
+            UIViewController *vc = [UIViewController new];
+            vc.title = backTitle;
+            vc.navigationItem.backBarButtonItem = backItem;
+            self.containerNavigatioinController.viewControllers = @[vc, controller];
+        }
         else
             self.containerNavigatioinController.viewControllers = @[controller];
-
+        
         [self addChildViewController:self.containerNavigatioinController];
         [self.containerNavigatioinController didMoveToParentViewController:self];
     }
     return self;
+}
+
+- (instancetype)initWithController:(UIViewController *)controller
+                navigationBarClass:(Class)navigationBarClass
+         withPlaceholderController:(BOOL)yesOrNo
+{
+    return [self initWithController:controller
+                 navigationBarClass:navigationBarClass
+          withPlaceholderController:yesOrNo
+                  backBarButtonItem:nil
+                          backTitle:nil];
 }
 
 - (instancetype)initWithController:(UIViewController *)controller
@@ -213,6 +263,11 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self.contentViewController.title;
 }
 
+- (UITabBarItem *)tabBarItem
+{
+    return self.contentViewController.tabBarItem;
+}
+
 @end
 
 @implementation RTContainerNavigationControllerInternal
@@ -220,22 +275,22 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     //self.interactivePopGestureRecognizer.delegate = nil;
     self.interactivePopGestureRecognizer.enabled = NO;
-
+    
     if (self.rt_navigationController.transferNavigationBarAttributes) {
         self.navigationBar.translucent     = self.navigationController.navigationBar.isTranslucent;
         self.navigationBar.tintColor       = self.navigationController.navigationBar.tintColor;
         self.navigationBar.barTintColor    = self.navigationController.navigationBar.barTintColor;
         self.navigationBar.barStyle        = self.navigationController.navigationBar.barStyle;
         self.navigationBar.backgroundColor = self.navigationController.navigationBar.backgroundColor;
-
+        
         [self.navigationBar setBackgroundImage:[self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault]
                                  forBarMetrics:UIBarMetricsDefault];
         [self.navigationBar setTitleVerticalPositionAdjustment:[self.navigationController.navigationBar titleVerticalPositionAdjustmentForBarMetrics:UIBarMetricsDefault]
                                                  forBarMetrics:UIBarMetricsDefault];
-
+        
         self.navigationBar.titleTextAttributes              = self.navigationController.navigationBar.titleTextAttributes;
         self.navigationBar.shadowImage                      = self.navigationController.navigationBar.shadowImage;
         self.navigationBar.backIndicatorImage               = self.navigationController.navigationBar.backIndicatorImage;
@@ -390,7 +445,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [super setDelegate:self];
     [super setNavigationBarHidden:YES
                          animated:NO];
@@ -428,7 +483,12 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                   animated:(BOOL)animated
 {
     if (self.viewControllers.count > 0) {
-        [super pushViewController:RTSafeWrapViewController(viewController, viewController.rt_navigationBarClass, self.useSystemBackBarButtonItem)
+        UIViewController *currentLast = RTSafeUnwrapViewController(self.viewControllers.lastObject);
+        [super pushViewController:RTSafeWrapViewController(viewController,
+                                                           viewController.rt_navigationBarClass,
+                                                           self.useSystemBackBarButtonItem,
+                                                           currentLast.navigationItem.backBarButtonItem,
+                                                           currentLast.title)
                          animated:animated];
     }
     else {
@@ -444,7 +504,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
 {
-    return [[super popToRootViewControllerAnimated:animated] rt_map:^id(id obj) {
+    return [[super popToRootViewControllerAnimated:animated] rt_map:^id(__kindof UIViewController *obj, NSUInteger index) {
         return RTSafeUnwrapViewController(obj);
     }];
 }
@@ -461,7 +521,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     }];
     if (controllerToPop) {
         return [[super popToViewController:controllerToPop
-                                  animated:animated] rt_map:^id(id obj) {
+                                  animated:animated] rt_map:^id(__kindof UIViewController * obj, __unused NSUInteger index) {
             return RTSafeUnwrapViewController(obj);
         }];
     }
@@ -471,8 +531,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers
                   animated:(BOOL)animated
 {
-    [super setViewControllers:[viewControllers rt_map:^id(__kindof UIViewController * obj) {
-        return RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
+    [super setViewControllers:[viewControllers rt_map:^id(__kindof UIViewController * obj,  NSUInteger index) {
+        if (self.useSystemBackBarButtonItem && index > 0) {
+            return RTSafeWrapViewController(obj,
+                                            obj.rt_navigationBarClass,
+                                            self.useSystemBackBarButtonItem,
+                                            viewControllers[index - 1].navigationItem.backBarButtonItem,
+                                            viewControllers[index - 1].title);
+        }
+        else
+            return RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
     }]
                      animated:animated];
 }
@@ -496,7 +564,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (NSArray <__kindof UIViewController *> *)rt_viewControllers
 {
-    return [[super viewControllers] rt_map:^id(id obj) {
+    return [[super viewControllers] rt_map:^id(id obj, __unused NSUInteger index) {
         return RTSafeUnwrapViewController(obj);
     }];
 }
@@ -565,7 +633,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                                                                                 action:@selector(onBack:)];
         }
     }
-
+    
     if ([self.rt_delegate respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
         [self.rt_delegate navigationController:navigationController
                         willShowViewController:viewController
@@ -586,12 +654,12 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.interactivePopGestureRecognizer.delegate = self;
         self.interactivePopGestureRecognizer.enabled = !isRootVC;
     }
-
+    
     if (self.animationBlock) {
         self.animationBlock(YES);
         self.animationBlock = nil;
     }
-
+    
     if ([self.rt_delegate respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
         [self.rt_delegate navigationController:navigationController
                          didShowViewController:viewController
@@ -601,7 +669,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (UIInterfaceOrientationMask)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController
 {
-
+    
     if ([self.rt_delegate respondsToSelector:@selector(navigationControllerSupportedInterfaceOrientations:)]) {
         return [self.rt_delegate navigationControllerSupportedInterfaceOrientations:navigationController];
     }
@@ -610,7 +678,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (UIInterfaceOrientation)navigationControllerPreferredInterfaceOrientationForPresentation:(UINavigationController *)navigationController
 {
-
+    
     if ([self.rt_delegate respondsToSelector:@selector(navigationControllerPreferredInterfaceOrientationForPresentation:)]) {
         return [self.rt_delegate navigationControllerPreferredInterfaceOrientationForPresentation:navigationController];
     }
