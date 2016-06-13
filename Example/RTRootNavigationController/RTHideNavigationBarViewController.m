@@ -6,6 +6,8 @@
 //  Copyright © 2016年 rickytan. All rights reserved.
 //
 
+#import <RTRootNavigationController/RTRootNavigationController.h>
+
 #import "RTHideNavigationBarViewController.h"
 
 @interface RTHideNavigationBarViewController ()

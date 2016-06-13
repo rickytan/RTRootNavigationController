@@ -389,6 +389,12 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         [super setDelegate:delegate];
 }
 
+- (void)setNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated
+{
+    [super setNavigationBarHidden:hidden animated:animated];
+    self.visibleViewController.rt_disableInteractivePop = hidden;
+}
+
 @end
 
 
@@ -647,7 +653,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     viewController = RTSafeUnwrapViewController(viewController);
-    if (viewController.rt_disableInteractivePop || viewController.navigationController.navigationBarHidden) {
+    if (viewController.rt_disableInteractivePop) {
         self.interactivePopGestureRecognizer.delegate = self.popGestureDelegate;
         self.interactivePopGestureRecognizer.enabled = NO;
     } else {
