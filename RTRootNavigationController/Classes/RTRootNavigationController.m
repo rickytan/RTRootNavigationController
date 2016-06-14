@@ -244,6 +244,37 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return [self.contentViewController preferredStatusBarUpdateAnimation];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return [self.contentViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return self.contentViewController.shouldAutorotate;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return self.contentViewController.supportedInterfaceOrientations;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return self.contentViewController.preferredInterfaceOrientationForPresentation;
+}
+
+- (nullable UIView *)rotatingHeaderView
+{
+    return self.contentViewController.rotatingHeaderView;
+}
+
+- (nullable UIView *)rotatingFooterView
+{
+    return self.contentViewController.rotatingFooterView;
+}
+
+
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
                                       fromViewController:(UIViewController *)fromViewController
                                               withSender:(id)sender
@@ -554,6 +585,36 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)setDelegate:(id<UINavigationControllerDelegate>)delegate
 {
     self.rt_delegate = delegate;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return [self.rt_topViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return self.rt_topViewController.shouldAutorotate;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return self.rt_topViewController.supportedInterfaceOrientations;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return self.rt_topViewController.preferredInterfaceOrientationForPresentation;
+}
+
+- (nullable UIView *)rotatingHeaderView
+{
+    return self.rt_topViewController.rotatingHeaderView;
+}
+
+- (nullable UIView *)rotatingFooterView
+{
+    return self.rt_topViewController.rotatingFooterView;
 }
 
 #pragma mark - Public Methods
