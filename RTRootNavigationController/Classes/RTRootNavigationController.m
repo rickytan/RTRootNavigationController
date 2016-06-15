@@ -721,7 +721,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.interactivePopGestureRecognizer.delegate = self;
         self.interactivePopGestureRecognizer.enabled = !isRootVC;
     }
-    
+
+    [RTRootNavigationController attemptRotationToDeviceOrientation];
+
     if (self.animationBlock) {
         self.animationBlock(YES);
         self.animationBlock = nil;
