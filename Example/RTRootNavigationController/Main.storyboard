@@ -261,7 +261,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qMr-Rg-QxI"/>
+                    <navigationItem key="navigationItem" id="qMr-Rg-QxI">
+                        <barButtonItem key="leftBarButtonItem" title="Toggle Toolbar" id="nzD-h0-W6V">
+                            <connections>
+                                <action selector="onToggleToolbar:" destination="UBA-dV-kX4" id="lKn-fR-UTB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMw-vA-mhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

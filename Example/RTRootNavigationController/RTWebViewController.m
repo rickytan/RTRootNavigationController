@@ -126,6 +126,11 @@
 
 }
 
+- (IBAction)onToggleToolbar:(id)sender {
+    [self.navigationController setToolbarHidden:!self.navigationController.isToolbarHidden
+                                       animated:YES];
+}
+
 - (UIBarButtonItem *)customBackItemWithTarget:(id)target action:(SEL)action
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

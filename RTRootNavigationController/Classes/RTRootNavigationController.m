@@ -695,7 +695,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     if (!isRootVC) {
         viewController = RTSafeUnwrapViewController(viewController);
-        if (!self.useSystemBackBarButtonItem) {
+        if (!self.useSystemBackBarButtonItem && !viewController.navigationItem.leftBarButtonItem) {
             viewController.navigationItem.leftBarButtonItem = [viewController customBackItemWithTarget:self
                                                                                                 action:@selector(onBack:)];
         }
@@ -782,14 +782,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
-}
-
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return gestureRecognizer == self.interactivePopGestureRecognizer;
+    return (gestureRecognizer == self.interactivePopGestureRecognizer);
 }
 
 @end
