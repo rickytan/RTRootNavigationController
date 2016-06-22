@@ -6,10 +6,9 @@
 [![Platform](https://img.shields.io/cocoapods/p/RTRootNavigationController.svg?style=flat)](http://cocoapods.org/pods/RTRootNavigationController)
 
 ## Introduction
-More and more apps use custom navigation bar for each different view controller, instead of one common, gloabal navigation bar.
+More and more apps use custom navigation bar for each different view controller, instead of one common, global navigation bar.
 
-This project just help develops to solve this problem in a tricky way, develops use this navigation controller in a farmilar way just like you used to be, and
-you can have each view controller a individual navigation bar.
+This project just help develops to solve this problem in a tricky way, develops use this navigation controller in a farmilar way just like you used to be, and you can have each view controller a individual navigation bar.
 
 越来越多的应用为每一个 **VC** 设置单独的导航条，而不是之前那样使用一个全局统一的导航条，因为不同的 **VC** 有不同的视觉样式，前一个是蓝色的，后一个也许要做成红色、透明，或者干脆没有导航条。
 
@@ -23,7 +22,7 @@ you can have each view controller a individual navigation bar.
 
 本项目提供一种透明的方式，让开发者像以前一样使用导航器，同时，每个 `push` 进来的 **VC** 有自己独立的导航条。
 
-## Feature
+## Features
 
 * Custom navigation bar class support
 * Unwind support
@@ -56,6 +55,7 @@ As an advise, please set `RTRootNavigationController` as your rootViewController
 ```
 
 you can override following method to customize back bar button item (**Recommended**):
+
 ```objective-c
 - (UIBarButtonItem *)customBackItemWithTarget:(id)target
                                        action:(SEL)action
