@@ -22,12 +22,12 @@
                                                     bundle:nil];
     UITabBarController *tabController = [[UITabBarController alloc] init];
     //tabController.tabBar.translucent = NO;
-    tabController.viewControllers = @[[[RTRootNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Root"]],
-                                      [[RTRootNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Remove"]],
-                                      [[RTRootNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Scroll"]],
-                                      [[RTRootNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"List"]]];
-    self.window.rootViewController = tabController;
-     */
+    tabController.viewControllers = @[[[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Root"]],
+                                      [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Remove"]],
+                                      [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Scroll"]],
+                                      [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"List"]]];
+    self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewController:tabController];
+    */
     return YES;
 }
 

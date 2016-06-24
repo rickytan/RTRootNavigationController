@@ -29,6 +29,22 @@
 @end
 
 
+/**
+ *  This Controller will forward all `Navigation` actions to its containing navigation controller, i.e. `RTRootNavigationController`.
+ *  If you are using UITabBarController is your project, it's recommand to wrap it in `RTRootNavigationController` as follows:
+ *  ```
+ *  tabController.viewControllers = @[[[RTContainerNavigationController alloc] initWithRootViewController:vc1],
+ *                                    [[RTContainerNavigationController alloc] initWithRootViewController:vc2],
+ *                                    [[RTContainerNavigationController alloc] initWithRootViewController:vc3],
+ *                                    [[RTContainerNavigationController alloc] initWithRootViewController:vc4]];
+ *  self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewController:tabController];
+ *  ```
+ */
+@interface RTContainerNavigationController : UINavigationController
+@end
+
+
+
 
 IB_DESIGNABLE
 @interface RTRootNavigationController : UINavigationController

@@ -18,11 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <objc/runtime.h>
+
 #import "RTRootNavigationController.h"
 
 #import "UIViewController+RTRootNavigationController.h"
-
-@class RTContainerControllerInternal, RTContainerNavigationControllerInternal;
 
 
 @interface NSArray<ObjectType> (RTRootNavigationController)
@@ -84,9 +84,6 @@
 - (instancetype)initWithController:(UIViewController *)controller;
 - (instancetype)initWithController:(UIViewController *)controller navigationBarClass:(Class)navigationBarClass;
 
-@end
-
-@interface RTContainerNavigationControllerInternal : UINavigationController
 @end
 
 
@@ -175,7 +172,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     self = [super init];
     if (self) {
         self.contentViewController = controller;
-        self.containerNavigatioinController = [[RTContainerNavigationControllerInternal alloc] initWithNavigationBarClass:navigationBarClass
+        self.containerNavigatioinController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
                                                                                                              toolbarClass:nil];
         if (yesOrNo) {
             UIViewController *vc = [UIViewController new];
@@ -301,7 +298,21 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 @end
 
-@implementation RTContainerNavigationControllerInternal
+@interface UIViewController (RTContainerNavigationController)
+@property (nonatomic, assign, readonly) BOOL rt_hasSetInteractivePop;
+@end
+
+@implementation UIViewController (RTContainerNavigationController)
+
+- (BOOL)rt_hasSetInteractivePop
+{
+    return !!objc_getAssociatedObject(self, @selector(rt_disableInteractivePop));
+}
+
+@end
+
+
+@implementation RTContainerNavigationController
 
 - (void)viewDidLoad
 {
@@ -423,14 +434,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)setNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated
 {
     [super setNavigationBarHidden:hidden animated:animated];
-    self.visibleViewController.rt_disableInteractivePop = hidden;
+    if (!self.visibleViewController.rt_hasSetInteractivePop) {
+        self.visibleViewController.rt_disableInteractivePop = hidden;
+    }
 }
 
 @end
 
 
 @interface RTRootNavigationController () <UINavigationControllerDelegate, UIGestureRecognizerDelegate>
-@property (nonatomic, assign) id<UIGestureRecognizerDelegate> popGestureDelegate;
 @property (nonatomic, weak) id<UINavigationControllerDelegate> rt_delegate;
 @property (nonatomic, copy) void(^animationBlock)(BOOL finished);
 @end
@@ -482,6 +494,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [super setDelegate:self];
     [super setNavigationBarHidden:YES
@@ -589,32 +602,32 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return [self.rt_topViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+    return [self.rt_visibleViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (BOOL)shouldAutorotate
 {
-    return self.rt_topViewController.shouldAutorotate;
+    return self.rt_visibleViewController.shouldAutorotate;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return self.rt_topViewController.supportedInterfaceOrientations;
+    return self.rt_visibleViewController.supportedInterfaceOrientations;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
-    return self.rt_topViewController.preferredInterfaceOrientationForPresentation;
+    return self.rt_visibleViewController.preferredInterfaceOrientationForPresentation;
 }
 
 - (nullable UIView *)rotatingHeaderView
 {
-    return self.rt_topViewController.rotatingHeaderView;
+    return self.rt_visibleViewController.rotatingHeaderView;
 }
 
 - (nullable UIView *)rotatingFooterView
 {
-    return self.rt_topViewController.rotatingFooterView;
+    return self.rt_visibleViewController.rotatingFooterView;
 }
 
 #pragma mark - Public Methods
@@ -715,9 +728,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     viewController = RTSafeUnwrapViewController(viewController);
     if (viewController.rt_disableInteractivePop) {
-        self.interactivePopGestureRecognizer.delegate = self.popGestureDelegate;
+        self.interactivePopGestureRecognizer.delegate = nil;
         self.interactivePopGestureRecognizer.enabled = NO;
     } else {
+        self.interactivePopGestureRecognizer.delaysTouchesBegan = YES;
         self.interactivePopGestureRecognizer.delegate = self;
         self.interactivePopGestureRecognizer.enabled = !isRootVC;
     }
