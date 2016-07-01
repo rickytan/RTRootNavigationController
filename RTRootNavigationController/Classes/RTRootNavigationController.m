@@ -651,6 +651,11 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)removeViewController:(UIViewController *)controller
 {
+    [self removeViewController:controller animated:NO];
+}
+
+- (void)removeViewController:(UIViewController *)controller animated:(BOOL)flag
+{
     NSMutableArray<__kindof UIViewController *> *controllers = [self.viewControllers mutableCopy];
     __block UIViewController *controllerToRemove = nil;
     [controllers enumerateObjectsUsingBlock:^(__kindof UIViewController * obj, NSUInteger idx, BOOL * stop) {
@@ -661,7 +666,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     }];
     if (controllerToRemove) {
         [controllers removeObject:controllerToRemove];
-        self.viewControllers = [NSArray arrayWithArray:controllers];
+        [self setViewControllers:[NSArray arrayWithArray:controllers] animated:flag];
     }
 }
 
@@ -685,8 +690,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.animationBlock(NO);
     }
     self.animationBlock = block;
-    return [self popToViewController:viewController
-                            animated:animated];
+     NSArray <__kindof UIViewController *> *array = [self popToViewController:viewController
+                                                                     animated:animated];
+    if (!array.count) {
+        if (self.animationBlock) {
+            self.animationBlock(YES);
+            self.animationBlock = nil;
+        }
+    }
+    return array;
 }
 
 - (NSArray <__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
@@ -696,7 +708,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.animationBlock(NO);
     }
     self.animationBlock = block;
-    return [self popToRootViewControllerAnimated:animated];
+    
+    NSArray <__kindof UIViewController *> *array = [self popToRootViewControllerAnimated:animated];
+    if (!array.count) {
+        if (self.animationBlock) {
+            self.animationBlock(YES);
+            self.animationBlock = nil;
+        }
+    }
+    return array;
 }
 
 #pragma mark - UINavigationController Delegate
@@ -795,6 +815,11 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 
 #pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {

@@ -78,6 +78,7 @@ IB_DESIGNABLE
  *  @param controller the content view controller
  */
 - (void)removeViewController:(UIViewController *)controller NS_REQUIRES_SUPER;
+- (void)removeViewController:(UIViewController *)controller animated:(BOOL)flag NS_REQUIRES_SUPER;
 
 /*!
  *  @brief Push a view controller and do sth. when animation is done
