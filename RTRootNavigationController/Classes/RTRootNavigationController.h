@@ -30,15 +30,15 @@
 
 
 /**
- *  This Controller will forward all `Navigation` actions to its containing navigation controller, i.e. `RTRootNavigationController`.
- *  If you are using UITabBarController in your project, it's recommand to wrap it in `RTRootNavigationController` as follows:
- *  ```
- *  tabController.viewControllers = @[[[RTContainerNavigationController alloc] initWithRootViewController:vc1],
- *                                    [[RTContainerNavigationController alloc] initWithRootViewController:vc2],
- *                                    [[RTContainerNavigationController alloc] initWithRootViewController:vc3],
- *                                    [[RTContainerNavigationController alloc] initWithRootViewController:vc4]];
- *  self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewController:tabController];
- *  ```
+ *  This Controller will forward all @a Navigation actions to its containing navigation controller, i.e. @b RTRootNavigationController.
+ *  If you are using UITabBarController in your project, it's recommand to wrap it in @b RTRootNavigationController as follows:
+ *  @code
+tabController.viewControllers = @[[[RTContainerNavigationController alloc] initWithRootViewController:vc1],
+                                  [[RTContainerNavigationController alloc] initWithRootViewController:vc2],
+                                  [[RTContainerNavigationController alloc] initWithRootViewController:vc3],
+                                  [[RTContainerNavigationController alloc] initWithRootViewController:vc4]];
+self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewController:tabController];
+ *  @endcode
  */
 @interface RTContainerNavigationController : UINavigationController
 @end
@@ -50,20 +50,23 @@ IB_DESIGNABLE
 @interface RTRootNavigationController : UINavigationController
 
 /*!
- *  @brief use system original back bar item or custom back bar item returned by `- (UIBarButtonItem *)customBackItemWithTarget:(id)target action:(SEL)action`, default is NO
- *  @warning Set this to YES will increase memory usage!
+ *  @brief use system original back bar item or custom back bar item returned by
+ *  @code
+- (UIBarButtonItem *)customBackItemWithTarget:(id)target action:(SEL)action
+ *  @endcode default is NO
+ *  @warning Set this to YES will @b increase memory usage!
  */
 @property (nonatomic, assign) IBInspectable BOOL useSystemBackBarButtonItem;
 
 @property (nonatomic, assign) IBInspectable BOOL transferNavigationBarAttributes;   // Weather each individual navigation bar uses the visual style of root navigation bar. Default is YES
 
 /*!
- *  @brief use this property instead of `visibleViewController` to get the current visiable content view controller
+ *  @brief use this property instead of @b visibleViewController to get the current visiable content view controller
  */
 @property (nonatomic, readonly, strong) UIViewController *rt_visibleViewController;
 
 /*!
- *  @brief use this property instead of `topViewController` to get the content view controller on the stack top
+ *  @brief use this property instead of @b topViewController to get the content view controller on the stack top
  */
 @property (nonatomic, readonly, strong) UIViewController *rt_topViewController;
 
