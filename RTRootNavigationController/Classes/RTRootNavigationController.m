@@ -491,6 +491,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self;
 }
 
+- (instancetype)initWithRootViewControllerNoWrapping:(UIViewController *)rootViewController
+{
+    self = [super init];
+    if (self) {
+        [super pushViewController:rootViewController animated:NO];
+        [self _commonInit];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -666,7 +676,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     }];
     if (controllerToRemove) {
         [controllers removeObject:controllerToRemove];
-        [self setViewControllers:[NSArray arrayWithArray:controllers] animated:flag];
+        [super setViewControllers:[NSArray arrayWithArray:controllers] animated:flag];
     }
 }
 

@@ -26,7 +26,7 @@
                                       [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Remove"]],
                                       [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Scroll"]],
                                       [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"List"]]];
-    self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewController:tabController];
+    self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewControllerNoWrapping:tabController];
     */
     return YES;
 }

@@ -38,7 +38,7 @@ tabController.viewControllers = @[[[RTContainerNavigationController alloc] initW
                                   [[RTContainerNavigationController alloc] initWithRootViewController:vc2],
                                   [[RTContainerNavigationController alloc] initWithRootViewController:vc3],
                                   [[RTContainerNavigationController alloc] initWithRootViewController:vc4]];
-self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewController:tabController];
+self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewControllerNoWrapping:tabController];
  *  @endcode
  */
 @interface RTContainerNavigationController : UINavigationController
@@ -79,6 +79,15 @@ IB_DESIGNABLE
  *  @brief use this property to get all the content view controllers;
  */
 @property (nonatomic, readonly, strong) NSArray <__kindof UIViewController *> *rt_viewControllers;
+
+/**
+ *  Init with a root view controller without wrapping
+ *
+ *  @param rootViewController The root view controller
+ *
+ *  @return new instance
+ */
+- (instancetype)initWithRootViewControllerNoWrapping:(UIViewController *)rootViewController;
 
 /*!
  *  @brief Remove a content view controller from the stack
