@@ -484,7 +484,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
-    self = [super initWithRootViewController:RTSafeWrapViewController(rootViewController)];
+    self = [super initWithRootViewController:RTSafeWrapViewController(rootViewController, rootViewController.rt_navigationBarClass)];
     if (self) {
         [self _commonInit];
     }
