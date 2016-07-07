@@ -463,11 +463,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 #pragma mark - Overrides
 
+- (void)awakeFromNib
+{
+    self.viewControllers = [super viewControllers];
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.viewControllers = [super viewControllers];
         [self _commonInit];
     }
     return self;
