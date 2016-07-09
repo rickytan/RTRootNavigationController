@@ -122,10 +122,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return RTSafeWrapViewController(controller, navigationBarClass, NO);
 }
 
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller) {
-    return RTSafeWrapViewController(controller, nil);
-}
-
 
 @implementation RTContainerController
 
