@@ -334,6 +334,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.navigationBar.backIndicatorImage               = self.navigationController.navigationBar.backIndicatorImage;
         self.navigationBar.backIndicatorTransitionMaskImage = self.navigationController.navigationBar.backIndicatorTransitionMaskImage;
     }
+    [self.view layoutIfNeeded];
 }
 
 - (UITabBarController *)tabBarController
