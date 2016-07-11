@@ -436,6 +436,11 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     }
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return self.visibleViewController.preferredStatusBarStyle;
+}
+
 @end
 
 
@@ -508,8 +513,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     self.view.backgroundColor = [UIColor whiteColor];
     
     [super setDelegate:self];
+    // set animated to @b YES to fix issue #12. If @a animated is @b NO, it won't apply @c[UINavigationBar appearance] settings.
     [super setNavigationBarHidden:YES
-                         animated:NO];
+                         animated:YES];
 }
 
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
