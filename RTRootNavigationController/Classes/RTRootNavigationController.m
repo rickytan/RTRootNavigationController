@@ -167,9 +167,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     self = [super init];
     if (self) {
+        // not work while push to a hideBottomBar view controller, give up
+        /*
+         self.edgesForExtendedLayout = UIRectEdgeAll;
+         self.extendedLayoutIncludesOpaqueBars = YES;
+         self.automaticallyAdjustsScrollViewInsets = NO;
+         */
+        
         self.contentViewController = controller;
         self.containerNavigatioinController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
-                                                                                                             toolbarClass:nil];
+                                                                                                     toolbarClass:nil];
         if (yesOrNo) {
             UIViewController *vc = [UIViewController new];
             vc.title = backTitle;
@@ -310,6 +317,18 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 @implementation RTContainerNavigationController
 
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
+{
+    self = [super initWithNavigationBarClass:rootViewController.rt_navigationBarClass
+                                toolbarClass:nil];
+    if (self) {
+        [self pushViewController:rootViewController animated:NO];
+        // use following way will cause bug
+        // self.viewControllers = @[rootViewController];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -340,9 +359,18 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (UITabBarController *)tabBarController
 {
     UITabBarController *tabController = [super tabBarController];
-    return !tabController.tabBar.isTranslucent || [self.rt_navigationController.rt_viewControllers rt_any:^BOOL(__kindof UIViewController *obj) {
-        return obj.hidesBottomBarWhenPushed;
-    }] ? nil : tabController;
+    RTRootNavigationController *navigationController = self.rt_navigationController;
+    if (tabController) {
+        if (navigationController.tabBarController != tabController) {   // Tab is child of Root VC
+            return tabController;
+        }
+        else {
+            return !tabController.tabBar.isTranslucent || [navigationController.rt_viewControllers rt_any:^BOOL(__kindof UIViewController *obj) {
+                return obj.hidesBottomBarWhenPushed;
+            }] ? nil : tabController;
+        }
+    }
+    return nil;
 }
 
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
@@ -460,7 +488,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)_commonInit
 {
-    self.transferNavigationBarAttributes = YES;
+    
 }
 
 #pragma mark - Overrides
@@ -513,9 +541,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     self.view.backgroundColor = [UIColor whiteColor];
     
     [super setDelegate:self];
-    // set animated to @b YES to fix issue #12. If @a animated is @b NO, it won't apply @c[UINavigationBar appearance] settings.
     [super setNavigationBarHidden:YES
-                         animated:YES];
+                         animated:NO];
 }
 
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
@@ -707,8 +734,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.animationBlock(NO);
     }
     self.animationBlock = block;
-     NSArray <__kindof UIViewController *> *array = [self popToViewController:viewController
-                                                                     animated:animated];
+    NSArray <__kindof UIViewController *> *array = [self popToViewController:viewController
+                                                                    animated:animated];
     if (!array.count) {
         if (self.animationBlock) {
             self.animationBlock(YES);
@@ -772,9 +799,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.interactivePopGestureRecognizer.delegate = self;
         self.interactivePopGestureRecognizer.enabled = !isRootVC;
     }
-
+    
     [RTRootNavigationController attemptRotationToDeviceOrientation];
-
+    
     if (self.animationBlock) {
         self.animationBlock(YES);
         self.animationBlock = nil;
