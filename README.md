@@ -91,9 +91,9 @@ rickytan, ricky.tan.xin@gmail.com
 
 ## Alternatives
 
-- [*JTNavigationController*](https://github.com/JNTian/JTNavigationController)
+- [**JTNavigationController**](https://github.com/JNTian/JTNavigationController)
   - 支持全屏返回
-- [*FDFullscreenPopGesture*](https://github.com/forkingdog/FDFullscreenPopGesture)
+- [**FDFullscreenPopGesture**](https://github.com/forkingdog/FDFullscreenPopGesture)
   - 使用原生的 *UINavigationController*，在 `- (void)viewWillAppear` 中做处理
   - 支持全屏返回
 
