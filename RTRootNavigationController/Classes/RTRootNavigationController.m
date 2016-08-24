@@ -67,7 +67,7 @@
 
 @interface RTContainerController ()
 @property (nonatomic, strong) __kindof UIViewController *contentViewController;
-@property (nonatomic, strong) UINavigationController *containerNavigatioinController;
+@property (nonatomic, strong) UINavigationController *containerNavigationController;
 
 + (instancetype)containerControllerWithController:(UIViewController *)controller;
 + (instancetype)containerControllerWithController:(UIViewController *)controller
@@ -175,19 +175,19 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
          */
         
         self.contentViewController = controller;
-        self.containerNavigatioinController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
+        self.containerNavigationController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
                                                                                                      toolbarClass:nil];
         if (yesOrNo) {
             UIViewController *vc = [UIViewController new];
             vc.title = backTitle;
             vc.navigationItem.backBarButtonItem = backItem;
-            self.containerNavigatioinController.viewControllers = @[vc, controller];
+            self.containerNavigationController.viewControllers = @[vc, controller];
         }
         else
-            self.containerNavigatioinController.viewControllers = @[controller];
+            self.containerNavigationController.viewControllers = @[controller];
         
-        [self addChildViewController:self.containerNavigatioinController];
-        [self.containerNavigatioinController didMoveToParentViewController:self];
+        [self addChildViewController:self.containerNavigationController];
+        [self.containerNavigationController didMoveToParentViewController:self];
     }
     return self;
 }
@@ -219,14 +219,19 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.containerNavigatioinController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.view addSubview:self.containerNavigatioinController.view];
+    self.containerNavigationController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.view addSubview:self.containerNavigationController.view];
+    
+    // fix issue #16 https://github.com/rickytan/RTRootNavigationController/issues/16
+    self.containerNavigationController.view.frame = self.view.bounds;
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.containerNavigatioinController.view.frame = self.view.bounds;
+    
+    // remove the following to fix issue #16 https://github.com/rickytan/RTRootNavigationController/issues/16
+    // self.containerNavigationController.view.frame = self.view.bounds;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
