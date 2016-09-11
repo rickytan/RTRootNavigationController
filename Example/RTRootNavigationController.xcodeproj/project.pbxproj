@@ -23,6 +23,7 @@
 		654E15D730BE0CD575C8AD72 /* libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 989EC18FE7332A36508C6C70 /* libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a */; };
 		7D93FDD674B6C3A371FC5025 /* libPods-RTRootNavigationController_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F530F09A0E004CF4EF48956A /* libPods-RTRootNavigationController_Example.a */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		9C0268211D85085100F5A5E4 /* RT3DScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0268201D85085100F5A5E4 /* RT3DScrollViewController.m */; };
 		9C16AF1F1D09518100873B86 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C16AF1E1D09518100873B86 /* Launch.storyboard */; };
 		9C16AF221D09551E00873B86 /* RTPushRemoveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF211D09551E00873B86 /* RTPushRemoveViewController.m */; };
 		9C16AF251D0957D400873B86 /* RTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF241D0957D400873B86 /* RTTableViewController.m */; };
@@ -72,6 +73,8 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		94D9676740E66B4E883F5FE1 /* Pods-RTRootNavigationController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		989EC18FE7332A36508C6C70 /* libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C02681F1D85085100F5A5E4 /* RT3DScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RT3DScrollViewController.h; sourceTree = "<group>"; };
+		9C0268201D85085100F5A5E4 /* RT3DScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RT3DScrollViewController.m; sourceTree = "<group>"; };
 		9C16AF1E1D09518100873B86 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		9C16AF201D09551E00873B86 /* RTPushRemoveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPushRemoveViewController.h; sourceTree = "<group>"; };
 		9C16AF211D09551E00873B86 /* RTPushRemoveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPushRemoveViewController.m; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 		9C16AF291D097CD100873B86 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9C02681F1D85085100F5A5E4 /* RT3DScrollViewController.h */,
+				9C0268201D85085100F5A5E4 /* RT3DScrollViewController.m */,
 				9C7832C21D09152900693F14 /* RTCollectionViewController.h */,
 				9C7832C31D09152900693F14 /* RTCollectionViewController.m */,
 				9C7832BF1D09111F00693F14 /* RTHideNavigationBarViewController.h */,
@@ -479,6 +484,7 @@
 				9C16AF251D0957D400873B86 /* RTTableViewController.m in Sources */,
 				9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */,
 				9C16AF281D095EC700873B86 /* RTStaticTableViewController.m in Sources */,
+				9C0268211D85085100F5A5E4 /* RT3DScrollViewController.m in Sources */,
 				9C16AF221D09551E00873B86 /* RTPushRemoveViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				9C2994E91D09B83C007722C1 /* RTItemListViewController.m in Sources */,

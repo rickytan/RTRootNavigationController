@@ -3,6 +3,7 @@ platform :ios, '7.0'
 
 target 'RTRootNavigationController_Example' do
   pod 'RTRootNavigationController', :path => '../'
+  pod 'JT3DScrollView'
 
   target 'RTRootNavigationController_Tests' do
     

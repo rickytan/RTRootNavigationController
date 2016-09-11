@@ -1,7 +1,9 @@
 PODS:
-  - RTRootNavigationController (0.5.19)
+  - JT3DScrollView (1.0.4)
+  - RTRootNavigationController (0.5.20)
 
 DEPENDENCIES:
+  - JT3DScrollView
   - RTRootNavigationController (from `../`)
 
 EXTERNAL SOURCES:
@@ -9,6 +11,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  RTRootNavigationController: 546e0e6e0a8bee275f6f09d7ecfcd0bc476b114f
+  JT3DScrollView: 04ef1441d79451596af27d07cdbc2e706029cabd
+  RTRootNavigationController: 768b8ef4b3b2473a20e75db8f73ab6e4110321be
 
 COCOAPODS: 0.39.0
