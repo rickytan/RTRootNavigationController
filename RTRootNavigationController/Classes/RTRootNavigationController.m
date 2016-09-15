@@ -469,11 +469,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     }
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return self.visibleViewController.preferredStatusBarStyle;
-}
-
 @end
 
 
@@ -651,32 +646,32 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return [self.rt_visibleViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+    return [self.topViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (BOOL)shouldAutorotate
 {
-    return self.rt_visibleViewController.shouldAutorotate;
+    return self.topViewController.shouldAutorotate;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return self.rt_visibleViewController.supportedInterfaceOrientations;
+    return self.topViewController.supportedInterfaceOrientations;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
-    return self.rt_visibleViewController.preferredInterfaceOrientationForPresentation;
+    return self.topViewController.preferredInterfaceOrientationForPresentation;
 }
 
 - (nullable UIView *)rotatingHeaderView
 {
-    return self.rt_visibleViewController.rotatingHeaderView;
+    return self.topViewController.rotatingHeaderView;
 }
 
 - (nullable UIView *)rotatingFooterView
 {
-    return self.rt_visibleViewController.rotatingFooterView;
+    return self.topViewController.rotatingFooterView;
 }
 
 #pragma mark - Public Methods
