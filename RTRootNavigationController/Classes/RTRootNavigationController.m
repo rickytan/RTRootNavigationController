@@ -65,6 +65,10 @@
 @end
 
 
+static NSString *const RTContainerNavigationKey = @"RTContainerNavigationKey";
+
+
+
 @interface RTContainerController ()
 @property (nonatomic, strong) __kindof UIViewController *contentViewController;
 @property (nonatomic, strong) UINavigationController *containerNavigationController;
@@ -173,13 +177,17 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
          self.extendedLayoutIncludesOpaqueBars = YES;
          self.automaticallyAdjustsScrollViewInsets = NO;
          */
+        self.restorationIdentifier = NSStringFromClass(self.class);
         
         self.contentViewController = controller;
         self.containerNavigationController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
                                                                                                      toolbarClass:nil];
+        self.containerNavigationController.restorationIdentifier = NSStringFromClass([RTContainerNavigationController class]);
+        
         if (yesOrNo) {
             UIViewController *vc = [UIViewController new];
             vc.title = backTitle;
+            vc.restorationIdentifier = @"RTNavigationPlaceholderControllerRestoration";
             vc.navigationItem.backBarButtonItem = backItem;
             self.containerNavigationController.viewControllers = @[vc, controller];
         }
@@ -216,6 +224,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return [self initWithController:controller navigationBarClass:nil];
 }
 
+- (NSString *)restorationIdentifier
+{
+    NSString *identifier = self.contentViewController.restorationIdentifier;
+    if (!super.restorationIdentifier && identifier) {
+        super.restorationIdentifier = [NSString stringWithFormat:@"RTContainer-%@", identifier];
+    }
+    return super.restorationIdentifier;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -232,6 +249,21 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     
     // remove the following to fix issue #16 https://github.com/rickytan/RTRootNavigationController/issues/16
     // self.containerNavigationController.view.frame = self.view.bounds;
+}
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [super encodeRestorableStateWithCoder:coder];
+    [coder encodeObject:self.containerNavigationController forKey:RTContainerNavigationKey];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [super decodeRestorableStateWithCoder:coder];
+    if ([coder containsValueForKey:RTContainerNavigationKey]) {
+        self.containerNavigationController = [coder decodeObjectForKey:RTContainerNavigationKey];
+        self.contentViewController = self.containerNavigationController.viewControllers.lastObject;
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -334,6 +366,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self;
 }
 
+- (NSString *)restorationIdentifier
+{
+    NSString *identifier = self.viewControllers.lastObject.restorationIdentifier;
+    if (!super.restorationIdentifier && identifier) {
+        super.restorationIdentifier = [NSString stringWithFormat:@"RTNavigation-%@", identifier];
+    }
+    return super.restorationIdentifier;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -359,6 +400,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.navigationBar.backIndicatorTransitionMaskImage = self.navigationController.navigationBar.backIndicatorTransitionMaskImage;
     }
     [self.view layoutIfNeeded];
+}
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [super decodeRestorableStateWithCoder:coder];
 }
 
 - (UITabBarController *)tabBarController
@@ -446,10 +497,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers animated:(BOOL)animated
 {
-    if (self.navigationController)
-        [self.navigationController setViewControllers:viewControllers
-                                             animated:animated];
-    else
+//    if (self.navigationController)
+//        [self.navigationController setViewControllers:viewControllers
+//                                             animated:animated];
+//    else
         [super setViewControllers:viewControllers animated:animated];
 }
 
@@ -543,6 +594,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     [super setDelegate:self];
     [super setNavigationBarHidden:YES
                          animated:NO];
+}
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [super decodeRestorableStateWithCoder:coder];
 }
 
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action

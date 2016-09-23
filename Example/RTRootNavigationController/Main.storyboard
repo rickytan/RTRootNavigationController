@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4yn-xn-OPt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4yn-xn-OPt">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="p8g-sg-8Os">
             <objects>
-                <viewController id="LAy-Sw-74v" customClass="RTViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LAy-Sw-74v" customClass="RTViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VE0-e3-h0S"/>
                         <viewControllerLayoutGuide type="bottom" id="j1S-uN-LYJ"/>
@@ -32,7 +32,7 @@
         <!--Root-->
         <scene sceneID="vWN-Q8-ves">
             <objects>
-                <tableViewController storyboardIdentifier="Root" title="Root" id="zEC-62-hlf" customClass="RTStaticTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Root" title="Root" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zEC-62-hlf" customClass="RTStaticTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ifx-Cg-ISo">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -460,7 +460,7 @@
         <!--Scroll-->
         <scene sceneID="VHD-s1-pbL">
             <objects>
-                <collectionViewController storyboardIdentifier="Scroll" title="Scroll" id="cDS-IL-MDS" customClass="RTCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="Scroll" title="Scroll" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cDS-IL-MDS" customClass="RTCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Gkt-Nx-0Hk">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -512,7 +512,7 @@
         <!--ABCD-->
         <scene sceneID="ibM-2x-5R6">
             <objects>
-                <viewController title="ABCD" id="mi0-N2-Guv" customClass="RTHideNavigationBarViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ABCD" title="ABCD" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mi0-N2-Guv" customClass="RTHideNavigationBarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lxN-4l-MTl"/>
                         <viewControllerLayoutGuide type="bottom" id="mJQ-jM-9bT"/>
@@ -553,7 +553,7 @@
         <!--Hello World-->
         <scene sceneID="lIA-Iy-l6c">
             <objects>
-                <viewController title="Hello World" hidesBottomBarWhenPushed="YES" id="Qpx-qL-0Vy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="XYZ" title="Hello World" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qpx-qL-0Vy" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="obT-3e-zkx"/>
                         <viewControllerLayoutGuide type="bottom" id="KtN-fl-Ocx"/>
@@ -587,7 +587,7 @@
         <!--Root Navigation Controller-->
         <scene sceneID="eeM-SN-S2r">
             <objects>
-                <navigationController id="4yn-xn-OPt" customClass="RTRootNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4yn-xn-OPt" customClass="RTRootNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="3QB-M0-GeT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -598,6 +598,9 @@
                             <color key="textShadowColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="transferNavigationBarAttributes" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="zEC-62-hlf" kind="relationship" relationship="rootViewController" id="OjB-2h-gJw"/>
                     </connections>
