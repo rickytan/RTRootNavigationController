@@ -65,11 +65,10 @@
 @end
 
 
-static NSString *const RTContainerNavigationKey = @"RTContainerNavigationKey";
+static NSString *const RTContentViewControllerKey = @"RTContentViewControllerKey";
 
 
-
-@interface RTContainerController ()
+@interface RTContainerController () <UIViewControllerRestoration>
 @property (nonatomic, strong) __kindof UIViewController *contentViewController;
 @property (nonatomic, strong) UINavigationController *containerNavigationController;
 
@@ -163,6 +162,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                   backTitle:backTitle];
 }
 
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    UIViewController *vc = [[self alloc] init];
+    NSLog(@"%@", [coder decodeObjectForKey:RTContentViewControllerKey]);
+    vc.restorationIdentifier = identifierComponents.lastObject;
+    vc.restorationClass = self;
+    return vc;
+}
+
 - (instancetype)initWithController:(UIViewController *)controller
                 navigationBarClass:(Class)navigationBarClass
          withPlaceholderController:(BOOL)yesOrNo
@@ -177,17 +185,17 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
          self.extendedLayoutIncludesOpaqueBars = YES;
          self.automaticallyAdjustsScrollViewInsets = NO;
          */
-        self.restorationIdentifier = NSStringFromClass(self.class);
+        self.restorationClass = [self class];
+        if (controller.restorationIdentifier) {
+            self.restorationIdentifier = [NSString stringWithFormat:@"RTContainer:%p", self];
+        }
         
         self.contentViewController = controller;
         self.containerNavigationController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
                                                                                                      toolbarClass:nil];
-        self.containerNavigationController.restorationIdentifier = NSStringFromClass([RTContainerNavigationController class]);
-        
         if (yesOrNo) {
             UIViewController *vc = [UIViewController new];
             vc.title = backTitle;
-            vc.restorationIdentifier = @"RTNavigationPlaceholderControllerRestoration";
             vc.navigationItem.backBarButtonItem = backItem;
             self.containerNavigationController.viewControllers = @[vc, controller];
         }
@@ -224,15 +232,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return [self initWithController:controller navigationBarClass:nil];
 }
 
-- (NSString *)restorationIdentifier
-{
-    NSString *identifier = self.contentViewController.restorationIdentifier;
-    if (!super.restorationIdentifier && identifier) {
-        super.restorationIdentifier = [NSString stringWithFormat:@"RTContainer-%@", identifier];
-    }
-    return super.restorationIdentifier;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -253,16 +252,26 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder
 {
+    [coder encodeObject:self.contentViewController forKey:RTContentViewControllerKey];
     [super encodeRestorableStateWithCoder:coder];
-    [coder encodeObject:self.containerNavigationController forKey:RTContainerNavigationKey];
 }
 
 - (void)decodeRestorableStateWithCoder:(NSCoder *)coder
 {
     [super decodeRestorableStateWithCoder:coder];
-    if ([coder containsValueForKey:RTContainerNavigationKey]) {
-        self.containerNavigationController = [coder decodeObjectForKey:RTContainerNavigationKey];
-        self.contentViewController = self.containerNavigationController.viewControllers.lastObject;
+
+    UIViewController *content = [coder decodeObjectForKey:RTContentViewControllerKey];
+    if (content) {
+        self.contentViewController = content;
+        self.containerNavigationController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:content.rt_navigationBarClass
+                                                                                                    toolbarClass:nil];
+        self.containerNavigationController.viewControllers = @[content];
+        [self addChildViewController:self.containerNavigationController];
+        [self.containerNavigationController didMoveToParentViewController:self];
+        
+        [self.view addSubview:self.containerNavigationController.view];
+        self.containerNavigationController.view.frame = self.view.bounds;
+        self.containerNavigationController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     }
 }
 
@@ -364,15 +373,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         // self.viewControllers = @[rootViewController];
     }
     return self;
-}
-
-- (NSString *)restorationIdentifier
-{
-    NSString *identifier = self.viewControllers.lastObject.restorationIdentifier;
-    if (!super.restorationIdentifier && identifier) {
-        super.restorationIdentifier = [NSString stringWithFormat:@"RTNavigation-%@", identifier];
-    }
-    return super.restorationIdentifier;
 }
 
 - (void)viewDidLoad
@@ -497,10 +497,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers animated:(BOOL)animated
 {
-//    if (self.navigationController)
-//        [self.navigationController setViewControllers:viewControllers
-//                                             animated:animated];
-//    else
+    if (self.navigationController)
+        [self.navigationController setViewControllers:viewControllers
+                                             animated:animated];
+    else
         [super setViewControllers:viewControllers animated:animated];
 }
 

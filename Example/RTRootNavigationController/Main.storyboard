@@ -412,7 +412,7 @@
         <!--Remove-->
         <scene sceneID="VkP-m0-GAj">
             <objects>
-                <viewController storyboardIdentifier="Remove" title="Remove" id="gqE-4J-Jo2" customClass="RTPushRemoveViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Remove" title="Remove" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gqE-4J-Jo2" customClass="RTPushRemoveViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D1c-v8-9zo"/>
                         <viewControllerLayoutGuide type="bottom" id="4R8-bO-H3O"/>
@@ -461,7 +461,7 @@
         <scene sceneID="VHD-s1-pbL">
             <objects>
                 <collectionViewController storyboardIdentifier="Scroll" title="Scroll" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cDS-IL-MDS" customClass="RTCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Gkt-Nx-0Hk">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="Collection" dataMode="prototypes" id="Gkt-Nx-0Hk">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -614,7 +614,7 @@
         <image name="apple" width="151" height="151"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dFa-qV-oFQ"/>
-        <segue reference="C8e-8u-cs3"/>
+        <segue reference="IZr-he-VVi"/>
+        <segue reference="fgk-3y-5bQ"/>
     </inferredMetricsTieBreakers>
 </document>
