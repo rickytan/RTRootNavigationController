@@ -674,6 +674,19 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self.topViewController.rotatingFooterView;
 }
 
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    if ([super respondsToSelector:aSelector]) {
+        return YES;
+    }
+    return [self.rt_delegate respondsToSelector:aSelector];
+}
+
+- (id)forwardingTargetForSelector:(SEL)aSelector
+{
+    return self.rt_delegate;
+}
+
 #pragma mark - Public Methods
 
 - (UIViewController *)rt_topViewController
