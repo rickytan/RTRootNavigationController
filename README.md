@@ -71,6 +71,20 @@ or just set `useSystemBackBarButtonItem` to **YES** and use the default one.
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+## __Notice__
+
+Your **ViewController** hierarchy will change to:
+```
+RTRootNavigationController
+    `- RTContainerViewController
+    |       `- RTContainerNavigationController
+    |               `- YourViewController1
+    `- RTContainerViewController
+            `- RTContainerNavigationController
+                    `- YourViewController2
+```
+So, if you access `self.navigationController` it returns a container navigation controller, and its `viewControllers` will always be **1**, i.e. `self`. Instead, your have to use `self.rt_navigationController.rt_viewController` to get all siblings, as metioned **[Here](https://github.com/rickytan/RTRootNavigationController/blob/master/RTRootNavigationController/Classes/UIViewController%2BRTRootNavigationController.h#L36)** and **[Here](https://github.com/rickytan/RTRootNavigationController/blob/master/RTRootNavigationController/Classes/RTRootNavigationController.h#L81)**.
+
 ## Requirements
 
 * **iOS 7** and up
