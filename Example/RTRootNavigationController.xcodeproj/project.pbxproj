@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5777496B224DB176A06BB12A /* Pods_RTRootNavigationController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1514A537C47B073062ADCC5 /* Pods_RTRootNavigationController_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -20,8 +21,6 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		654E15D730BE0CD575C8AD72 /* libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 989EC18FE7332A36508C6C70 /* libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a */; };
-		7D93FDD674B6C3A371FC5025 /* libPods-RTRootNavigationController_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F530F09A0E004CF4EF48956A /* libPods-RTRootNavigationController_Example.a */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9C16AF1F1D09518100873B86 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C16AF1E1D09518100873B86 /* Launch.storyboard */; };
 		9C16AF221D09551E00873B86 /* RTPushRemoveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF211D09551E00873B86 /* RTPushRemoveViewController.m */; };
@@ -33,6 +32,7 @@
 		9C2994EF1D0A4D6F007722C1 /* RTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2994EE1D0A4D6F007722C1 /* RTWebViewController.m */; };
 		9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */; };
 		9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C31D09152900693F14 /* RTCollectionViewController.m */; };
+		F97BFC33007327C1DBBBB743 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1328FAB25D46F943BBE265D /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3AA27C168972F2294A8D532B /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B6ECD73E96DEED1827971A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4C78C63219178A258FA60E34 /* Pods-RTRootNavigationController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* RTRootNavigationController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTRootNavigationController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,10 +68,7 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		67C2BF2B52D3057E8417FB63 /* RTRootNavigationController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RTRootNavigationController.podspec; path = ../RTRootNavigationController.podspec; sourceTree = "<group>"; };
-		71745ABB9E0FA753FD7024A5 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		94D9676740E66B4E883F5FE1 /* Pods-RTRootNavigationController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.release.xcconfig"; sourceTree = "<group>"; };
-		989EC18FE7332A36508C6C70 /* libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C16AF1E1D09518100873B86 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		9C16AF201D09551E00873B86 /* RTPushRemoveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPushRemoveViewController.h; sourceTree = "<group>"; };
 		9C16AF211D09551E00873B86 /* RTPushRemoveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPushRemoveViewController.m; sourceTree = "<group>"; };
@@ -91,9 +88,12 @@
 		9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTHideNavigationBarViewController.m; sourceTree = "<group>"; };
 		9C7832C21D09152900693F14 /* RTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCollectionViewController.h; sourceTree = "<group>"; };
 		9C7832C31D09152900693F14 /* RTCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCollectionViewController.m; sourceTree = "<group>"; };
+		A1328FAB25D46F943BBE265D /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5267346A018343C32093DA1 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B930DAFF5ACFE0FF66B80F25 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		F530F09A0E004CF4EF48956A /* libPods-RTRootNavigationController_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTRootNavigationController_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA024E9AC7B16FA3EA605DA2 /* Pods-RTRootNavigationController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		C6B0AF5F8FE50A6D2E11BBBC /* Pods-RTRootNavigationController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.release.xcconfig"; sourceTree = "<group>"; };
+		F1514A537C47B073062ADCC5 /* Pods_RTRootNavigationController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F53B590EB877567165CF7290 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +104,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				7D93FDD674B6C3A371FC5025 /* libPods-RTRootNavigationController_Example.a in Frameworks */,
+				5777496B224DB176A06BB12A /* Pods_RTRootNavigationController_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				654E15D730BE0CD575C8AD72 /* libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a in Frameworks */,
+				F97BFC33007327C1DBBBB743 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +130,7 @@
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				C7B60CBFAACA8D2CFC7FBE2F /* Pods */,
+				F96BE6D2D993D004DBE65F76 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,8 +150,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				F530F09A0E004CF4EF48956A /* libPods-RTRootNavigationController_Example.a */,
-				989EC18FE7332A36508C6C70 /* libPods-RTRootNavigationController_Example-RTRootNavigationController_Tests.a */,
+				F1514A537C47B073062ADCC5 /* Pods_RTRootNavigationController_Example.framework */,
+				A1328FAB25D46F943BBE265D /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,13 +246,13 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		C7B60CBFAACA8D2CFC7FBE2F /* Pods */ = {
+		F96BE6D2D993D004DBE65F76 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FA024E9AC7B16FA3EA605DA2 /* Pods-RTRootNavigationController_Example.debug.xcconfig */,
-				94D9676740E66B4E883F5FE1 /* Pods-RTRootNavigationController_Example.release.xcconfig */,
-				3AA27C168972F2294A8D532B /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig */,
-				71745ABB9E0FA753FD7024A5 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig */,
+				4C78C63219178A258FA60E34 /* Pods-RTRootNavigationController_Example.debug.xcconfig */,
+				C6B0AF5F8FE50A6D2E11BBBC /* Pods-RTRootNavigationController_Example.release.xcconfig */,
+				F53B590EB877567165CF7290 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig */,
+				A5267346A018343C32093DA1 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -264,13 +264,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "RTRootNavigationController_Example" */;
 			buildPhases = (
-				A6B804F1828488537843E4E2 /* [CP] Check Pods Manifest.lock */,
+				FB44A093851DD2506C7E797E /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				5DC40678E306293BE4D5AC97 /* [CP] Embed Pods Frameworks */,
-				8C4F41275B1035EF8C5B4833 /* [CP] Copy Pods Resources */,
-				D0262A3F0132FEC92F43648B /* Embed Pods Frameworks */,
+				CAEBA375F1A94A9C3B578C51 /* [CP] Embed Pods Frameworks */,
+				3A0F2B760B0EEE58F21976EA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -285,12 +284,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "RTRootNavigationController_Tests" */;
 			buildPhases = (
-				0BA3762B2DD3C713D805A11B /* [CP] Check Pods Manifest.lock */,
+				608429C614C9BBE3B2B83B1D /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				B3E6CBAFFD107A5D30E8EAC1 /* [CP] Embed Pods Frameworks */,
-				7D64D2346CE99C52D54156D4 /* [CP] Copy Pods Resources */,
+				790C465CCA0E2E080BC96378 /* [CP] Embed Pods Frameworks */,
+				8164BD2A334DA7FAC7C618B7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,7 +308,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = RT;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = rickytan;
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
@@ -359,52 +358,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0BA3762B2DD3C713D805A11B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		5DC40678E306293BE4D5AC97 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7D64D2346CE99C52D54156D4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8C4F41275B1035EF8C5B4833 /* [CP] Copy Pods Resources */ = {
+		3A0F2B760B0EEE58F21976EA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -419,7 +373,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A6B804F1828488537843E4E2 /* [CP] Check Pods Manifest.lock */ = {
+		608429C614C9BBE3B2B83B1D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,10 +385,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B3E6CBAFFD107A5D30E8EAC1 /* [CP] Embed Pods Frameworks */ = {
+		790C465CCA0E2E080BC96378 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -449,19 +403,49 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D0262A3F0132FEC92F43648B /* Embed Pods Frameworks */ = {
+		8164BD2A334DA7FAC7C618B7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAEBA375F1A94A9C3B578C51 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB44A093851DD2506C7E797E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -537,14 +521,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -577,13 +566,18 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -599,14 +593,14 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA024E9AC7B16FA3EA605DA2 /* Pods-RTRootNavigationController_Example.debug.xcconfig */;
+			baseConfigurationReference = 4C78C63219178A258FA60E34 /* Pods-RTRootNavigationController_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RTRootNavigationController/RTRootNavigationController-Prefix.pch";
 				INFOPLIST_FILE = "RTRootNavigationController/RTRootNavigationController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -616,14 +610,14 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94D9676740E66B4E883F5FE1 /* Pods-RTRootNavigationController_Example.release.xcconfig */;
+			baseConfigurationReference = C6B0AF5F8FE50A6D2E11BBBC /* Pods-RTRootNavigationController_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RTRootNavigationController/RTRootNavigationController-Prefix.pch";
 				INFOPLIST_FILE = "RTRootNavigationController/RTRootNavigationController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -633,7 +627,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AA27C168972F2294A8D532B /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig */;
+			baseConfigurationReference = F53B590EB877567165CF7290 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -657,7 +651,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71745ABB9E0FA753FD7024A5 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig */;
+			baseConfigurationReference = A5267346A018343C32093DA1 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

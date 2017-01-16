@@ -81,7 +81,7 @@ IB_DESIGNABLE
 @property (nonatomic, readonly, strong) NSArray <__kindof UIViewController *> *rt_viewControllers;
 
 /**
- *  Init with a root view controller without wrapping
+ *  Init with a root view controller without wrapping into a navigation controller
  *
  *  @param rootViewController The root view controller
  *

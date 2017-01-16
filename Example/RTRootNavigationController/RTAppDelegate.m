@@ -20,7 +20,7 @@
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main"
                                                     bundle:nil];
     UITabBarController *tabController = [[UITabBarController alloc] init];
-    //tabController.tabBar.translucent = NO;
+//    tabController.tabBar.translucent = NO;
     if (YES) {
         tabController.viewControllers = @[[[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Root"]],
                                           [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Remove"]],

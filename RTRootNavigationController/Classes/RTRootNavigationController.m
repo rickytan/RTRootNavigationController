@@ -176,7 +176,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         
         self.contentViewController = controller;
         self.containerNavigationController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
-                                                                                                     toolbarClass:nil];
+                                                                                                    toolbarClass:nil];
         if (yesOrNo) {
             UIViewController *vc = [UIViewController new];
             vc.title = backTitle;
@@ -216,14 +216,32 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return [self initWithController:controller navigationBarClass:nil];
 }
 
+- (instancetype)initWithContentController:(UIViewController *)controller
+{
+    self = [super init];
+    if (self) {
+        self.contentViewController = controller;
+        [self addChildViewController:self.contentViewController];
+        [self.contentViewController didMoveToParentViewController:self];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.containerNavigationController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.view addSubview:self.containerNavigationController.view];
-    
-    // fix issue #16 https://github.com/rickytan/RTRootNavigationController/issues/16
-    self.containerNavigationController.view.frame = self.view.bounds;
+    if (self.containerNavigationController) {
+        self.containerNavigationController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [self.view addSubview:self.containerNavigationController.view];
+        
+        // fix issue #16 https://github.com/rickytan/RTRootNavigationController/issues/16
+        self.containerNavigationController.view.frame = self.view.bounds;
+    }
+    else {
+        self.contentViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        self.contentViewController.view.frame = self.view.bounds;
+        [self.view addSubview:self.contentViewController.view];
+    }
 }
 
 - (void)viewDidLayoutSubviews
@@ -507,7 +525,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self;
 }
 
-- (instancetype)initWithNavigationBarClass:(Class)navigationBarClass toolbarClass:(Class)toolbarClass
+- (instancetype)initWithNavigationBarClass:(Class)navigationBarClass
+                              toolbarClass:(Class)toolbarClass
 {
     self = [super initWithNavigationBarClass:navigationBarClass toolbarClass:toolbarClass];
     if (self) {
@@ -527,9 +546,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (instancetype)initWithRootViewControllerNoWrapping:(UIViewController *)rootViewController
 {
-    self = [super init];
+    self = [super initWithRootViewController:[[RTContainerController alloc] initWithContentController:rootViewController]];
     if (self) {
-        [super pushViewController:rootViewController animated:NO];
+//        [super pushViewController:rootViewController
+//                         animated:NO];
         [self _commonInit];
     }
     return self;
