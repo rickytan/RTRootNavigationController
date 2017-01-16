@@ -513,6 +513,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     self.viewControllers = [super viewControllers];
 }
 
