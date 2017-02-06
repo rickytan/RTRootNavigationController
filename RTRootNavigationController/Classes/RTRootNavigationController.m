@@ -252,6 +252,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     // self.containerNavigationController.view.frame = self.view.bounds;
 }
 
+- (BOOL)becomeFirstResponder
+{
+    return [self.contentViewController becomeFirstResponder];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return [self.contentViewController canBecomeFirstResponder];
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return [self.contentViewController preferredStatusBarStyle];
