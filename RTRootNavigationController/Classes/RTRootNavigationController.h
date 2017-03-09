@@ -109,6 +109,16 @@ IB_DESIGNABLE
                   complete:(void(^)(BOOL finished))block;
 
 /*!
+ *  @brief Pop current view controller on top with a complete handler
+ *
+ *  @param animated       use animation or not
+ *  @param block          complete handler
+ *
+ *  @return The current UIViewControllers(content controller) poped from the stack
+ */
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated complete:(void(^)(BOOL finished))block;
+
+/*!
  *  @brief Pop to a specific view controller with a complete handler
  *
  *  @param viewController The view controller to pop  to

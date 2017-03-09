@@ -770,6 +770,23 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                     animated:animated];
 }
 
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated complete:(void (^)(BOOL))block
+{
+    if (self.animationBlock) {
+        self.animationBlock(NO);
+    }
+    self.animationBlock = block;
+    
+    UIViewController *vc = [self popViewControllerAnimated:animated];
+    if (!vc) {
+        if (self.animationBlock) {
+            self.animationBlock(YES);
+            self.animationBlock = nil;
+        }
+    }
+    return vc;
+}
+
 - (NSArray <__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController
                                                       animated:(BOOL)animated
                                                       complete:(void (^)(BOOL))block
