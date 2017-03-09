@@ -62,7 +62,7 @@ IB_DESIGNABLE
  */
 @property (nonatomic, assign) IBInspectable BOOL useSystemBackBarButtonItem;
 
-/// Weather each individual navigation bar uses the visual style of root navigation bar. Default is @b YES
+/// Weather each individual navigation bar uses the visual style of root navigation bar. Default is @b NO
 @property (nonatomic, assign) IBInspectable BOOL transferNavigationBarAttributes;
 
 /*!
