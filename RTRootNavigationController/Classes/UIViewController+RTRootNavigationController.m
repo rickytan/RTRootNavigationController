@@ -50,13 +50,4 @@
     return (RTRootNavigationController *)vc;
 }
 
-- (UIBarButtonItem *)customBackItemWithTarget:(id)target
-                                       action:(SEL)action
-{
-    return [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
-                                            style:UIBarButtonItemStylePlain
-                                           target:target
-                                           action:action];
-}
-
 @end
