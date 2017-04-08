@@ -834,8 +834,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     if (!isRootVC) {
         viewController = RTSafeUnwrapViewController(viewController);
         if (!self.useSystemBackBarButtonItem && !viewController.navigationItem.leftBarButtonItem) {
-            viewController.navigationItem.leftBarButtonItem = [viewController customBackItemWithTarget:self
-                                                                                                action:@selector(onBack:)];
+            if ([viewController respondsToSelector:@selector(customBackItemWithTarget:action:)]) {
+                viewController.navigationItem.leftBarButtonItem = [viewController customBackItemWithTarget:self
+                                                                                                    action:@selector(onBack:)];
+            } else {
+                viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
+                                                 style:UIBarButtonItemStylePlain
+                                                target:self
+                                                action:@selector(onBack:)];
+            }
         }
     }
     
