@@ -22,7 +22,7 @@
 
 @class RTRootNavigationController;
 
-@protocol RTRootNavigationControllerProtocol <NSObject>
+@protocol RTNavigationItemCustomizable <NSObject>
 
 @optional
 
@@ -34,12 +34,13 @@
  *
  *  @return a custom UIBarButtonItem
  */
-- (UIBarButtonItem *)customBackItemWithTarget:(id)target action:(SEL)action;
+- (UIBarButtonItem *)customBackItemWithTarget:(id)target action:(SEL)action DEPRECATED_MSG_ATTRIBUTE("use rt_customBackItemWithTarget:action: instead!");
+- (UIBarButtonItem *)rt_customBackItemWithTarget:(id)target action:(SEL)action;
 
 @end
 
 IB_DESIGNABLE
-@interface UIViewController (RTRootNavigationController) <RTRootNavigationControllerProtocol>
+@interface UIViewController (RTRootNavigationController) <RTNavigationItemCustomizable>
 
 /*!
  *  @brief set this property to @b YES to disable interactive pop

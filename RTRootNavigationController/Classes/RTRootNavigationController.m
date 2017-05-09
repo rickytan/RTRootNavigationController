@@ -834,9 +834,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     if (!isRootVC) {
         viewController = RTSafeUnwrapViewController(viewController);
         if (!self.useSystemBackBarButtonItem && !viewController.navigationItem.leftBarButtonItem) {
-            if ([viewController respondsToSelector:@selector(customBackItemWithTarget:action:)]) {
+            if ([viewController respondsToSelector:@selector(rt_customBackItemWithTarget:action:)]) {
+                viewController.navigationItem.leftBarButtonItem = [viewController rt_customBackItemWithTarget:self
+                                                                                                       action:@selector(onBack:)];
+            }
+            else if ([viewController respondsToSelector:@selector(customBackItemWithTarget:action:)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                 viewController.navigationItem.leftBarButtonItem = [viewController customBackItemWithTarget:self
                                                                                                     action:@selector(onBack:)];
+#pragma clang diagnostic pop
             } else {
                 viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
                                                  style:UIBarButtonItemStylePlain
