@@ -54,11 +54,11 @@ As an advise, please set `RTRootNavigationController` as your rootViewController
 }
 ```
 
-you can override following method to customize back bar button item (**Recommended**):
+you can implement following method to customize back bar button item (**Recommended**):
 
 ```objective-c
-- (UIBarButtonItem *)customBackItemWithTarget:(id)target
-                                       action:(SEL)action
+- (UIBarButtonItem *)rt_customBackItemWithTarget:(id)target
+                                          action:(SEL)action
 {
     return [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
                                             style:UIBarButtonItemStylePlain
