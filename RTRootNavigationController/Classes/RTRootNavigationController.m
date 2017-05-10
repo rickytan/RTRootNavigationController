@@ -187,7 +187,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
             self.containerNavigationController.viewControllers = @[controller];
         
         [self addChildViewController:self.containerNavigationController];
-        [self.containerNavigationController didMoveToParentViewController:self];
     }
     return self;
 }
@@ -222,7 +221,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     if (self) {
         self.contentViewController = controller;
         [self addChildViewController:self.contentViewController];
-        [self.contentViewController didMoveToParentViewController:self];
     }
     return self;
 }
@@ -330,6 +328,20 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (UITabBarItem *)tabBarItem
 {
     return self.contentViewController.tabBarItem;
+}
+
+-(void)willMoveToParentViewController:(UIViewController *)parent
+{
+    [super willMoveToParentViewController:parent];
+    if (parent) return;
+    [self.contentViewController willMoveToParentViewController:parent];
+}
+
+-(void)didMoveToParentViewController:(UIViewController *)parent
+{
+    [super didMoveToParentViewController:parent];
+    if (parent) return;
+    [self.contentViewController didMoveToParentViewController:parent];
 }
 
 @end
