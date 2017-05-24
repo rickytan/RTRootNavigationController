@@ -20,6 +20,9 @@
 
 
 #import <UIKit/UIKit.h>
+#if RT_INTERACTIVE_PUSH
+#import <RTInteractivePush/UINavigationController+InteractivePush.h>
+#endif
 
 #import "UIViewController+RTRootNavigationController.h"
 

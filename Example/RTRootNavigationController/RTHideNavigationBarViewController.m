@@ -9,6 +9,7 @@
 #import <RTRootNavigationController/RTRootNavigationController.h>
 
 #import "RTHideNavigationBarViewController.h"
+#import "RTCollectionViewController.h"
 
 @interface RTHideNavigationBarViewController ()
 
@@ -20,6 +21,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
+#if RT_INTERACTIVE_PUSH
+    self.rt_navigationController.rt_enableInteractivePush = YES;
+#endif
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,6 +34,13 @@
 - (IBAction)onBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#if RT_INTERACTIVE_PUSH
+- (UIViewController *)rt_nextSiblingController
+{
+    return [self.storyboard instantiateViewControllerWithIdentifier:@"Scroll"];
+}
+#endif
 
 /*
 #pragma mark - Navigation

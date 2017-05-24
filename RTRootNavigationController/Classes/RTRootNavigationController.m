@@ -332,6 +332,13 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self.contentViewController.tabBarItem;
 }
 
+#if RT_INTERACTIVE_PUSH
+- (nullable __kindof UIViewController *)rt_nextSiblingController
+{
+    return self.contentViewController.rt_nextSiblingController;
+}
+#endif
+
 @end
 
 @interface UIViewController (RTContainerNavigationController)
