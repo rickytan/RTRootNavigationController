@@ -578,7 +578,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="XYZ" id="woS-bY-DPi">
-                        <barButtonItem key="leftBarButtonItem" title="Left" id="iCV-wZ-MtN"/>
                         <barButtonItem key="rightBarButtonItem" title="Right" id="8Nh-3X-dC3"/>
                     </navigationItem>
                 </viewController>
