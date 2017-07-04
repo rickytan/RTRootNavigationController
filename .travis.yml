@@ -12,4 +12,5 @@ before_install:
 - cd Example
 - pod update
 script:
+- cd ../
 - pod lib lint
