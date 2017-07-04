@@ -413,6 +413,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return nil;
 }
 
+- (NSArray *)viewControllers
+{
+    if (self.navigationController) {
+        if ([self.navigationController isKindOfClass:[RTRootNavigationController class]]) {
+            return self.rt_navigationController.rt_viewControllers;
+        }
+    }
+    return [super viewControllers];
+}
+
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
                                       fromViewController:(UIViewController *)fromViewController
                                               withSender:(id)sender
