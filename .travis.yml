@@ -8,5 +8,7 @@ cache: cocoapods
 xcode_project: Example/RTRootNavigationController.xcworkspace
 xcode_scheme: RTRootNavigationController-Example
 podfile: Example/Podfile
+before_install:
+- pod update
 script:
 - pod lib lint
