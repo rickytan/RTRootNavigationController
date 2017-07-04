@@ -9,6 +9,7 @@ xcode_project: Example/RTRootNavigationController.xcworkspace
 xcode_scheme: RTRootNavigationController-Example
 podfile: Example/Podfile
 before_install:
+- cd Example
 - pod update
 script:
 - pod lib lint
