@@ -566,8 +566,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     self = [super initWithRootViewController:[[RTContainerController alloc] initWithContentController:rootViewController]];
     if (self) {
-//        [super pushViewController:rootViewController
-//                         animated:NO];
+        //        [super pushViewController:rootViewController
+        //                         animated:NO];
         [self _commonInit];
     }
     return self;
@@ -840,7 +840,12 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     if (!isRootVC) {
         viewController = RTSafeUnwrapViewController(viewController);
-        if (!self.useSystemBackBarButtonItem && !viewController.navigationItem.leftBarButtonItem) {
+        
+        BOOL hasSetLeftItem = viewController.navigationItem.leftBarButtonItem != nil;
+        if (hasSetLeftItem && !viewController.rt_hasSetInteractivePop) {
+            viewController.rt_disableInteractivePop = YES;
+        }
+        if (!self.useSystemBackBarButtonItem && !hasSetLeftItem) {
             if ([viewController respondsToSelector:@selector(rt_customBackItemWithTarget:action:)]) {
                 viewController.navigationItem.leftBarButtonItem = [viewController rt_customBackItemWithTarget:self
                                                                                                        action:@selector(onBack:)];
@@ -851,11 +856,12 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                 viewController.navigationItem.leftBarButtonItem = [viewController customBackItemWithTarget:self
                                                                                                     action:@selector(onBack:)];
 #pragma clang diagnostic pop
-            } else {
+            }
+            else {
                 viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
-                                                 style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(onBack:)];
+                                                                                                   style:UIBarButtonItemStylePlain
+                                                                                                  target:self
+                                                                                                  action:@selector(onBack:)];
             }
         }
     }
