@@ -5,9 +5,10 @@
 0.5.26
 
 - interactive push support
-    ```ruby
-    pod 'RTRootNavigationController', :subspecs = ['Push']
-    ```
+
+```ruby
+pod 'RTRootNavigationController', :subspecs = ['Push']
+```
 
 0.5.25
 
