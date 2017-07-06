@@ -30,7 +30,7 @@
 		9C2994E91D09B83C007722C1 /* RTItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2994E81D09B83C007722C1 /* RTItemListViewController.m */; };
 		9C2994EC1D09B84B007722C1 /* RTItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2994EB1D09B84B007722C1 /* RTItemDetailViewController.m */; };
 		9C2994EF1D0A4D6F007722C1 /* RTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2994EE1D0A4D6F007722C1 /* RTWebViewController.m */; };
-		9C323D261F0BAA5E00A18836 /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 9C323D251F0BAA5E00A18836 /* CHANGELOG.md */; };
+		9C323D281F0E571100A18836 /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 9C323D271F0E571100A18836 /* CHANGELOG.md */; };
 		9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */; };
 		9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C31D09152900693F14 /* RTCollectionViewController.m */; };
 		F97BFC33007327C1DBBBB743 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1328FAB25D46F943BBE265D /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */; };
@@ -85,7 +85,7 @@
 		9C2994EB1D09B84B007722C1 /* RTItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTItemDetailViewController.m; sourceTree = "<group>"; };
 		9C2994ED1D0A4D6F007722C1 /* RTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTWebViewController.h; sourceTree = "<group>"; };
 		9C2994EE1D0A4D6F007722C1 /* RTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTWebViewController.m; sourceTree = "<group>"; };
-		9C323D251F0BAA5E00A18836 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		9C323D271F0E571100A18836 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		9C7832BF1D09111F00693F14 /* RTHideNavigationBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTHideNavigationBarViewController.h; sourceTree = "<group>"; };
 		9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTHideNavigationBarViewController.m; sourceTree = "<group>"; };
 		9C7832C21D09152900693F14 /* RTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCollectionViewController.h; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				9C323D251F0BAA5E00A18836 /* CHANGELOG.md */,
+				9C323D271F0E571100A18836 /* CHANGELOG.md */,
 				B930DAFF5ACFE0FF66B80F25 /* LICENSE */,
 				4B6ECD73E96DEED1827971A4 /* README.md */,
 				67C2BF2B52D3057E8417FB63 /* RTRootNavigationController.podspec */,
@@ -467,7 +467,7 @@
 				9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */,
 				9C16AF281D095EC700873B86 /* RTStaticTableViewController.m in Sources */,
 				9C16AF221D09551E00873B86 /* RTPushRemoveViewController.m in Sources */,
-				9C323D261F0BAA5E00A18836 /* CHANGELOG.md in Sources */,
+				9C323D281F0E571100A18836 /* CHANGELOG.md in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				9C2994E91D09B83C007722C1 /* RTItemListViewController.m in Sources */,
 				9C2994EF1D0A4D6F007722C1 /* RTWebViewController.m in Sources */,
