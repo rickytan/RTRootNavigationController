@@ -1,3 +1,7 @@
+0.6.1
+
+- fix `-preferredStatusBarStyle`
+
 0.6.0
 
 - *Notice*: default behavior change. If **VC** has set left item in `-viewDidLoad`, then interactive pop will be disabled by default, you can still set `rt_disableInteractivePop` to **NO** if you really want it.
