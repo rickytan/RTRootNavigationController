@@ -860,6 +860,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         if (hasSetLeftItem && !viewController.rt_hasSetInteractivePop) {
             viewController.rt_disableInteractivePop = YES;
         }
+        else if (!viewController.rt_hasSetInteractivePop) {
+            viewController.rt_disableInteractivePop = NO;
+        }
         if (!self.useSystemBackBarButtonItem && !hasSetLeftItem) {
             if ([viewController respondsToSelector:@selector(rt_customBackItemWithTarget:action:)]) {
                 viewController.navigationItem.leftBarButtonItem = [viewController rt_customBackItemWithTarget:self

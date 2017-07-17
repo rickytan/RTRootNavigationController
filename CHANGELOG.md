@@ -1,3 +1,7 @@
+0.6.2
+
+- fix #96
+
 0.6.1
 
 - fix `-preferredStatusBarStyle`
