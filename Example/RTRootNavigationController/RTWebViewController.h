@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 @interface RTWebViewController : UIViewController
-@property (nonatomic, readonly, strong) UIWebView *webView;
+@property (nonatomic, readonly, strong) WKWebView *webView;
 @end

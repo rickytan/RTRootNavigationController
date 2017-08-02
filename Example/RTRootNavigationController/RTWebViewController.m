@@ -10,8 +10,8 @@
 
 #import "RTWebViewController.h"
 
-@interface RTWebViewController () <UIWebViewDelegate>
-@property (nonatomic, strong) UIWebView *webView;
+@interface RTWebViewController () <WKNavigationDelegate, UIGestureRecognizerDelegate>
+@property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UILabel *indicateLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *spinnerView;
 @end
@@ -21,9 +21,10 @@
 - (void)loadView
 {
     [super loadView];
-    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.webView.delegate = self;
+    self.webView.navigationDelegate = self;
+    self.webView.allowsBackForwardNavigationGestures = YES;
     [self.view addSubview:self.webView];
 
     self.indicateLabel = [[UILabel alloc] init];
@@ -58,6 +59,13 @@
     // Do any additional setup after loading the view.
     self.navigationController.toolbarHidden = NO;
     self.navigationController.toolbar.translucent = NO;
+    
+    [self.webView.gestureRecognizers enumerateObjectsUsingBlock:^(__kindof UIGestureRecognizer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[UIScreenEdgePanGestureRecognizer class]]) {
+            [self.rt_navigationController.interactivePopGestureRecognizer requireGestureRecognizerToFail:obj];
+            *stop = YES;
+        }
+    }];
 
     self.spinnerView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.spinnerView];
@@ -163,6 +171,40 @@
 didFailLoadWithError:(NSError *)error
 {
     [self.spinnerView stopAnimating];
+}
+
+#pragma mark - WKUIDelegate
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
+{
+    [self.spinnerView startAnimating];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    [self.spinnerView stopAnimating];
+    self.indicateLabel.text = [NSString stringWithFormat:@"Site provided by:\n%@", webView.URL.host];
+    self.title = webView.title;
+    
+    self.toolbarItems[0].enabled = webView.canGoBack;
+    self.toolbarItems[2].enabled = webView.canGoForward;
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
+{
+    [self.spinnerView stopAnimating];
+}
+
+#pragma mark - UIGesture Delegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return NO;
 }
 
 @end
