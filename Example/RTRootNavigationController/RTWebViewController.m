@@ -10,7 +10,7 @@
 
 #import "RTWebViewController.h"
 
-@interface RTWebViewController () <WKNavigationDelegate, UIGestureRecognizerDelegate>
+@interface RTWebViewController () <WKNavigationDelegate>
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UILabel *indicateLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *spinnerView;
@@ -21,9 +21,9 @@
 - (void)loadView
 {
     [super loadView];
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
-    self.webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.webView.navigationDelegate = self;
+    self.webView                                     = [[WKWebView alloc] initWithFrame:self.view.bounds];
+    self.webView.autoresizingMask                    = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.webView.navigationDelegate                  = self;
     self.webView.allowsBackForwardNavigationGestures = YES;
     [self.view addSubview:self.webView];
 
@@ -36,7 +36,7 @@
     [self.indicateLabel sizeToFit];
     self.indicateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.webView insertSubview:self.indicateLabel
-                        atIndex:0];
+                   belowSubview:self.webView.scrollView];
 
     [self.webView addConstraints:@[[NSLayoutConstraint constraintWithItem:self.indicateLabel
                                                                 attribute:NSLayoutAttributeTop
@@ -193,18 +193,6 @@ didFailLoadWithError:(NSError *)error
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     [self.spinnerView stopAnimating];
-}
-
-#pragma mark - UIGesture Delegate
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return NO;
 }
 
 @end
