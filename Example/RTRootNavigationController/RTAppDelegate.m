@@ -10,6 +10,27 @@
 
 #import "RTAppDelegate.h"
 
+@interface RTTabBarController : UITabBarController
+@end
+
+@implementation RTTabBarController
+
+- (BOOL)prefersStatusBarHidden
+{
+    return self.selectedViewController.prefersStatusBarHidden;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return self.selectedViewController.preferredStatusBarUpdateAnimation;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return self.selectedViewController.preferredStatusBarStyle;
+}
+
+@end
 
 @implementation RTAppDelegate
 
@@ -17,15 +38,17 @@
 {
     // Override point for customization after application launch.
     /*
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main"
                                                     bundle:nil];
-    UITabBarController *tabController = [[UITabBarController alloc] init];
+    UITabBarController *tabController = [[RTTabBarController alloc] init];
 //    tabController.tabBar.translucent = NO;
     if (YES) {
         tabController.viewControllers = @[[[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Root"]],
                                           [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Remove"]],
                                           [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Scroll"]],
-                                          [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Table"]]];
+                                          [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Table"]],
+                                          [[RTContainerNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Status"]]];
         self.window.rootViewController = [[RTRootNavigationController alloc] initWithRootViewControllerNoWrapping:tabController];
     }
     else {
@@ -35,6 +58,7 @@
                                           [[RTRootNavigationController alloc] initWithRootViewController:[story instantiateViewControllerWithIdentifier:@"Table"]]];
         self.window.rootViewController = tabController;
     }
+    [self.window makeKeyAndVisible];
     */
     return YES;
 }

@@ -31,7 +31,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cbk-9O-dJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1287" y="-949"/>
+            <point key="canvasLocation" x="1287" y="-1290"/>
         </scene>
         <!--Root-->
         <scene sceneID="vWN-Q8-ves">
@@ -61,7 +61,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="LAy-Sw-74v" kind="push" id="Ltx-RH-egV"/>
+                                            <segue destination="LAy-Sw-74v" kind="show" id="Ltx-RH-egV"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Yq2-Yd-QQW" style="IBUITableViewCellStyleDefault" id="s3f-oo-OMj">
@@ -81,7 +81,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Qpx-qL-0Vy" kind="push" id="5Bf-mB-c87"/>
+                                            <segue destination="Qpx-qL-0Vy" kind="show" id="5Bf-mB-c87"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="REF-fg-WjO" style="IBUITableViewCellStyleDefault" id="cfJ-Py-m5d">
@@ -101,7 +101,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="mi0-N2-Guv" kind="push" id="y8i-Aj-KhW"/>
+                                            <segue destination="mi0-N2-Guv" kind="show" id="y8i-Aj-KhW"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ReS-eI-NDg" style="IBUITableViewCellStyleDefault" id="yZz-BX-r7P">
@@ -121,7 +121,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="cDS-IL-MDS" kind="push" id="dFa-qV-oFQ"/>
+                                            <segue destination="cDS-IL-MDS" kind="show" id="dFa-qV-oFQ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="S12-kb-85J" style="IBUITableViewCellStyleDefault" id="xGX-xQ-ZGU">
@@ -141,7 +141,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="gqE-4J-Jo2" kind="push" id="C8e-8u-cs3"/>
+                                            <segue destination="gqE-4J-Jo2" kind="show" id="C8e-8u-cs3"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bJ5-fE-IZc" style="IBUITableViewCellStyleDefault" id="oET-L6-JM2">
@@ -161,7 +161,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="iqv-hU-7Sn" kind="push" id="wH1-nz-BBD"/>
+                                            <segue destination="iqv-hU-7Sn" kind="show" id="wH1-nz-BBD"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="7Vm-iB-zwC" style="IBUITableViewCellStyleDefault" id="OLD-9a-fIa">
@@ -181,7 +181,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="h6O-Eh-Am6" kind="push" id="wOV-EM-IGH"/>
+                                            <segue destination="h6O-Eh-Am6" kind="show" id="wOV-EM-IGH"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Gyk-z1-gg3" style="IBUITableViewCellStyleDefault" id="5Ag-8k-FVj">
@@ -201,7 +201,27 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="UBA-dV-kX4" kind="push" id="d23-AT-fag"/>
+                                            <segue destination="UBA-dV-kX4" kind="show" id="d23-AT-fag"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="o2O-Gj-gmX" style="IBUITableViewCellStyleDefault" id="7XC-Ed-d1T">
+                                        <rect key="frame" x="0.0" y="352" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7XC-Ed-d1T" id="6ZL-Vh-8oo">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Status hidden" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o2O-Gj-gmX">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="UYN-wJ-xlc" kind="show" id="j0M-SZ-3Rn"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -250,7 +270,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFl-0S-cGH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ogd-d2-OF2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="621" y="2611"/>
+            <point key="canvasLocation" x="621" y="2770"/>
+        </scene>
+        <!--Status-->
+        <scene sceneID="cEX-fb-JWf">
+            <objects>
+                <viewController storyboardIdentifier="Status" title="Status" id="UYN-wJ-xlc" customClass="RTStatusHiddenViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="urU-MP-6G3"/>
+                        <viewControllerLayoutGuide type="bottom" id="fvu-HP-dIm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7LQ-uD-gcL">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VmD-n1-dcc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1521" y="1908"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="G0H-v4-9JC">
@@ -314,7 +352,7 @@
                                     <constraint firstAttribute="trailing" secondItem="kGf-nV-AGC" secondAttribute="trailing" id="to3-PL-FM1"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="pky-a7-Cig" kind="push" id="5eQ-hd-Sdr"/>
+                                    <segue destination="pky-a7-Cig" kind="show" id="5eQ-hd-Sdr"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -372,7 +410,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNJ-En-vdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-48" y="2611"/>
+            <point key="canvasLocation" x="-49" y="2770"/>
         </scene>
         <!--Table-->
         <scene sceneID="ng5-xW-oPx">
@@ -400,7 +438,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="gaa-yb-sX8" kind="push" id="Ait-Xf-UbC"/>
+                                    <segue destination="gaa-yb-sX8" kind="show" id="Ait-Xf-UbC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -499,7 +537,7 @@
                                     <constraint firstItem="IXk-cn-R54" firstAttribute="centerX" secondItem="Zuc-Qh-uV8" secondAttribute="centerX" id="kAf-OX-z6s"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="gqE-4J-Jo2" kind="push" id="fgk-3y-5bQ"/>
+                                    <segue destination="gqE-4J-Jo2" kind="show" id="fgk-3y-5bQ"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -512,7 +550,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GM1-dt-1mn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1287" y="1087"/>
+            <point key="canvasLocation" x="1287" y="1070"/>
         </scene>
         <!--ABCD-->
         <scene sceneID="ibM-2x-5R6">
@@ -537,7 +575,7 @@
                                 <rect key="frame" x="170" y="324.5" width="35" height="30"/>
                                 <state key="normal" title="Push"/>
                                 <connections>
-                                    <segue destination="cDS-IL-MDS" kind="push" id="IZr-he-VVi"/>
+                                    <segue destination="cDS-IL-MDS" kind="show" id="IZr-he-VVi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -553,7 +591,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaA-37-0od" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1287" y="373"/>
+            <point key="canvasLocation" x="1287" y="223"/>
         </scene>
         <!--Hello World-->
         <scene sceneID="lIA-Iy-l6c">
@@ -586,7 +624,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEE-Ej-IY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1287" y="-285"/>
+            <point key="canvasLocation" x="1287" y="-537"/>
         </scene>
         <!--Root Navigation Controller-->
         <scene sceneID="eeM-SN-S2r">
@@ -619,7 +657,7 @@
         <image name="apple" width="151" height="151"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="C8e-8u-cs3"/>
         <segue reference="IZr-he-VVi"/>
+        <segue reference="fgk-3y-5bQ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,3 +1,7 @@
+0.6.3
+
+- fix #92, now you can use `self.navigationController.viewControllers` to access siblings
+
 0.6.2
 
 - fix #96
