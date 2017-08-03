@@ -34,7 +34,7 @@ you can have each view controller a individual navigation bar.
 
   s.subspec 'Push' do |push|
     push.dependency 'RTRootNavigationController/Core'
-    push.dependency 'RTInteractivePush'
+    push.dependency 'RTInteractivePush', '~> 0.1.5'
     push.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) RT_INTERACTIVE_PUSH=1'
     }
