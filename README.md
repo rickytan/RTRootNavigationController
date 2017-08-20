@@ -71,7 +71,7 @@ or just set `useSystemBackBarButtonItem` to **YES** and use the default one.
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## __Notice__
+## __Notice__(Only for below v0.6)
 
 Your **ViewController** hierarchy will change to:
 ```
