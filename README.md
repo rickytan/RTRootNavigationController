@@ -5,6 +5,12 @@
 [![License](https://img.shields.io/cocoapods/l/RTRootNavigationController.svg?style=flat)](http://cocoapods.org/pods/RTRootNavigationController)
 [![Platform](https://img.shields.io/cocoapods/p/RTRootNavigationController.svg?style=flat)](http://cocoapods.org/pods/RTRootNavigationController)
 
+## iPhone X
+How many lines of code should I write to fit in iPhone X? Zero.
+
+我需要写多少代码来适配 **iPhone X**？0。
+![iphone-x](https://user-images.githubusercontent.com/1250207/30429339-abb20914-9989-11e7-9058-c967839315f4.gif)
+
 ## Introduction
 More and more apps use custom navigation bar for each different view controller, instead of one common, global navigation bar.
 
