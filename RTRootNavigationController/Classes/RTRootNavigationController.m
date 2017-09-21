@@ -65,24 +65,23 @@
 @end
 
 
+@interface RTNavigationConfiguration : NSObject
+@property (nonatomic, strong) Class navigationBarClass;
+@property (nonatomic, strong) Class toolbarClass;
+@property (nonatomic, copy) NSString *backTitle;
+@property (nonatomic, strong) UIBarButtonItem *backBarButtonItem;
+@property (nonatomic, assign) BOOL withPlaceholder;
+@property (nonatomic, assign) BOOL hidesBarsWhenVerticallyCompact;
+@property (nonatomic, assign) BOOL hidesBarsOnTap;
+@property (nonatomic, assign) BOOL hidesBarsWhenKeyboardAppears;
+@property (nonatomic, assign) BOOL hidesBarsOnSwipe;
+@end
+
 @interface RTContainerController ()
 @property (nonatomic, strong) __kindof UIViewController *contentViewController;
 @property (nonatomic, strong) UINavigationController *containerNavigationController;
 
-+ (instancetype)containerControllerWithController:(UIViewController *)controller;
-+ (instancetype)containerControllerWithController:(UIViewController *)controller
-                               navigationBarClass:(Class)navigationBarClass;
-+ (instancetype)containerControllerWithController:(UIViewController *)controller
-                               navigationBarClass:(Class)navigationBarClass
-                        withPlaceholderController:(BOOL)yesOrNo;
-+ (instancetype)containerControllerWithController:(UIViewController *)controller
-                               navigationBarClass:(Class)navigationBarClass
-                        withPlaceholderController:(BOOL)yesOrNo
-                                backBarButtonItem:(UIBarButtonItem *)backItem
-                                        backTitle:(NSString *)backTitle;
-
-- (instancetype)initWithController:(UIViewController *)controller;
-- (instancetype)initWithController:(UIViewController *)controller navigationBarClass:(Class)navigationBarClass;
++ (instancetype)containerControllerWithController:(UIViewController *)controller configuration:(RTNavigationConfiguration *)config;
 
 @end
 
@@ -94,76 +93,47 @@ static inline UIViewController *RTSafeUnwrapViewController(UIViewController *con
     return controller;
 }
 
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller,
-                                                                                     Class navigationBarClass,
-                                                                                     BOOL withPlaceholder,
-                                                                                     UIBarButtonItem *backItem,
-                                                                                     NSString *backTitle) {
+
+@implementation RTNavigationConfiguration
+
++ (instancetype)configrationFromNavigationController:(RTRootNavigationController *)navigation {
+    RTNavigationConfiguration *configuration = [[self alloc] init];
+    configuration.withPlaceholder = navigation.useSystemBackBarButtonItem;
+    
+    UIViewController *currentLast = RTSafeUnwrapViewController(navigation.viewControllers.lastObject);
+    configuration.backBarButtonItem = currentLast.navigationItem.backBarButtonItem;
+    configuration.backTitle = currentLast.navigationItem.title;
+    
+#if __IPHONE_8_0 && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+    if ([navigation respondsToSelector:@selector(hidesBarsWhenKeyboardAppears)]) {
+        configuration.hidesBarsWhenKeyboardAppears = navigation.hidesBarsWhenKeyboardAppears;
+        configuration.hidesBarsOnTap = navigation.hidesBarsOnTap;
+        configuration.hidesBarsOnSwipe = navigation.hidesBarsOnSwipe;
+        configuration.hidesBarsWhenVerticallyCompact = navigation.hidesBarsWhenVerticallyCompact;
+    }
+#endif
+    return configuration;
+}
+
+@end
+
+
+
+__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, RTNavigationConfiguration *config) {
     if (![controller isKindOfClass:[RTContainerController class]]) {
-        return [RTContainerController containerControllerWithController:controller
-                                                     navigationBarClass:navigationBarClass
-                                              withPlaceholderController:withPlaceholder
-                                                      backBarButtonItem:backItem
-                                                              backTitle:backTitle];
+        return [RTContainerController containerControllerWithController:controller configuration:config];
     }
     return controller;
 }
-
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass, BOOL withPlaceholder) {
-    if (![controller isKindOfClass:[RTContainerController class]]) {
-        return [RTContainerController containerControllerWithController:controller
-                                                     navigationBarClass:navigationBarClass
-                                              withPlaceholderController:withPlaceholder];
-    }
-    return controller;
-}
-
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass) {
-    return RTSafeWrapViewController(controller, navigationBarClass, NO);
-}
-
 
 @implementation RTContainerController
 
-+ (instancetype)containerControllerWithController:(UIViewController *)controller
++ (instancetype)containerControllerWithController:(UIViewController *)controller configuration:(RTNavigationConfiguration *)config
 {
-    return [[self alloc] initWithController:controller];
+    return [[self alloc] initWithController:controller configration:config];
 }
 
-+ (instancetype)containerControllerWithController:(UIViewController *)controller
-                               navigationBarClass:(Class)navigationBarClass
-{
-    return [[self alloc] initWithController:controller
-                         navigationBarClass:navigationBarClass];
-}
-
-+ (instancetype)containerControllerWithController:(UIViewController *)controller
-                               navigationBarClass:(Class)navigationBarClass
-                        withPlaceholderController:(BOOL)yesOrNo
-{
-    return [[self alloc] initWithController:controller
-                         navigationBarClass:navigationBarClass
-                  withPlaceholderController:yesOrNo];
-}
-
-+ (instancetype)containerControllerWithController:(UIViewController *)controller
-                               navigationBarClass:(Class)navigationBarClass
-                        withPlaceholderController:(BOOL)yesOrNo
-                                backBarButtonItem:(UIBarButtonItem *)backItem
-                                        backTitle:(NSString *)backTitle
-{
-    return [[self alloc] initWithController:controller
-                         navigationBarClass:navigationBarClass
-                  withPlaceholderController:yesOrNo
-                          backBarButtonItem:backItem
-                                  backTitle:backTitle];
-}
-
-- (instancetype)initWithController:(UIViewController *)controller
-                navigationBarClass:(Class)navigationBarClass
-         withPlaceholderController:(BOOL)yesOrNo
-                 backBarButtonItem:(UIBarButtonItem *)backItem
-                         backTitle:(NSString *)backTitle
+- (instancetype)initWithController:(UIViewController *)controller configration:(RTNavigationConfiguration *)config
 {
     self = [super init];
     if (self) {
@@ -174,13 +144,18 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
          self.automaticallyAdjustsScrollViewInsets = NO;
          */
         
-        self.contentViewController = controller;
-        self.containerNavigationController = [[RTContainerNavigationController alloc] initWithNavigationBarClass:navigationBarClass
-                                                                                                    toolbarClass:nil];
-        if (yesOrNo) {
-            UIViewController *vc = [UIViewController new];
-            vc.title = backTitle;
-            vc.navigationItem.backBarButtonItem = backItem;
+        self.contentViewController                                        = controller;
+        self.containerNavigationController                                = [[RTContainerNavigationController alloc] initWithNavigationBarClass:config.navigationBarClass
+                                                                                                    toolbarClass:config.toolbarClass];
+        self.containerNavigationController.hidesBarsOnTap                 = config.hidesBarsOnTap;
+        self.containerNavigationController.hidesBarsOnSwipe               = config.hidesBarsOnSwipe;
+        self.containerNavigationController.hidesBarsWhenKeyboardAppears   = config.hidesBarsWhenKeyboardAppears;
+        self.containerNavigationController.hidesBarsWhenVerticallyCompact = config.hidesBarsWhenVerticallyCompact;
+        
+        if (config.withPlaceholder) {
+            UIViewController *vc                               = [UIViewController new];
+            vc.title                                           = config.backTitle;
+            vc.navigationItem.backBarButtonItem                = config.backBarButtonItem;
             self.containerNavigationController.viewControllers = @[vc, controller];
         }
         else
@@ -190,30 +165,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         [self.containerNavigationController didMoveToParentViewController:self];
     }
     return self;
-}
-
-- (instancetype)initWithController:(UIViewController *)controller
-                navigationBarClass:(Class)navigationBarClass
-         withPlaceholderController:(BOOL)yesOrNo
-{
-    return [self initWithController:controller
-                 navigationBarClass:navigationBarClass
-          withPlaceholderController:yesOrNo
-                  backBarButtonItem:nil
-                          backTitle:nil];
-}
-
-- (instancetype)initWithController:(UIViewController *)controller
-                navigationBarClass:(Class)navigationBarClass
-{
-    return [self initWithController:controller
-                 navigationBarClass:navigationBarClass
-          withPlaceholderController:NO];
-}
-
-- (instancetype)initWithController:(UIViewController *)controller
-{
-    return [self initWithController:controller navigationBarClass:nil];
 }
 
 - (instancetype)initWithContentController:(UIViewController *)controller
@@ -532,6 +483,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 @end
 
 
+
 @interface RTRootNavigationController () <UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, weak) id<UINavigationControllerDelegate> rt_delegate;
 @property (nonatomic, copy) void(^animationBlock)(BOOL finished);
@@ -580,7 +532,11 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
-    self = [super initWithRootViewController:RTSafeWrapViewController(rootViewController, rootViewController.rt_navigationBarClass)];
+    RTNavigationConfiguration *config = [RTNavigationConfiguration new];
+    config.navigationBarClass = rootViewController.rt_navigationBarClass;
+    config.toolbarClass = rootViewController.rt_toolbarClass;
+    
+    self = [super initWithRootViewController:RTSafeWrapViewController(rootViewController, config)];
     if (self) {
         [self _commonInit];
     }
@@ -636,20 +592,27 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     // Override to protect
 }
 
+- (void)_setBarsHidden:(BOOL)hidden
+{
+    
+}
+
 - (void)pushViewController:(UIViewController *)viewController
                   animated:(BOOL)animated
 {
     if (self.viewControllers.count > 0) {
-        UIViewController *currentLast = RTSafeUnwrapViewController(self.viewControllers.lastObject);
-        [super pushViewController:RTSafeWrapViewController(viewController,
-                                                           viewController.rt_navigationBarClass,
-                                                           self.useSystemBackBarButtonItem,
-                                                           currentLast.navigationItem.backBarButtonItem,
-                                                           currentLast.title)
+        RTNavigationConfiguration *config = [RTNavigationConfiguration configrationFromNavigationController:self];
+        config.navigationBarClass = viewController.rt_navigationBarClass;
+        config.toolbarClass = viewController.rt_toolbarClass;
+        
+        [super pushViewController:RTSafeWrapViewController(viewController, config)
                          animated:animated];
     }
     else {
-        [super pushViewController:RTSafeWrapViewController(viewController, viewController.rt_navigationBarClass)
+        RTNavigationConfiguration *config = [RTNavigationConfiguration new];
+        config.navigationBarClass = viewController.rt_navigationBarClass;
+        config.navigationBarClass = viewController.rt_toolbarClass;
+        [super pushViewController:RTSafeWrapViewController(viewController, config)
                          animated:animated];
     }
 }
@@ -689,15 +652,21 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                   animated:(BOOL)animated
 {
     [super setViewControllers:[viewControllers rt_map:^id(__kindof UIViewController * obj,  NSUInteger index) {
+        RTNavigationConfiguration *config = [RTNavigationConfiguration configrationFromNavigationController:self];
+        config.navigationBarClass        = obj.rt_navigationBarClass;
+        config.toolbarClass              = obj.rt_toolbarClass;
         if (self.useSystemBackBarButtonItem && index > 0) {
-            return RTSafeWrapViewController(obj,
-                                            obj.rt_navigationBarClass,
-                                            self.useSystemBackBarButtonItem,
-                                            viewControllers[index - 1].navigationItem.backBarButtonItem,
-                                            viewControllers[index - 1].title);
+            config.withPlaceholder           = YES;
+            config.backBarButtonItem         = viewControllers[index - 1].navigationItem.backBarButtonItem;
+            config.backTitle                 = viewControllers[index - 1].navigationItem.title;
+            
+            return RTSafeWrapViewController(obj, config);
         }
-        else
-            return RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
+        else {
+            config.withPlaceholder           = NO;
+            
+            return RTSafeWrapViewController(obj, config);
+        }
     }]
                      animated:animated];
 }

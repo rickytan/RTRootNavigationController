@@ -59,4 +59,6 @@ IB_DESIGNABLE
  */
 - (Class)rt_navigationBarClass;
 
+- (Class)rt_toolbarClass;
+
 @end

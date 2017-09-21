@@ -41,6 +41,11 @@
     return nil;
 }
 
+- (Class)rt_toolbarClass
+{
+    return nil;
+}
+
 - (RTRootNavigationController *)rt_navigationController
 {
     UIViewController *vc = self;
