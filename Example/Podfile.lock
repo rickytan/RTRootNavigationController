@@ -1,7 +1,7 @@
 PODS:
   - RTInteractivePush (0.1.5)
-  - RTRootNavigationController/Core (0.6.2)
-  - RTRootNavigationController/Push (0.6.2):
+  - RTRootNavigationController/Core (0.6.3)
+  - RTRootNavigationController/Push (0.6.3):
     - RTInteractivePush (~> 0.1.5)
     - RTRootNavigationController/Core
 
@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   RTInteractivePush: 8e1505d2e3afa7e93f6ce0d172b035412356d462
-  RTRootNavigationController: 258e9111fe29e933797c9b41bb264814b03f0ce2
+  RTRootNavigationController: 179b59c8d9b471e6ecfcf8129bf7c2087c1ddfdc
 
 PODFILE CHECKSUM: 28fd3aa793345965e373f1b57a81b0124896227d
 
