@@ -48,6 +48,11 @@ IB_DESIGNABLE
 @property (nonatomic, assign) IBInspectable BOOL rt_disableInteractivePop;
 
 /*!
+ * @brief set this property to @b YES to enable full screen pop if rt_disableInteractivePop is NO
+ */
+@property (nonatomic, assign) BOOL rt_enableFullScreenPop;
+
+/*!
  *  @brief @c self\.navigationControlle will get a wrapping @c UINavigationController, use this property to get the real navigation controller
  */
 @property (nonatomic, readonly, strong) RTRootNavigationController *rt_navigationController;

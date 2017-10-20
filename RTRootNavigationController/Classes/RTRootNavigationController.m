@@ -535,6 +535,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 @interface RTRootNavigationController () <UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, weak) id<UINavigationControllerDelegate> rt_delegate;
 @property (nonatomic, copy) void(^animationBlock)(BOOL finished);
+@property (nonatomic, strong) id<UIGestureRecognizerDelegate> originalInteractivePopGestureRecognizerDelegate;
 @end
 
 @implementation RTRootNavigationController
@@ -549,6 +550,20 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)_commonInit
 {
     
+}
+
+- (void)setFullScreenPopGestureForViewController:(UIViewController *)contentViewController
+{
+    // delegate is _UINavigationInteractiveTransition
+    id delegate = self.originalInteractivePopGestureRecognizerDelegate;
+    SEL transition = NSSelectorFromString(@"handleNavigationTransition:");
+    if ([delegate respondsToSelector:transition]) {
+        UIPanGestureRecognizer *fullScreenPopGestureRecognizer= [[UIPanGestureRecognizer alloc] initWithTarget:delegate action:transition];
+        [contentViewController.view addGestureRecognizer:fullScreenPopGestureRecognizer];
+        fullScreenPopGestureRecognizer.delegate = self;
+        
+        fullScreenPopGestureRecognizer.enabled = !contentViewController.rt_disableInteractivePop && contentViewController.rt_enableFullScreenPop;
+    }
 }
 
 #pragma mark - Overrides
@@ -640,6 +655,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                   animated:(BOOL)animated
 {
     if (self.viewControllers.count > 0) {
+        [self setFullScreenPopGestureForViewController:viewController];
         UIViewController *currentLast = RTSafeUnwrapViewController(self.viewControllers.lastObject);
         [super pushViewController:RTSafeWrapViewController(viewController,
                                                            viewController.rt_navigationBarClass,

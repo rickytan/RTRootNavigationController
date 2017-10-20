@@ -36,6 +36,16 @@
     return [objc_getAssociatedObject(self, @selector(rt_disableInteractivePop)) boolValue];
 }
 
+- (void)setRt_enableFullScreenPop:(BOOL)rt_enableFullScreenPop
+{
+    objc_setAssociatedObject(self, @selector(rt_enableFullScreenPop), @(rt_enableFullScreenPop), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)rt_enableFullScreenPop
+{
+    return [objc_getAssociatedObject(self, @selector(rt_enableFullScreenPop)) boolValue];
+}
+
 - (Class)rt_navigationBarClass
 {
     return nil;
