@@ -31,6 +31,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)didMoveToParentViewController:(UIViewController *)parent
+{
+    [super didMoveToParentViewController:parent];
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (IBAction)onBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -51,5 +57,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (NSArray<id<UIPreviewActionItem>> *)previewActionItems
+{
+    return @[[UIPreviewAction actionWithTitle:@"Default"
+                               style:UIPreviewActionStyleDefault
+                                      handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+                                   
+                               }],
+             [UIPreviewAction actionWithTitle:@"Selected"
+                                        style:UIPreviewActionStyleSelected
+                                      handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+                                          
+                                      }],
+             [UIPreviewAction actionWithTitle:@"Destructive"
+                                        style:UIPreviewActionStyleDestructive
+                                      handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+                                          
+                                      }]
+             ];
+}
 
 @end
