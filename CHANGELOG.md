@@ -1,3 +1,7 @@
+0.6.4
+
+- fix #147, `prefersHomeIndicatorAutoHidden` support
+
 0.6.3
 
 - fix #92, now you can use `self.navigationController.viewControllers` to access siblings

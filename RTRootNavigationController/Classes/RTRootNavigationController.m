@@ -277,6 +277,18 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return [self.contentViewController preferredStatusBarUpdateAnimation];
 }
 
+#if __IPHONE_11_0 && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0
+- (BOOL)prefersHomeIndicatorAutoHidden
+{
+    return [self.contentViewController prefersHomeIndicatorAutoHidden];
+}
+
+- (UIViewController *)childViewControllerForHomeIndicatorAutoHidden
+{
+    return self.contentViewController;
+}
+#endif
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return [self.contentViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
@@ -528,6 +540,18 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     return [self.topViewController preferredStatusBarUpdateAnimation];
 }
+
+#if __IPHONE_11_0 && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0
+- (BOOL)prefersHomeIndicatorAutoHidden
+{
+    return [self.topViewController prefersHomeIndicatorAutoHidden];
+}
+
+- (UIViewController *)childViewControllerForHomeIndicatorAutoHidden
+{
+    return self.topViewController;
+}
+#endif
 
 @end
 
