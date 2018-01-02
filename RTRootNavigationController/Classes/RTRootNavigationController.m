@@ -669,7 +669,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                                            viewController.rt_navigationBarClass,
                                                            self.useSystemBackBarButtonItem,
                                                            currentLast.navigationItem.backBarButtonItem,
-                                                           currentLast.title)
+                                                           currentLast.navigationItem.title ?: currentLast.title)
                          animated:animated];
     }
     else {
