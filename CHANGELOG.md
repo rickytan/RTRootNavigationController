@@ -1,3 +1,11 @@
+0.6.6
+
+- fix `UINavigationControllerDelegate` behavior, always pass user **VC**
+
+0.6.5
+
+- use `navigationItem.title` first, then `title`
+
 0.6.4
 
 - fix #147, `prefersHomeIndicatorAutoHidden` support

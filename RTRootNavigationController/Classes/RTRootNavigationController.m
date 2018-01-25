@@ -887,8 +887,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                     animated:(BOOL)animated
 {
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
+    viewController = RTSafeUnwrapViewController(viewController);
     if (!isRootVC) {
-        viewController = RTSafeUnwrapViewController(viewController);
         
         BOOL hasSetLeftItem = viewController.navigationItem.leftBarButtonItem != nil;
         if (hasSetLeftItem && !viewController.rt_hasSetInteractivePop) {
@@ -990,8 +990,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     if ([self.rt_delegate respondsToSelector:@selector(navigationController:animationControllerForOperation:fromViewController:toViewController:)]) {
         return [self.rt_delegate navigationController:navigationController
                       animationControllerForOperation:operation
-                                   fromViewController:fromVC
-                                     toViewController:toVC];
+                                   fromViewController:RTSafeUnwrapViewController(fromVC)
+                                     toViewController:RTSafeUnwrapViewController(toVC)];
     }
     return nil;
 }
