@@ -959,15 +959,24 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     
     [RTRootNavigationController attemptRotationToDeviceOrientation];
     
-    if (self.animationBlock) {
-        self.animationBlock(YES);
-        self.animationBlock = nil;
-    }
     
     if ([self.rt_delegate respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
         [self.rt_delegate navigationController:navigationController
                          didShowViewController:viewController
                                       animated:animated];
+    }
+    
+    if (self.animationBlock) {
+        if (animated) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.animationBlock(YES);
+                self.animationBlock = nil;
+            });
+        }
+        else {
+            self.animationBlock(YES);
+            self.animationBlock = nil;
+        }
     }
 }
 
