@@ -67,7 +67,7 @@
 
 @interface RTContainerController ()
 @property (nonatomic, strong) __kindof UIViewController *contentViewController;
-@property (nonatomic, strong) UINavigationController *containerNavigationController;
+@property (nonatomic, strong) RTContainerNavigationController *containerNavigationController;
 
 + (instancetype)containerControllerWithController:(UIViewController *)controller;
 + (instancetype)containerControllerWithController:(UIViewController *)controller
@@ -87,6 +87,13 @@
 @end
 
 
+static RTContainerController * RTParentContainerController(UIViewController *controller) {
+    while (controller && ![controller isKindOfClass:[RTContainerController class]]) {
+        controller = controller.parentViewController;
+    }
+    return (RTContainerController *)controller;
+}
+
 static inline UIViewController *RTSafeUnwrapViewController(UIViewController *controller) {
     if ([controller isKindOfClass:[RTContainerController class]]) {
         return ((RTContainerController *)controller).contentViewController;
@@ -94,11 +101,11 @@ static inline UIViewController *RTSafeUnwrapViewController(UIViewController *con
     return controller;
 }
 
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller,
-                                                                                     Class navigationBarClass,
-                                                                                     BOOL withPlaceholder,
-                                                                                     UIBarButtonItem *backItem,
-                                                                                     NSString *backTitle) {
+__attribute((overloadable)) static inline RTContainerController *RTSafeWrapViewController(UIViewController *controller,
+                                                                                          Class navigationBarClass,
+                                                                                          BOOL withPlaceholder,
+                                                                                          UIBarButtonItem *backItem,
+                                                                                          NSString *backTitle) {
     if (![controller isKindOfClass:[RTContainerController class]]) {
         return [RTContainerController containerControllerWithController:controller
                                                      navigationBarClass:navigationBarClass
@@ -106,19 +113,19 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                                       backBarButtonItem:backItem
                                                               backTitle:backTitle];
     }
-    return controller;
+    return (RTContainerController *)controller;
 }
 
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass, BOOL withPlaceholder) {
+__attribute((overloadable)) static inline RTContainerController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass, BOOL withPlaceholder) {
     if (![controller isKindOfClass:[RTContainerController class]]) {
         return [RTContainerController containerControllerWithController:controller
                                                      navigationBarClass:navigationBarClass
                                               withPlaceholderController:withPlaceholder];
     }
-    return controller;
+    return (RTContainerController *)controller;
 }
 
-__attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass) {
+__attribute((overloadable)) static inline RTContainerController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass) {
     return RTSafeWrapViewController(controller, navigationBarClass, NO);
 }
 
@@ -425,13 +432,18 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return nil;
 }
 
-- (NSArray *)viewControllers
+- (NSArray <__kindof UIViewController *> *)viewControllers
 {
     if (self.navigationController) {
         if ([self.navigationController isKindOfClass:[RTRootNavigationController class]]) {
             return self.rt_navigationController.rt_viewControllers;
         }
     }
+    return [super viewControllers];
+}
+
+- (NSArray <__kindof UIViewController *> *)mz_originViewControllers
+{
     return [super viewControllers];
 }
 
@@ -508,6 +520,11 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                              animated:animated];
     else
         [super setViewControllers:viewControllers animated:animated];
+}
+
+- (void)mz_originSetViewControllers:(NSArray<UIViewController *> *)viewControllers
+{
+    [super setViewControllers:viewControllers animated:NO];
 }
 
 - (void)setDelegate:(id<UINavigationControllerDelegate>)delegate
@@ -714,14 +731,38 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     [super setViewControllers:[viewControllers rt_map:^id(__kindof UIViewController * obj,  NSUInteger index) {
         if (self.useSystemBackBarButtonItem && index > 0) {
-            return RTSafeWrapViewController(obj,
-                                            obj.rt_navigationBarClass,
-                                            self.useSystemBackBarButtonItem,
-                                            viewControllers[index - 1].navigationItem.backBarButtonItem,
-                                            viewControllers[index - 1].title);
+            UIBarButtonItem *backItem = viewControllers[index - 1].navigationItem.backBarButtonItem;
+            NSString *backTitle = viewControllers[index - 1].navigationItem.title ?: viewControllers[index - 1].title;
+            
+            RTContainerController *container = RTParentContainerController(obj);
+            if (container) {
+                // 已经包装过，且不是第一个，更新返回按钮标题
+                UIViewController *vcForBackItem = [container.containerNavigationController mz_originViewControllers].firstObject;
+                if (vcForBackItem != obj) {
+                    vcForBackItem.title = backTitle;
+                    vcForBackItem.navigationItem.backBarButtonItem = backItem;
+                }
+            }
+            else {
+                container = RTSafeWrapViewController(obj,
+                                                     obj.rt_navigationBarClass,
+                                                     self.useSystemBackBarButtonItem,
+                                                     backItem,
+                                                     backTitle);
+            }
+            return container;
         }
-        else
-            return RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
+        else {
+            RTContainerController *container = RTParentContainerController(obj);
+            if (container) {
+                // 已经包装过，且是第一个，移除返回按钮
+                [container.containerNavigationController mz_originSetViewControllers:@[obj]];
+            }
+            else {
+                container = RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
+            }
+            return container;
+        }
     }]
                      animated:animated];
 }
@@ -1011,3 +1052,4 @@ shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRec
 }
 
 @end
+
