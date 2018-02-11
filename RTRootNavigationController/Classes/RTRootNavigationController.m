@@ -731,14 +731,16 @@ __attribute((overloadable)) static inline RTContainerController *RTSafeWrapViewC
 {
     [super setViewControllers:[viewControllers rt_map:^id(__kindof UIViewController * obj,  NSUInteger index) {
         if (self.useSystemBackBarButtonItem && index > 0) {
-            UIBarButtonItem *backItem = viewControllers[index - 1].navigationItem.backBarButtonItem;
-            NSString *backTitle = viewControllers[index - 1].navigationItem.title ?: viewControllers[index - 1].title;
+            UIViewController *previousSiblingVC = RTSafeUnwrapViewController(viewControllers[index - 1]);
+            
+            UIBarButtonItem *backItem = previousSiblingVC.navigationItem.backBarButtonItem;
+            NSString *backTitle = previousSiblingVC.navigationItem.title ?: previousSiblingVC.title;
             
             RTContainerController *container = RTParentContainerController(obj);
             if (container) {
                 // 已经包装过，且不是第一个，更新返回按钮标题
                 UIViewController *vcForBackItem = [container.containerNavigationController mz_originViewControllers].firstObject;
-                if (vcForBackItem != obj) {
+                if (vcForBackItem != RTSafeUnwrapViewController(obj)) {
                     vcForBackItem.title = backTitle;
                     vcForBackItem.navigationItem.backBarButtonItem = backItem;
                 }
@@ -756,7 +758,7 @@ __attribute((overloadable)) static inline RTContainerController *RTSafeWrapViewC
             RTContainerController *container = RTParentContainerController(obj);
             if (container) {
                 // 已经包装过，且是第一个，移除返回按钮
-                [container.containerNavigationController mz_originSetViewControllers:@[obj]];
+                [container.containerNavigationController mz_originSetViewControllers:@[RTSafeUnwrapViewController(obj)]];
             }
             else {
                 container = RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
@@ -844,14 +846,14 @@ __attribute((overloadable)) static inline RTContainerController *RTSafeWrapViewC
     NSMutableArray<__kindof UIViewController *> *controllers = [self.viewControllers mutableCopy];
     __block UIViewController *controllerToRemove = nil;
     [controllers enumerateObjectsUsingBlock:^(__kindof UIViewController * obj, NSUInteger idx, BOOL * stop) {
-        if (RTSafeUnwrapViewController(obj) == controller) {
+        if (obj == controller || RTSafeUnwrapViewController(obj) == controller) {
             controllerToRemove = obj;
             *stop = YES;
         }
     }];
     if (controllerToRemove) {
         [controllers removeObject:controllerToRemove];
-        [super setViewControllers:[NSArray arrayWithArray:controllers] animated:flag];
+        [self setViewControllers:controllers animated:flag];
     }
 }
 
