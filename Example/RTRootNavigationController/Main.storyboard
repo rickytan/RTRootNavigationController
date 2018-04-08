@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4yn-xn-OPt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4yn-xn-OPt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -237,7 +237,9 @@
                             <outlet property="delegate" destination="zEC-62-hlf" id="4Vs-MC-JAs"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="User" image="add_user_male" id="H0g-hD-Auh"/>
                     <navigationItem key="navigationItem" title="Root" id="bqk-bQ-gFX"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAk-PV-8yr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -511,7 +513,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="Scroll" title="Scroll" id="cDS-IL-MDS" customClass="RTCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Gkt-Nx-0Hk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xHd-mG-xKU">
@@ -551,7 +553,7 @@
                             <outlet property="delegate" destination="cDS-IL-MDS" id="e7t-r2-IwN"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Horizontal Scroll" id="PsD-w9-k1x"/>
+                    <navigationItem key="navigationItem" title="HScroll" id="PsD-w9-k1x"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GM1-dt-1mn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -660,12 +662,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_user_male" width="30" height="30"/>
         <image name="apple" width="151" height="151"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5Bf-mB-c87"/>
         <segue reference="y8i-Aj-KhW"/>
-        <segue reference="IZr-he-VVi"/>
+        <segue reference="dFa-qV-oFQ"/>
         <segue reference="C8e-8u-cs3"/>
     </inferredMetricsTieBreakers>
 </document>
