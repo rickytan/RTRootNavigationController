@@ -757,8 +757,12 @@ __attribute((overloadable)) static inline RTContainerController *RTSafeWrapViewC
         else {
             RTContainerController *container = RTParentContainerController(obj);
             if (container) {
-                // 已经包装过，且是第一个，移除返回按钮
+                // 已经包装过，是第一个，或者不使用系统返回，移除系统返回（即上一个 vc）
                 [container.containerNavigationController mz_originSetViewControllers:@[RTSafeUnwrapViewController(obj)]];
+                // 已经包装过，是第一个，且返回按钮是当前导航生成的，移除返回
+                if (index == 0 && obj.navigationItem.leftBarButtonItem.tag == (NSInteger)self) {
+                    obj.navigationItem.leftBarButtonItem = nil;
+                }
             }
             else {
                 container = RTSafeWrapViewController(obj, obj.rt_navigationBarClass);
@@ -958,6 +962,7 @@ __attribute((overloadable)) static inline RTContainerController *RTSafeWrapViewC
                                                                                                   target:self
                                                                                                   action:@selector(onBack:)];
             }
+            viewController.navigationItem.leftBarButtonItem.tag = (NSInteger)self;
         }
     }
     
