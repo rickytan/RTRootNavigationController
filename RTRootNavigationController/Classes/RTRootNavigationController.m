@@ -658,15 +658,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                       animated:(__unused BOOL)animated
 {
     // Override to protect
-}
-
-- (UIViewController *)separateSecondaryViewControllerForSplitViewController:(UISplitViewController *)splitViewController
-{
-    if (splitViewController.isCollapsed) {
-        return [[RTRootNavigationController alloc] initWithRootViewController:[self popViewControllerAnimated:NO]];
-    }
-    else {
-        return [self popViewControllerAnimated:NO];
+    if (self.rt_topViewController.navigationController != self) {
+        [self.rt_topViewController.navigationController setNavigationBarHidden:hidden animated:animated];
     }
 }
 
