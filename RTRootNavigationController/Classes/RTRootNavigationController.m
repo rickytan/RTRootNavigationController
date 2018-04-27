@@ -99,7 +99,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                                                                      BOOL withPlaceholder,
                                                                                      UIBarButtonItem *backItem,
                                                                                      NSString *backTitle) {
-    if (![controller isKindOfClass:[RTContainerController class]]) {
+    if (![controller isKindOfClass:[RTContainerController class]] && ![controller isKindOfClass:[UINavigationController class]]) {
         return [RTContainerController containerControllerWithController:controller
                                                      navigationBarClass:navigationBarClass
                                               withPlaceholderController:withPlaceholder
@@ -110,7 +110,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 }
 
 __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass, BOOL withPlaceholder) {
-    if (![controller isKindOfClass:[RTContainerController class]]) {
+    if (![controller isKindOfClass:[RTContainerController class]] && ![controller isKindOfClass:[UINavigationController class]]) {
         return [RTContainerController containerControllerWithController:controller
                                                      navigationBarClass:navigationBarClass
                                               withPlaceholderController:withPlaceholder];
@@ -658,6 +658,16 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                       animated:(__unused BOOL)animated
 {
     // Override to protect
+}
+
+- (UIViewController *)separateSecondaryViewControllerForSplitViewController:(UISplitViewController *)splitViewController
+{
+    if (splitViewController.isCollapsed) {
+        return [[RTRootNavigationController alloc] initWithRootViewController:[self popViewControllerAnimated:NO]];
+    }
+    else {
+        return [self popViewControllerAnimated:NO];
+    }
 }
 
 - (void)pushViewController:(UIViewController *)viewController
