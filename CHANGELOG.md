@@ -1,3 +1,7 @@
+0.6.7
+
+- iOS 11 `preferredScreenEdgesDeferringSystemGestures` support
+
 0.6.6
 
 - fix `UINavigationControllerDelegate` behavior, always pass user **VC**
