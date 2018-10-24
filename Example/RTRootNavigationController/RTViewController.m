@@ -38,7 +38,7 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (UIBarButtonItem *)customBackItemWithTarget:(id)target action:(SEL)action
+- (UIBarButtonItem *)rt_customBackItemWithTarget:(id)target action:(SEL)action
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];

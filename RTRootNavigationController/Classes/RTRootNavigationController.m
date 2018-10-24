@@ -299,11 +299,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 }
 #endif
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return [self.contentViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
-}
-
 - (BOOL)shouldAutorotate
 {
     return self.contentViewController.shouldAutorotate;
@@ -318,17 +313,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     return self.contentViewController.preferredInterfaceOrientationForPresentation;
 }
-
-- (nullable UIView *)rotatingHeaderView
-{
-    return self.contentViewController.rotatingHeaderView;
-}
-
-- (nullable UIView *)rotatingFooterView
-{
-    return self.contentViewController.rotatingFooterView;
-}
-
 
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
                                       fromViewController:(UIViewController *)fromViewController
@@ -751,11 +735,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     self.rt_delegate = delegate;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return [self.topViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
-}
-
 - (BOOL)shouldAutorotate
 {
     return self.topViewController.shouldAutorotate;
@@ -769,16 +748,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
     return self.topViewController.preferredInterfaceOrientationForPresentation;
-}
-
-- (nullable UIView *)rotatingHeaderView
-{
-    return self.topViewController.rotatingHeaderView;
-}
-
-- (nullable UIView *)rotatingFooterView
-{
-    return self.topViewController.rotatingFooterView;
 }
 
 - (BOOL)respondsToSelector:(SEL)aSelector
