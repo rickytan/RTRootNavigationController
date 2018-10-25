@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5777496B224DB176A06BB12A /* Pods_RTRootNavigationController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1514A537C47B073062ADCC5 /* Pods_RTRootNavigationController_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -21,7 +20,9 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		7754DE23C98A4856C653731B /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041DF0A8B0027264C4093D15 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		93A95D8D8AF7C67635D9CF27 /* Pods_RTRootNavigationController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC461907B53EF1711816DC02 /* Pods_RTRootNavigationController_Example.framework */; };
 		9C16AF1F1D09518100873B86 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C16AF1E1D09518100873B86 /* Launch.storyboard */; };
 		9C16AF221D09551E00873B86 /* RTPushRemoveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF211D09551E00873B86 /* RTPushRemoveViewController.m */; };
 		9C16AF251D0957D400873B86 /* RTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AF241D0957D400873B86 /* RTTableViewController.m */; };
@@ -34,7 +35,6 @@
 		9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */; };
 		9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C31D09152900693F14 /* RTCollectionViewController.m */; };
 		9C9863FD1F32BDE400CF307B /* RTStatusHiddenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9863FC1F32BDE400CF307B /* RTStatusHiddenViewController.m */; };
-		F97BFC33007327C1DBBBB743 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1328FAB25D46F943BBE265D /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041DF0A8B0027264C4093D15 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B6ECD73E96DEED1827971A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		4C78C63219178A258FA60E34 /* Pods-RTRootNavigationController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* RTRootNavigationController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTRootNavigationController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,11 +94,10 @@
 		9C7832C31D09152900693F14 /* RTCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCollectionViewController.m; sourceTree = "<group>"; };
 		9C9863FB1F32BDE400CF307B /* RTStatusHiddenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStatusHiddenViewController.h; sourceTree = "<group>"; };
 		9C9863FC1F32BDE400CF307B /* RTStatusHiddenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStatusHiddenViewController.m; sourceTree = "<group>"; };
-		A1328FAB25D46F943BBE265D /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5267346A018343C32093DA1 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AC461907B53EF1711816DC02 /* Pods_RTRootNavigationController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B930DAFF5ACFE0FF66B80F25 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C6B0AF5F8FE50A6D2E11BBBC /* Pods-RTRootNavigationController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F1514A537C47B073062ADCC5 /* Pods_RTRootNavigationController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F53B590EB877567165CF7290 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,7 +109,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				5777496B224DB176A06BB12A /* Pods_RTRootNavigationController_Example.framework in Frameworks */,
+				93A95D8D8AF7C67635D9CF27 /* Pods_RTRootNavigationController_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +120,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				F97BFC33007327C1DBBBB743 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework in Frameworks */,
+				7754DE23C98A4856C653731B /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,8 +155,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				F1514A537C47B073062ADCC5 /* Pods_RTRootNavigationController_Example.framework */,
-				A1328FAB25D46F943BBE265D /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */,
+				AC461907B53EF1711816DC02 /* Pods_RTRootNavigationController_Example.framework */,
+				041DF0A8B0027264C4093D15 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				CAEBA375F1A94A9C3B578C51 /* [CP] Embed Pods Frameworks */,
+				37AD5DB123CD747EA6D19389 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -295,7 +295,7 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				790C465CCA0E2E080BC96378 /* [CP] Embed Pods Frameworks */,
+				DBC280C1A032BF55A68C8A16 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -364,6 +364,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		37AD5DB123CD747EA6D19389 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RTInteractivePush/RTInteractivePush.framework",
+				"${BUILT_PRODUCTS_DIR}/RTRootNavigationController/RTRootNavigationController.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTInteractivePush.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTRootNavigationController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		608429C614C9BBE3B2B83B1D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,10 +406,12 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		790C465CCA0E2E080BC96378 /* [CP] Embed Pods Frameworks */ = {
+		DBC280C1A032BF55A68C8A16 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests-frameworks.sh",
@@ -393,6 +419,8 @@
 				"${BUILT_PRODUCTS_DIR}/RTRootNavigationController/RTRootNavigationController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTInteractivePush.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTRootNavigationController.framework",
@@ -400,26 +428,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CAEBA375F1A94A9C3B578C51 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RTInteractivePush/RTInteractivePush.framework",
-				"${BUILT_PRODUCTS_DIR}/RTRootNavigationController/RTRootNavigationController.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTInteractivePush.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTRootNavigationController.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FB44A093851DD2506C7E797E /* [CP] Check Pods Manifest.lock */ = {
