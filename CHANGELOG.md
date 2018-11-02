@@ -1,3 +1,7 @@
+0.7.0
+
+- fix iOS 12 navigationBar subview is empty in `-viewDidLoad`, #222 #224; drop support for #11, if you are using **RDVTabBarController**, DO NOT update.
+
 0.6.7
 
 - iOS 11 `preferredScreenEdgesDeferringSystemGestures` support
