@@ -430,7 +430,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         }
         
     }
-    [self.rt_navigationController _installsLeftBarButtonItemIfNeededForViewController:viewController];
+    if ([self.parentViewController isKindOfClass:[RTContainerController class]] &&
+        [self.parentViewController.parentViewController isKindOfClass:[RTRootNavigationController class]]) {
+        [self.rt_navigationController _installsLeftBarButtonItemIfNeededForViewController:viewController];
+    }
 }
 
 - (UITabBarController *)tabBarController
