@@ -235,6 +235,11 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self;
 }
 
+- (NSString *)debugDescription
+{
+    return [NSString stringWithFormat:@"<%@: %p contentViewController: %@>", self.class, self, self.contentViewController];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
