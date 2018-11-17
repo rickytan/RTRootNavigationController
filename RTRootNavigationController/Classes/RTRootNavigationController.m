@@ -713,6 +713,14 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 - (void)pushViewController:(UIViewController *)viewController
                   animated:(BOOL)animated
 {
+    if (viewController == nil) {
+        if (self.animationBlock) {
+            self.animationBlock(YES);
+            self.animationBlock = nil;
+        }
+        return;
+    }
+
     if (self.viewControllers.count > 0) {
         UIViewController *currentLast = RTSafeUnwrapViewController(self.viewControllers.lastObject);
         [super pushViewController:RTSafeWrapViewController(viewController,
