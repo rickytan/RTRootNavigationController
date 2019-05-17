@@ -846,22 +846,34 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)removeViewController:(UIViewController *)controller
 {
-    [self removeViewController:controller animated:NO];
+    if (controller) {
+        [self removeViewControllers:@[controller] animated:NO];
+    }
 }
 
 - (void)removeViewController:(UIViewController *)controller animated:(BOOL)flag
 {
-    NSMutableArray<__kindof UIViewController *> *controllers = [self.viewControllers mutableCopy];
-    __block UIViewController *controllerToRemove = nil;
-    [controllers enumerateObjectsUsingBlock:^(__kindof UIViewController * obj, NSUInteger idx, BOOL * stop) {
-        if (RTSafeUnwrapViewController(obj) == controller) {
-            controllerToRemove = obj;
-            *stop = YES;
+    if (controller) {
+        [self removeViewControllers:@[controller] animated:flag];
+    }
+}
+
+- (void)removeViewControllers:(NSArray<UIViewController *> *)controllers {
+    [self removeViewControllers:controllers animated:NO];
+}
+
+- (void)removeViewControllers:(NSArray<UIViewController *> *)controllers animated:(BOOL)flag {
+    NSMutableArray<__kindof UIViewController *> *currentControllers = [self.viewControllers mutableCopy];
+    __block NSMutableArray *controllersToRemove = [NSMutableArray array];
+    [currentControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * obj, NSUInteger idx, BOOL * stop) {
+        if ([controllers containsObject:RTSafeUnwrapViewController(obj)]) {
+            [controllersToRemove addObject:obj];
         }
     }];
-    if (controllerToRemove) {
-        [controllers removeObject:controllerToRemove];
-        [super setViewControllers:[NSArray arrayWithArray:controllers] animated:flag];
+    if (controllersToRemove.count) {
+        
+        [currentControllers removeObjectsInArray:controllersToRemove];
+        [super setViewControllers:[NSArray arrayWithArray:currentControllers] animated:flag];
     }
 }
 
