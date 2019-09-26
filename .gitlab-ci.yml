@@ -1,0 +1,21 @@
+before_script:
+  - export LANG=en_US.UTF-8
+
+package:
+  tags:
+    - spec
+  only:
+    - tags
+  script:
+    - martin package
+
+lint:
+  tags:
+    - spec
+  only:
+    # 基础库使用 master
+    - master
+    # 业务库使用 dev
+    # - /^dev.*$/
+  script:
+    - martin lint
