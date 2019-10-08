@@ -99,6 +99,7 @@ IB_DESIGNABLE
  */
 - (void)removeViewController:(UIViewController *)controller NS_REQUIRES_SUPER;
 - (void)removeViewController:(UIViewController *)controller animated:(BOOL)flag NS_REQUIRES_SUPER;
+- (void)removeViewControllers:(NSArray<UIViewController *> *)viewContrViews animated:(BOOL)flag;
 
 /*!
  *  @brief Push a view controller and do sth. when animation is done
