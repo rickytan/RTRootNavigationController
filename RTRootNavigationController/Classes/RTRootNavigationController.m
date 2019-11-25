@@ -351,6 +351,11 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self.contentViewController.tabBarItem;
 }
 
+- (id<UIViewControllerAnimatedTransitioning>)rt_animatedTransitioning
+{
+    return self.contentViewController.rt_animatedTransitioning;
+}
+
 #if RT_INTERACTIVE_PUSH
 - (nullable __kindof UIViewController *)rt_nextSiblingController
 {
@@ -1035,7 +1040,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                    fromViewController:RTSafeUnwrapViewController(fromVC)
                                      toViewController:RTSafeUnwrapViewController(toVC)];
     }
-    return nil;
+    return operation == UINavigationControllerOperationPush ? [toVC rt_animatedTransitioning] : [fromVC rt_animatedTransitioning];
 }
 
 

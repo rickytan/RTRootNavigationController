@@ -50,4 +50,9 @@
     return (RTRootNavigationController *)vc;
 }
 
+- (id<UIViewControllerAnimatedTransitioning>)rt_animatedTransitioning
+{
+    return nil;
+}
+
 @end

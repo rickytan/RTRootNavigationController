@@ -59,4 +59,7 @@ IB_DESIGNABLE
  */
 - (Class)rt_navigationBarClass;
 
+
+@property (nonatomic, readonly) id<UIViewControllerAnimatedTransitioning> rt_animatedTransitioning;
+
 @end
