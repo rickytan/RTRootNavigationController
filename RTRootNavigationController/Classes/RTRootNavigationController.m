@@ -423,7 +423,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     [super viewDidLayoutSubviews];
     
-    UIViewController *viewController = self.visibleViewController;
+    UIViewController *viewController = self.topViewController;
     if (!viewController.rt_hasSetInteractivePop) {
         BOOL hasSetLeftItem = viewController.navigationItem.leftBarButtonItem != nil;
         if (self.navigationBarHidden) {
