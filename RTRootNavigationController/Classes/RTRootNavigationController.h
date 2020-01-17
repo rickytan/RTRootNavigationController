@@ -58,6 +58,13 @@ self.window.rootViewController = [[RTRootNavigationController alloc] initWithRoo
 IB_DESIGNABLE
 @interface RTRootNavigationController : UINavigationController
 
+
+/*!
+*  @brief intercept system PopGestureRecognizer to realize something you want
+*  @warning set it when showing ViewController viewWillAppear: or viewDidAppear: , make it nil when the target ViewController viewWillDisappear: or viewDidDisappear:
+*/
+@property (nonatomic, weak) id<UIGestureRecognizerDelegate> interactivePopGestureRecognizerDelegate;
+
 /*!
  *  @brief use system original back bar item or custom back bar item returned by
  *  @c -(UIBarButtonItem*)customBackItemWithTarget:action: , default is NO

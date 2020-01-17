@@ -812,19 +812,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self.topViewController.preferredInterfaceOrientationForPresentation;
 }
 
-- (BOOL)respondsToSelector:(SEL)aSelector
-{
-    if ([super respondsToSelector:aSelector]) {
-        return YES;
-    }
-    return [self.rt_delegate respondsToSelector:aSelector];
-}
-
-- (id)forwardingTargetForSelector:(SEL)aSelector
-{
-    return self.rt_delegate;
-}
-
 #pragma mark - Public Methods
 
 - (UIViewController *)rt_topViewController
@@ -1046,14 +1033,52 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return (gestureRecognizer == self.interactivePopGestureRecognizer);
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if (self.interactivePopGestureRecognizerDelegate && [self.interactivePopGestureRecognizerDelegate respondsToSelector:@selector(gestureRecognizerShouldBegin:)]) {
+        return [self.interactivePopGestureRecognizerDelegate gestureRecognizerShouldBegin:gestureRecognizer];
+    } else {
+        return YES;
+    }
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return (gestureRecognizer == self.interactivePopGestureRecognizer);
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    if (self.interactivePopGestureRecognizerDelegate && [self.interactivePopGestureRecognizerDelegate respondsToSelector:@selector(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]) {
+        return [self.interactivePopGestureRecognizerDelegate gestureRecognizer:gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:otherGestureRecognizer];
+    } else {
+        return (gestureRecognizer == self.interactivePopGestureRecognizer);
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    if (self.interactivePopGestureRecognizerDelegate && [self.interactivePopGestureRecognizerDelegate respondsToSelector:@selector(gestureRecognizer:shouldRequireFailureOfGestureRecognizer:)]) {
+        return [self.interactivePopGestureRecognizerDelegate gestureRecognizer:gestureRecognizer shouldRequireFailureOfGestureRecognizer:otherGestureRecognizer];
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    if (self.interactivePopGestureRecognizerDelegate && [self.interactivePopGestureRecognizerDelegate respondsToSelector:@selector(gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:)]) {
+        return [self.interactivePopGestureRecognizerDelegate gestureRecognizer:gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:otherGestureRecognizer];
+    } else {
+        return (gestureRecognizer == self.interactivePopGestureRecognizer);
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if (self.interactivePopGestureRecognizerDelegate && [self.interactivePopGestureRecognizerDelegate respondsToSelector:@selector(gestureRecognizer:shouldReceiveTouch:)]) {
+        return [self.interactivePopGestureRecognizerDelegate gestureRecognizer:gestureRecognizer shouldReceiveTouch:touch];
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceivePress:(UIPress *)press {
+    if (self.interactivePopGestureRecognizerDelegate && [self.interactivePopGestureRecognizerDelegate respondsToSelector:@selector(gestureRecognizer:shouldReceivePress:)]) {
+        return [self.interactivePopGestureRecognizerDelegate gestureRecognizer:gestureRecognizer shouldReceivePress:press];
+    } else {
+        return YES;
+    }
 }
 
 @end
