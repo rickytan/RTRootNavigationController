@@ -1026,6 +1026,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         return [self.rt_delegate navigationController:navigationController
           interactionControllerForAnimationController:animationController];
     }
+    if ([animationController respondsToSelector:@selector(rt_interactiveTransitioning)]) {
+        return [((id <RTViewControllerAnimatedTransitioning>)animationController) rt_interactiveTransitioning];
+    }
     return nil;
 }
 
