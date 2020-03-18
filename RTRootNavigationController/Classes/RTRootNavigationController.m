@@ -1043,6 +1043,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                    fromViewController:RTSafeUnwrapViewController(fromVC)
                                      toViewController:RTSafeUnwrapViewController(toVC)];
     }
+    if (operation == UINavigationControllerOperationPush) {
+        self.interactivePopGestureRecognizer.delegate = nil;
+        self.interactivePopGestureRecognizer.enabled = NO;
+    }
     return operation == UINavigationControllerOperationPush ? [toVC rt_animatedTransitioning] : [fromVC rt_animatedTransitioning];
 }
 
