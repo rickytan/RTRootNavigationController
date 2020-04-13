@@ -1026,6 +1026,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         return [self.rt_delegate navigationController:navigationController
           interactionControllerForAnimationController:animationController];
     }
+    if ([animationController respondsToSelector:@selector(rt_interactiveTransitioning)]) {
+        return [((id <RTViewControllerAnimatedTransitioning>)animationController) rt_interactiveTransitioning];
+    }
     return nil;
 }
 
@@ -1034,6 +1037,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC
 {
+    if (operation == UINavigationControllerOperationPush) {
+        self.interactivePopGestureRecognizer.delegate = nil;
+        self.interactivePopGestureRecognizer.enabled = NO;
+    }
     if ([self.rt_delegate respondsToSelector:@selector(navigationController:animationControllerForOperation:fromViewController:toViewController:)]) {
         return [self.rt_delegate navigationController:navigationController
                       animationControllerForOperation:operation
