@@ -17,5 +17,6 @@ lint:
     - master
     # 业务库使用 dev
     # - /^dev.*$/
+    - merge_requests
   script:
     - martin lint
