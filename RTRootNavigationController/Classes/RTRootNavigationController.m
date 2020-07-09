@@ -990,8 +990,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     if (self.animationBlock) {
         if (animated) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.animationBlock(YES);
-                self.animationBlock = nil;
+                if (self.animationBlock) {
+                    self.animationBlock(YES);
+                    self.animationBlock = nil;
+                }
             });
         }
         else {
