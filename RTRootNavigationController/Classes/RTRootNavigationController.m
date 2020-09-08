@@ -964,11 +964,15 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     viewController = RTSafeUnwrapViewController(viewController);
+    // fix #258 https://github.com/rickytan/RTRootNavigationController/issues/258
+    // animated 为 NO 时的时序不太对，手动触发 viewDidLoad
+    if (!animated) {
+        [viewController view];
+    }
     if (viewController.rt_disableInteractivePop) {
         self.interactivePopGestureRecognizer.delegate = nil;
         self.interactivePopGestureRecognizer.enabled = NO;
     } else {
-        self.interactivePopGestureRecognizer.delaysTouchesBegan = YES;
         self.interactivePopGestureRecognizer.delegate = self;
         self.interactivePopGestureRecognizer.enabled = !isRootVC;
     }
@@ -1044,7 +1048,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    return YES;
+    return (gestureRecognizer == self.interactivePopGestureRecognizer);
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
