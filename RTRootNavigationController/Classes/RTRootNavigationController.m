@@ -412,6 +412,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.navigationBar.backIndicatorImage               = self.navigationController.navigationBar.backIndicatorImage;
         self.navigationBar.backIndicatorTransitionMaskImage = self.navigationController.navigationBar.backIndicatorTransitionMaskImage;
     }
+    [self.view layoutIfNeeded];
 }
 
 - (void)viewDidLayoutSubviews
@@ -610,9 +611,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)_installsLeftBarButtonItemIfNeededForViewController:(UIViewController *)viewController
 {
-    BOOL isRootVC = viewController == RTSafeUnwrapViewController(self.viewControllers.firstObject);
+    //BOOL isRootVC = viewController == RTSafeUnwrapViewController(self.viewControllers.firstObject);
     BOOL hasSetLeftItem = viewController.navigationItem.leftBarButtonItem != nil;
-    if (!isRootVC && !self.useSystemBackBarButtonItem && !hasSetLeftItem) {
+    if (!self.useSystemBackBarButtonItem && !hasSetLeftItem) {
         if ([viewController respondsToSelector:@selector(rt_customBackItemWithTarget:action:)]) {
             viewController.navigationItem.leftBarButtonItem = [viewController rt_customBackItemWithTarget:self
                                                                                                    action:@selector(onBack:)];
@@ -950,9 +951,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
       willShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated
 {
-    BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
+    //BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     viewController = RTSafeUnwrapViewController(viewController);
-    if (!isRootVC && viewController.isViewLoaded) {
+    //if (!isRootVC && viewController.isViewLoaded) {
         
         BOOL hasSetLeftItem = viewController.navigationItem.leftBarButtonItem != nil;
         if (hasSetLeftItem && !viewController.rt_hasSetInteractivePop) {
@@ -962,7 +963,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
             viewController.rt_disableInteractivePop = NO;
         }
         [self _installsLeftBarButtonItemIfNeededForViewController:viewController];
-    }
+    //}
     
     if ([self.rt_delegate respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
         [self.rt_delegate navigationController:navigationController
