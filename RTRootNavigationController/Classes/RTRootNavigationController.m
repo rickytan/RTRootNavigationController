@@ -412,6 +412,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         self.navigationBar.backIndicatorImage               = self.navigationController.navigationBar.backIndicatorImage;
         self.navigationBar.backIndicatorTransitionMaskImage = self.navigationController.navigationBar.backIndicatorTransitionMaskImage;
     }
+    [self.view layoutIfNeeded];
 }
 
 - (void)viewDidLayoutSubviews
@@ -610,9 +611,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)_installsLeftBarButtonItemIfNeededForViewController:(UIViewController *)viewController
 {
-    BOOL isRootVC = viewController == RTSafeUnwrapViewController(self.viewControllers.firstObject);
+    //BOOL isRootVC = viewController == RTSafeUnwrapViewController(self.viewControllers.firstObject);
     BOOL hasSetLeftItem = viewController.navigationItem.leftBarButtonItem != nil;
-    if (!isRootVC && !self.useSystemBackBarButtonItem && !hasSetLeftItem) {
+    if (!self.useSystemBackBarButtonItem && !hasSetLeftItem) {
         if ([viewController respondsToSelector:@selector(rt_customBackItemWithTarget:action:)]) {
             viewController.navigationItem.leftBarButtonItem = [viewController rt_customBackItemWithTarget:self
                                                                                                    action:@selector(onBack:)];
@@ -846,22 +847,35 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)removeViewController:(UIViewController *)controller
 {
-    [self removeViewController:controller animated:NO];
+    if (controller) {
+        [self removeViewControllers:@[controller] animated:NO];
+    }
 }
 
 - (void)removeViewController:(UIViewController *)controller animated:(BOOL)flag
 {
-    NSMutableArray<__kindof UIViewController *> *controllers = [self.viewControllers mutableCopy];
-    __block UIViewController *controllerToRemove = nil;
-    [controllers enumerateObjectsUsingBlock:^(__kindof UIViewController * obj, NSUInteger idx, BOOL * stop) {
-        if (RTSafeUnwrapViewController(obj) == controller) {
-            controllerToRemove = obj;
-            *stop = YES;
+    if (controller) {
+        [self removeViewControllers:@[controller] animated:flag];
+    }
+}
+
+- (void)removeViewControllers:(NSArray<UIViewController *> *)controllers
+{
+    [self removeViewControllers:controllers animated:NO];
+}
+
+- (void)removeViewControllers:(NSArray<UIViewController *> *)controllers animated:(BOOL)flag
+{
+    NSMutableArray<__kindof UIViewController *> *currentControllers = [self.viewControllers mutableCopy];
+    __block NSMutableArray *controllersToRemove = [NSMutableArray array];
+    [currentControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * obj, NSUInteger idx, BOOL * stop) {
+        if ([controllers containsObject:RTSafeUnwrapViewController(obj)]) {
+            [controllersToRemove addObject:obj];
         }
     }];
-    if (controllerToRemove) {
-        [controllers removeObject:controllerToRemove];
-        [super setViewControllers:[NSArray arrayWithArray:controllers] animated:flag];
+    if (controllersToRemove.count) {
+        [currentControllers removeObjectsInArray:controllersToRemove];
+        [super setViewControllers:[NSArray arrayWithArray:currentControllers] animated:flag];
     }
 }
 
@@ -937,9 +951,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
       willShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated
 {
-    BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
+    //BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     viewController = RTSafeUnwrapViewController(viewController);
-    if (!isRootVC && viewController.isViewLoaded) {
+    //if (!isRootVC && viewController.isViewLoaded) {
         
         BOOL hasSetLeftItem = viewController.navigationItem.leftBarButtonItem != nil;
         if (hasSetLeftItem && !viewController.rt_hasSetInteractivePop) {
@@ -949,7 +963,7 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
             viewController.rt_disableInteractivePop = NO;
         }
         [self _installsLeftBarButtonItemIfNeededForViewController:viewController];
-    }
+    //}
     
     if ([self.rt_delegate respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
         [self.rt_delegate navigationController:navigationController
