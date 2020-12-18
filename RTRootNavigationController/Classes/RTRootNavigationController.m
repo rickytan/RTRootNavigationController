@@ -948,7 +948,9 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         else if (!viewController.rt_hasSetInteractivePop) {
             viewController.rt_disableInteractivePop = NO;
         }
-        [self _installsLeftBarButtonItemIfNeededForViewController:viewController];
+        // fix #292 https://github.com/rickytan/RTRootNavigationController/issues/292
+        // 延迟到didShow里执行
+        // [self _installsLeftBarButtonItemIfNeededForViewController:viewController];
     }
     
     if ([self.rt_delegate respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
@@ -964,6 +966,12 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 {
     BOOL isRootVC = viewController == navigationController.viewControllers.firstObject;
     viewController = RTSafeUnwrapViewController(viewController);
+    
+    // fix #292 https://github.com/rickytan/RTRootNavigationController/issues/292
+    if (!isRootVC && viewController.isViewLoaded) {
+        [self _installsLeftBarButtonItemIfNeededForViewController:viewController];
+    }
+    
     // fix #258 https://github.com/rickytan/RTRootNavigationController/issues/258
     // animated 为 NO 时的时序不太对，手动触发 viewDidLoad
     if (!animated) {
