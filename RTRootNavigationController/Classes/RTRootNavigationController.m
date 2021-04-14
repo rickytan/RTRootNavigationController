@@ -107,7 +107,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                                                                      BOOL withPlaceholder,
                                                                                      UIBarButtonItem *backItem,
                                                                                      NSString *backTitle) {
-    if (![controller isKindOfClass:[RTContainerController class]]) {
+    if (![controller isKindOfClass:[RTContainerController class]] &&
+        ![controller.parentViewController isKindOfClass:[RTContainerController class]]) {
         return [RTContainerController containerControllerWithController:controller
                                                      navigationBarClass:navigationBarClass
                                               withPlaceholderController:withPlaceholder
@@ -118,7 +119,8 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 }
 
 __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewController(UIViewController *controller, Class navigationBarClass, BOOL withPlaceholder) {
-    if (![controller isKindOfClass:[RTContainerController class]]) {
+    if (![controller isKindOfClass:[RTContainerController class]] &&
+        ![controller.parentViewController isKindOfClass:[RTContainerController class]]) {
         return [RTContainerController containerControllerWithController:controller
                                                      navigationBarClass:navigationBarClass
                                               withPlaceholderController:withPlaceholder];
