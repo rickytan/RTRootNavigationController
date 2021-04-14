@@ -25,6 +25,7 @@
 #endif
 
 #import "UIViewController+RTRootNavigationController.h"
+#import "RTViewControllerAnimatedTransitioning.h"
 
 
 @interface RTContainerController : UIViewController
