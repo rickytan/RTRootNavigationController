@@ -5,6 +5,32 @@
 [![License](https://img.shields.io/cocoapods/l/RTRootNavigationController.svg?style=flat)](http://cocoapods.org/pods/RTRootNavigationController)
 [![Platform](https://img.shields.io/cocoapods/p/RTRootNavigationController.svg?style=flat)](http://cocoapods.org/pods/RTRootNavigationController)
 
+## iOS 15
+Apple has changed some behavior of **UINavigationBar**([see](https://developer.apple.com/forums/thread/683265)）on iOS 15, developers can override this on demands:
+
+iOS 15 上苹果改变了导航条的部分默认行为，开发者可以自己重写：
+
+```objective-c
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // setup appearance
+    if (@available(iOS 15.0, *)) {
+        [[UINavigationBar appearance] setScrollEdgeAppearance:({
+            UINavigationBarAppearance *app = [UINavigationBarAppearance new];
+            [app configureWithDefaultBackground];
+            // init app property
+            // app.backgroundColor = xxx;
+            // app.shadowColor = xxx;
+            app;
+        })];
+    } else {
+        // Fallback on earlier versions
+    }
+
+    return YES;
+}
+```
+
 ## iPhone X
 How many lines of code should I write to fit in iPhone X? Zero.
 
