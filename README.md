@@ -41,7 +41,7 @@ How many lines of code should I write to fit in iPhone X? Zero.
 ## Introduction
 More and more apps use custom navigation bar for each different view controller, instead of one common, global navigation bar.
 
-This project just help develops to solve this problem in a tricky way, develops use this navigation controller in a farmilar way just like you used to be, and you can have each view controller a individual navigation bar.
+This project uses the navigation controller as you can have each view controller as an individual navigation bar.
 
 越来越多的应用为每一个 **VC** 设置单独的导航条，而不是之前那样使用一个全局统一的导航条，因为不同的 **VC** 有不同的视觉样式，前一个是蓝色的，后一个也许要做成红色、透明，或者干脆没有导航条。
 
