@@ -403,21 +403,41 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     self.interactivePopGestureRecognizer.enabled = NO;
     
     if (self.rt_navigationController.transferNavigationBarAttributes) {
-        self.navigationBar.translucent     = self.navigationController.navigationBar.isTranslucent;
-        self.navigationBar.tintColor       = self.navigationController.navigationBar.tintColor;
-        self.navigationBar.barTintColor    = self.navigationController.navigationBar.barTintColor;
-        self.navigationBar.barStyle        = self.navigationController.navigationBar.barStyle;
-        self.navigationBar.backgroundColor = self.navigationController.navigationBar.backgroundColor;
+#define BAR_PROPERTY(PROPERTY)  self.navigationBar.PROPERTY = self.navigationController.navigationBar.PROPERTY
+        
+        BAR_PROPERTY(translucent);
+        BAR_PROPERTY(tintColor);
+        BAR_PROPERTY(barTintColor);
+        BAR_PROPERTY(barStyle);
+        BAR_PROPERTY(backgroundColor);
+        BAR_PROPERTY(prefersLargeTitles);
         
         [self.navigationBar setBackgroundImage:[self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault]
                                  forBarMetrics:UIBarMetricsDefault];
         [self.navigationBar setTitleVerticalPositionAdjustment:[self.navigationController.navigationBar titleVerticalPositionAdjustmentForBarMetrics:UIBarMetricsDefault]
                                                  forBarMetrics:UIBarMetricsDefault];
+
+        BAR_PROPERTY(titleTextAttributes);
+        BAR_PROPERTY(largeTitleTextAttributes);
+        BAR_PROPERTY(shadowImage);
+        BAR_PROPERTY(backIndicatorImage);
+        BAR_PROPERTY(backIndicatorTransitionMaskImage);
         
-        self.navigationBar.titleTextAttributes              = self.navigationController.navigationBar.titleTextAttributes;
-        self.navigationBar.shadowImage                      = self.navigationController.navigationBar.shadowImage;
-        self.navigationBar.backIndicatorImage               = self.navigationController.navigationBar.backIndicatorImage;
-        self.navigationBar.backIndicatorTransitionMaskImage = self.navigationController.navigationBar.backIndicatorTransitionMaskImage;
+        if (@available(iOS 13.0, *)) {
+            BAR_PROPERTY(standardAppearance);
+            BAR_PROPERTY(scrollEdgeAppearance);
+            BAR_PROPERTY(compactAppearance);
+        }
+            
+        if (@available(iOS 15.0, *)) {
+            BAR_PROPERTY(compactScrollEdgeAppearance);
+        }
+        
+        if (@available(iOS 16.0, *)) {
+            BAR_PROPERTY(preferredBehavioralStyle);
+        }
+
+#undef BAR_PROPERTY
     }
 }
 
