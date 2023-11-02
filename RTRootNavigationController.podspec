@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RTRootNavigationController'
-  s.version          = '0.8.0'
+  s.version          = `git describe --abbrev=0`.strip
   s.summary          = 'Transparently make every view controller has its own navigation bar'
   s.description      = <<-DESC
 More and more apps use custom navigation bar for each different view controller, instead of one common, gloabal navigation bar.
