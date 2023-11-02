@@ -24,7 +24,7 @@ you can have each view controller a individual navigation bar.
   s.source           = { :git => 'https://github.com/rickytan/RTRootNavigationController.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '11.0'
 
   s.default_subspec  = 'Core'
 
@@ -34,7 +34,7 @@ you can have each view controller a individual navigation bar.
 
   s.subspec 'Push' do |push|
     push.dependency 'RTRootNavigationController/Core'
-    push.dependency 'RTInteractivePush', '~> 0.1.5'
+    push.dependency 'RTInteractivePush', '~> 0.1.6'
     push.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) RT_INTERACTIVE_PUSH=1'
     }
