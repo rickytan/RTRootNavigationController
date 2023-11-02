@@ -329,15 +329,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     return self.contentViewController.preferredInterfaceOrientationForPresentation;
 }
 
-- (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
-                                      fromViewController:(UIViewController *)fromViewController
-                                              withSender:(id)sender
-{
-    return [self.contentViewController viewControllerForUnwindSegueAction:action
-                                                       fromViewController:fromViewController
-                                                               withSender:sender];
-}
-
 - (BOOL)hidesBottomBarWhenPushed
 {
     return self.contentViewController.hidesBottomBarWhenPushed;
@@ -410,7 +401,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         BAR_PROPERTY(barTintColor);
         BAR_PROPERTY(barStyle);
         BAR_PROPERTY(backgroundColor);
-        BAR_PROPERTY(prefersLargeTitles);
         
         [self.navigationBar setBackgroundImage:[self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault]
                                  forBarMetrics:UIBarMetricsDefault];
@@ -418,10 +408,14 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
                                                  forBarMetrics:UIBarMetricsDefault];
 
         BAR_PROPERTY(titleTextAttributes);
-        BAR_PROPERTY(largeTitleTextAttributes);
         BAR_PROPERTY(shadowImage);
         BAR_PROPERTY(backIndicatorImage);
         BAR_PROPERTY(backIndicatorTransitionMaskImage);
+        
+        if (@available(iOS 11.0, *)) {
+            BAR_PROPERTY(prefersLargeTitles);
+            BAR_PROPERTY(largeTitleTextAttributes);
+        }
         
         if (@available(iOS 13.0, *)) {
             BAR_PROPERTY(standardAppearance);
@@ -488,20 +482,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         }
     }
     return [super viewControllers];
-}
-
-- (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
-                                      fromViewController:(UIViewController *)fromViewController
-                                              withSender:(id)sender
-{
-    if (self.navigationController) {
-        return [self.navigationController viewControllerForUnwindSegueAction:action
-                                                          fromViewController:self.parentViewController
-                                                                  withSender:sender];
-    }
-    return [super viewControllerForUnwindSegueAction:action
-                                  fromViewController:fromViewController
-                                          withSender:sender];
 }
 
 - (NSArray<UIViewController *> *)allowedChildViewControllersForUnwindingFromSource:(UIStoryboardUnwindSegueSource *)source
@@ -715,28 +695,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     [super setDelegate:self];
     [super setNavigationBarHidden:YES
                          animated:NO];
-}
-
-- (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
-                                      fromViewController:(UIViewController *)fromViewController
-                                              withSender:(id)sender
-{
-    UIViewController *controller = [super viewControllerForUnwindSegueAction:action
-                                                          fromViewController:fromViewController
-                                                                  withSender:sender];
-    if (!controller) {
-        NSInteger index = [self.viewControllers indexOfObject:fromViewController];
-        if (index != NSNotFound) {
-            for (NSInteger i = index - 1; i >= 0; --i) {
-                controller = [self.viewControllers[i] viewControllerForUnwindSegueAction:action
-                                                                      fromViewController:fromViewController
-                                                                              withSender:sender];
-                if (controller)
-                    break;
-            }
-        }
-    }
-    return controller;
 }
 
 - (void)setNavigationBarHidden:(__unused BOOL)hidden
