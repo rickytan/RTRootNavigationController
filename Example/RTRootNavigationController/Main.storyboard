@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4yn-xn-OPt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4yn-xn-OPt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -488,6 +488,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-jU-ljE">
+                                <rect key="frame" x="75" y="324" width="225" height="30"/>
+                                <state key="normal" title="Remove multiple view controlelrs"/>
+                                <connections>
+                                    <segue destination="3zc-Jy-y62" kind="show" id="tp7-xh-Cik"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -495,8 +502,10 @@
                             <constraint firstItem="foX-q0-Q2F" firstAttribute="centerX" secondItem="TDX-kp-fGS" secondAttribute="centerX" id="8KO-Xn-xKg"/>
                             <constraint firstItem="Li0-oL-HF2" firstAttribute="top" secondItem="AU8-eo-Xkv" secondAttribute="bottom" constant="8" id="8oF-Gd-SRE"/>
                             <constraint firstItem="AU8-eo-Xkv" firstAttribute="centerX" secondItem="TDX-kp-fGS" secondAttribute="centerX" id="K8f-Uh-ptB"/>
+                            <constraint firstItem="TWu-jU-ljE" firstAttribute="centerX" secondItem="TDX-kp-fGS" secondAttribute="centerX" id="MpH-ag-hhG"/>
                             <constraint firstItem="foX-q0-Q2F" firstAttribute="centerY" secondItem="TDX-kp-fGS" secondAttribute="centerY" id="Pey-X4-gCG"/>
                             <constraint firstItem="Li0-oL-HF2" firstAttribute="centerX" secondItem="AU8-eo-Xkv" secondAttribute="centerX" id="W7z-dV-JUS"/>
+                            <constraint firstItem="TWu-jU-ljE" firstAttribute="top" secondItem="foX-q0-Q2F" secondAttribute="bottom" constant="7.5" id="md2-L3-UTU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Push Remove" id="cYT-uh-4oT"/>
@@ -523,7 +532,7 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Zuc-Qh-uV8">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="Cell" id="Zuc-Qh-uV8">
                                 <rect key="frame" x="10" y="10" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -531,7 +540,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXk-cn-R54">
-                                            <rect key="frame" x="11" y="21.5" width="42" height="21"/>
+                                            <rect key="frame" x="11" y="-10.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -659,6 +668,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0X-2r-Qqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-433" y="791"/>
+        </scene>
+        <!--Multiple Remove-->
+        <scene sceneID="jZH-9c-vgp">
+            <objects>
+                <viewController storyboardIdentifier="MultipleRemove" title="Remove" id="3zc-Jy-y62" userLabel="Multiple Remove" customClass="RTMultipleRemoveViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="soh-UJ-QyN"/>
+                        <viewControllerLayoutGuide type="bottom" id="0oh-J1-B4S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ATQ-9o-SGb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wug-2v-ePF">
+                                <rect key="frame" x="26.5" y="286.5" width="322" height="30"/>
+                                <state key="normal" title="Push to next, this and previous will be removed"/>
+                                <connections>
+                                    <action selector="onPush:" destination="3zc-Jy-y62" eventType="touchUpInside" id="70T-nv-H79"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wug-2v-ePF" firstAttribute="centerY" secondItem="ATQ-9o-SGb" secondAttribute="centerY" id="cDJ-m0-jkS"/>
+                            <constraint firstItem="wug-2v-ePF" firstAttribute="centerX" secondItem="ATQ-9o-SGb" secondAttribute="centerX" id="xqO-bo-DcC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Push Remove" id="KFP-F5-zJl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="htY-ij-X3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1961" y="1908"/>
         </scene>
     </scenes>
     <resources>
