@@ -1,15 +1,15 @@
 PODS:
-  - RTInteractivePush (0.1.5)
-  - RTRootNavigationController/Core (0.7.0)
-  - RTRootNavigationController/Push (0.7.0):
-    - RTInteractivePush (~> 0.1.5)
+  - RTInteractivePush (0.1.6)
+  - RTRootNavigationController/Core (0.8.1)
+  - RTRootNavigationController/Push (0.8.1):
+    - RTInteractivePush (~> 0.1.6)
     - RTRootNavigationController/Core
 
 DEPENDENCIES:
   - RTRootNavigationController/Push (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - RTInteractivePush
 
 EXTERNAL SOURCES:
@@ -17,9 +17,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  RTInteractivePush: 8e1505d2e3afa7e93f6ce0d172b035412356d462
-  RTRootNavigationController: 1ee1307d55abf5e2e957fc1b7dd014e57ac6e8dd
+  RTInteractivePush: b77e14751d7856da6c86248820defa3aa2d68b03
+  RTRootNavigationController: ca443783baf6ff65a70c4d21ce0eedbbc1fec1fe
 
-PODFILE CHECKSUM: 28fd3aa793345965e373f1b57a81b0124896227d
+PODFILE CHECKSUM: 9e402247368443c125c5320076cfb21c49e9a7da
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.14.2
