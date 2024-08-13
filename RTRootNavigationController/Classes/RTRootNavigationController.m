@@ -850,6 +850,27 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     }
 }
 
+- (void)removeViewControllers:(NSArray<UIViewController *> *)viewContrViews animated:(BOOL)flag {
+    NSMutableArray<__kindof UIViewController *> *controllers = [self.rt_viewControllers mutableCopy];
+    NSArray *safeViews = [viewContrViews rt_map:^id(UIViewController *obj, NSUInteger index) {
+        return RTSafeUnwrapViewController(obj);
+    }];
+    [controllers removeObjectsInArray:safeViews];
+    NSMutableArray *newControllers = @[].mutableCopy;
+    [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull vc1, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [controllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull vc2, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (RTSafeUnwrapViewController(vc1) == vc2) {
+                [newControllers addObject:vc1];
+            }
+            
+        }];
+        
+    }];
+    [super setViewControllers:[NSArray arrayWithArray:newControllers] animated:flag];
+}
+
 - (void)pushViewController:(UIViewController *)viewController
                   animated:(BOOL)animated
                   complete:(void (^)(BOOL))block
