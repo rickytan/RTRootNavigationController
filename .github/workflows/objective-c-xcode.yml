@@ -22,7 +22,4 @@ jobs:
           scheme: ${{ 'default' }}
         run: |
           bundle install
-          # Fallback to the latest known tag when git describe cannot resolve one
-          # (e.g. PRs from forks where the runner cannot fetch origin tags).
-          VERSION=$(git describe --abbrev=0 --tags 2>/dev/null || echo '0.8.1')
-          bundle exec pod lib lint --version="$VERSION"
+          bundle exec pod lib lint
