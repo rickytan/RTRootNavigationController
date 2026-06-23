@@ -1,6 +1,6 @@
 # RTRootNavigationController
 
-[![CI Status](http://img.shields.io/travis/rickytan/RTRootNavigationController.svg?style=flat)](https://travis-ci.org/rickytan/RTRootNavigationController)
+[![CI](https://github.com/rickytan/RTRootNavigationController/actions/workflows/objective-c-xcode.yml/badge.svg)](https://github.com/rickytan/RTRootNavigationController/actions/workflows/objective-c-xcode.yml)
 [![Version](https://img.shields.io/cocoapods/v/RTRootNavigationController.svg?style=flat)](http://cocoapods.org/pods/RTRootNavigationController)
 [![License](https://img.shields.io/cocoapods/l/RTRootNavigationController.svg?style=flat)](http://cocoapods.org/pods/RTRootNavigationController)
 [![Platform](https://img.shields.io/cocoapods/p/RTRootNavigationController.svg?style=flat)](http://cocoapods.org/pods/RTRootNavigationController)
