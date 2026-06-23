@@ -433,12 +433,56 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 #undef BAR_PROPERTY
     }
+
+    [self _rt_syncNavigationItemAppearance];
+}
+
+- (void)_rt_syncNavigationItemAppearance
+{
+    // Source: the root content view controller's navigationItem (set by user on
+    // the topmost VC). We read from the outermost RTRootNavigationController's
+    // first view controller (an RTContainerController wrapping the real root).
+    RTRootNavigationController *rootNav = (RTRootNavigationController *)self.navigationController;
+    UIViewController *rootContainer = rootNav.viewControllers.firstObject;
+    if (!rootContainer) return;
+    UIViewController *rootContent = [rootContainer isKindOfClass:[RTContainerController class]]
+        ? ((RTContainerController *)rootContainer).contentViewController
+        : rootContainer;
+    UINavigationItem *rootItem = rootContent.navigationItem;
+    if (!rootItem) return;
+
+    for (UIViewController *vc in self.viewControllers) {
+        UINavigationItem *item = vc.navigationItem;
+
+        if (@available(iOS 13.0, *)) {
+            item.standardAppearance = rootItem.standardAppearance;
+            item.scrollEdgeAppearance = rootItem.scrollEdgeAppearance;
+        }
+        if (@available(iOS 14.0, *)) {
+            item.compactAppearance = rootItem.compactAppearance;
+            // Only override when the root VC explicitly chose a non-default mode;
+            // otherwise leave each child VC's own backButtonDisplayMode alone.
+            if (rootItem.backButtonDisplayMode != UINavigationItemBackButtonDisplayModeDefault) {
+                item.backButtonDisplayMode = rootItem.backButtonDisplayMode;
+            }
+        }
+        if (@available(iOS 15.0, *)) {
+            item.compactScrollEdgeAppearance = rootItem.compactScrollEdgeAppearance;
+        }
+        if (@available(iOS 16.0, *)) {
+            if (rootItem.titleMenuProvider) {
+                item.titleMenuProvider = rootItem.titleMenuProvider;
+            }
+        }
+    }
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    
+
+    [self _rt_syncNavigationItemAppearance];
+
     UIViewController *viewController = self.topViewController;
     if (!viewController.rt_hasSetInteractivePop) {
         BOOL hasSetLeftItem = viewController.navigationItem.leftBarButtonItem != nil;
