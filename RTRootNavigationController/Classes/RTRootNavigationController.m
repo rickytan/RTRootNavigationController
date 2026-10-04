@@ -372,6 +372,10 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 @end
 
 
+// Keep child-specific values available while root navigation-item settings are projected.
+static char RTOriginalTitleMenuProviderKey;
+static char RTOriginalBackButtonDisplayModeKey;
+
 @implementation RTContainerNavigationController
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
@@ -463,7 +467,18 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
             // Only override when the root VC explicitly chose a non-default mode;
             // otherwise leave each child VC's own backButtonDisplayMode alone.
             if (rootItem.backButtonDisplayMode != UINavigationItemBackButtonDisplayModeDefault) {
+                NSNumber *originalMode = objc_getAssociatedObject(item, &RTOriginalBackButtonDisplayModeKey);
+                if (!originalMode) {
+                    originalMode = @(item.backButtonDisplayMode);
+                    objc_setAssociatedObject(item, &RTOriginalBackButtonDisplayModeKey, originalMode, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                }
                 item.backButtonDisplayMode = rootItem.backButtonDisplayMode;
+            } else {
+                NSNumber *originalMode = objc_getAssociatedObject(item, &RTOriginalBackButtonDisplayModeKey);
+                if (originalMode) {
+                    item.backButtonDisplayMode = (UINavigationItemBackButtonDisplayMode)originalMode.integerValue;
+                    objc_setAssociatedObject(item, &RTOriginalBackButtonDisplayModeKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                }
             }
         }
         if (@available(iOS 15.0, *)) {
@@ -471,7 +486,18 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
         }
         if (@available(iOS 16.0, *)) {
             if (rootItem.titleMenuProvider) {
+                id originalProvider = objc_getAssociatedObject(item, &RTOriginalTitleMenuProviderKey);
+                if (!originalProvider) {
+                    originalProvider = item.titleMenuProvider ?: [NSNull null];
+                    objc_setAssociatedObject(item, &RTOriginalTitleMenuProviderKey, originalProvider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                }
                 item.titleMenuProvider = rootItem.titleMenuProvider;
+            } else {
+                id originalProvider = objc_getAssociatedObject(item, &RTOriginalTitleMenuProviderKey);
+                if (originalProvider) {
+                    item.titleMenuProvider = originalProvider == [NSNull null] ? nil : originalProvider;
+                    objc_setAssociatedObject(item, &RTOriginalTitleMenuProviderKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                }
             }
         }
     }
