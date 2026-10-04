@@ -457,6 +457,7 @@ static char RTOriginalBackButtonDisplayModeKey;
 
     for (UIViewController *vc in self.viewControllers) {
         UINavigationItem *item = vc.navigationItem;
+        if (item == rootItem) continue;
 
         if (@available(iOS 13.0, *)) {
             item.standardAppearance = rootItem.standardAppearance;
