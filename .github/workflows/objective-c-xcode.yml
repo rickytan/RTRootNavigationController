@@ -10,8 +10,22 @@ on:
 
 jobs:
   build:
-    name: Build Example app
-    runs-on: macos-latest
+    name: Build Example app (${{ matrix.name }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: iPhone Duo, iOS 27
+            runner: xcode-27
+            xcode: /Applications/Xcode_27.2.app/Contents/Developer
+            destination: "platform=iOS Simulator,name=iPhone Duo,OS=latest"
+          - name: iPhone 17, iOS 26
+            runner: macos-26
+            xcode: /Applications/Xcode_26.6.app/Contents/Developer
+            destination: "platform=iOS Simulator,name=iPhone 17,OS=latest"
+    env:
+      DEVELOPER_DIR: ${{ matrix.xcode }}
 
     steps:
       - name: Checkout
@@ -25,11 +39,13 @@ jobs:
           bundle exec pod install --project-directory=Example
       - name: Build Example app
         run: |
+          xcodebuild -version
           xcodebuild \
             -workspace Example/RTRootNavigationController.xcworkspace \
             -scheme RTRootNavigationController-Example \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination '${{ matrix.destination }}' \
             CODE_SIGNING_ALLOWED=NO \
             build
       - name: Lint pod
+        if: matrix.runner == 'xcode-27'
         run: bundle exec pod lib lint
