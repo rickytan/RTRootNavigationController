@@ -20,10 +20,13 @@ jobs:
             runner: xcode-27
             xcode: /Applications/Xcode_27.2.app/Contents/Developer
             destination: "platform=iOS Simulator,name=iPhone Duo,OS=latest"
+            # Xcode 27 cannot build deployment targets below iOS 15.
+            deployment_target: "15.0"
           - name: iPhone 17, iOS 26
             runner: macos-26
             xcode: /Applications/Xcode_26.6.app/Contents/Developer
             destination: "platform=iOS Simulator,name=iPhone 17,OS=latest"
+            deployment_target: "11.0"
     env:
       DEVELOPER_DIR: ${{ matrix.xcode }}
 
@@ -45,7 +48,8 @@ jobs:
             -scheme RTRootNavigationController-Example \
             -destination '${{ matrix.destination }}' \
             CODE_SIGNING_ALLOWED=NO \
+            IPHONEOS_DEPLOYMENT_TARGET='${{ matrix.deployment_target }}' \
             build
       - name: Lint pod
-        if: matrix.runner == 'xcode-27'
+        if: matrix.runner == 'macos-26'
         run: bundle exec pod lib lint
