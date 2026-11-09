@@ -2,13 +2,15 @@ name: Xcode - Build and Analyze
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - "master"
+      - "feature/**"
   pull_request:
     branches: [ "master" ]
 
 jobs:
   build:
-    name: Build and analyse default scheme using xcodebuild command
+    name: Build Example app
     runs-on: macos-latest
 
     steps:
@@ -17,9 +19,17 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
-      - name: Lint
-        env:
-          scheme: ${{ 'default' }}
+      - name: Install dependencies
         run: |
           bundle install
-          bundle exec pod lib lint
+          bundle exec pod install --project-directory=Example
+      - name: Build Example app
+        run: |
+          xcodebuild \
+            -workspace Example/RTRootNavigationController.xcworkspace \
+            -scheme RTRootNavigationController-Example \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+      - name: Lint pod
+        run: bundle exec pod lib lint

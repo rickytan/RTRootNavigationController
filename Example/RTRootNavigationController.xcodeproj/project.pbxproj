@@ -13,6 +13,7 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* RTAppDelegate.m */; };
+		A102030405060708090A0B0C /* RTSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A102030405060708090A0B0E /* RTSceneDelegate.m */; };
 		6003F5A7195388D20070C39A /* RTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* RTViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
@@ -61,6 +62,8 @@
 		6003F59B195388D20070C39A /* RTRootNavigationController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RTRootNavigationController-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* RTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* RTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTAppDelegate.m; sourceTree = "<group>"; };
+		A102030405060708090A0B0D /* RTSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTSceneDelegate.h; sourceTree = "<group>"; };
+		A102030405060708090A0B0E /* RTSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTSceneDelegate.m; sourceTree = "<group>"; };
 		6003F5A5195388D20070C39A /* RTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* RTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F59C195388D20070C39A /* RTAppDelegate.h */,
 				6003F59D195388D20070C39A /* RTAppDelegate.m */,
+				A102030405060708090A0B0D /* RTSceneDelegate.h */,
+				A102030405060708090A0B0E /* RTSceneDelegate.m */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				9C16AF291D097CD100873B86 /* ViewControllers */,
 				9C16AF2D1D097D4200873B86 /* Views */,
@@ -452,6 +457,7 @@
 				9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */,
 				9C2994EC1D09B84B007722C1 /* RTItemDetailViewController.m in Sources */,
 				6003F59E195388D20070C39A /* RTAppDelegate.m in Sources */,
+				A102030405060708090A0B0C /* RTSceneDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* RTViewController.m in Sources */,
 				9C16AF251D0957D400873B86 /* RTTableViewController.m in Sources */,
 				9C9863FD1F32BDE400CF307B /* RTStatusHiddenViewController.m in Sources */,
