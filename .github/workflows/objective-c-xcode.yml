@@ -49,3 +49,14 @@ jobs:
       - name: Lint pod
         if: matrix.runner == 'macos-26'
         run: bundle exec pod lib lint
+
+  required-build:
+    name: Build and analyse default scheme using xcodebuild command
+    runs-on: ubuntu-latest
+    needs: build
+    if: always()
+    steps:
+      - name: Require all simulator builds
+        env:
+          BUILD_RESULT: ${{ needs.build.result }}
+        run: test "$BUILD_RESULT" = success

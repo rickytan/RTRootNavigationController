@@ -14,14 +14,18 @@ iOS 15 上苹果改变了导航条的部分默认行为，开发者可以自己�
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // setup appearance
-    [[UINavigationBar appearance] setScrollEdgeAppearance:({
-        UINavigationBarAppearance *app = [UINavigationBarAppearance new];
-        [app configureWithDefaultBackground];
-        // init app property
-        // app.backgroundColor = xxx;
-        // app.shadowColor = xxx;
-        app;
-    })];
+    if (@available(iOS 15.0, *)) {
+        [[UINavigationBar appearance] setScrollEdgeAppearance:({
+            UINavigationBarAppearance *app = [UINavigationBarAppearance new];
+            [app configureWithDefaultBackground];
+            // init app property
+            // app.backgroundColor = xxx;
+            // app.shadowColor = xxx;
+            app;
+        })];
+    } else {
+        // Fallback on earlier versions
+    }
 
     return YES;
 }
@@ -116,8 +120,8 @@ So, if you access `self.navigationController` it returns a container navigation 
 
 ## Requirements
 
-* **iOS 15** and up
-* **Xcode 13** and up
+* **iOS 7** and up
+* **Xcode 7** and up
 
 ## Installation
 
