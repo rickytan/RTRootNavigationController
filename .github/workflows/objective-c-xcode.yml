@@ -46,6 +46,20 @@ jobs:
             -destination '${{ matrix.destination }}' \
             CODE_SIGNING_ALLOWED=NO \
             build
+      - name: Test back navigation
+        run: |
+          TEST_SELECTION=(-only-testing:RTRootNavigationController_Tests)
+          if [ '${{ matrix.runner }}' = 'xcode-27' ]; then
+            TEST_SELECTION+=(-only-testing:RTRootNavigationController_UITests)
+          fi
+          xcodebuild \
+            -workspace Example/RTRootNavigationController.xcworkspace \
+            -scheme RTRootNavigationController-Example \
+            -destination '${{ matrix.destination }}' \
+            -parallel-testing-enabled NO \
+            "${TEST_SELECTION[@]}" \
+            CODE_SIGNING_ALLOWED=NO \
+            test
       - name: Lint pod
         if: matrix.runner == 'macos-26'
         run: bundle exec pod lib lint

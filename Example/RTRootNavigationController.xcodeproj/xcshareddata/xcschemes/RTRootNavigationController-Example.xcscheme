@@ -20,6 +20,20 @@
                ReferencedContainer = "container:RTRootNavigationController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "40B5EB7C158AAA4741ACABFA"
+               BuildableName = "RTRootNavigationController_UITests.xctest"
+               BlueprintName = "RTRootNavigationController_UITests"
+               ReferencedContainer = "container:RTRootNavigationController.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -35,6 +49,16 @@
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
                BuildableName = "RTRootNavigationController_Tests.xctest"
                BlueprintName = "RTRootNavigationController_Tests"
+               ReferencedContainer = "container:RTRootNavigationController.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "40B5EB7C158AAA4741ACABFA"
+               BuildableName = "RTRootNavigationController_UITests.xctest"
+               BlueprintName = "RTRootNavigationController_UITests"
                ReferencedContainer = "container:RTRootNavigationController.xcodeproj">
             </BuildableReference>
          </TestableReference>

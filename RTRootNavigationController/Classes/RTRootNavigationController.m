@@ -645,6 +645,25 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 @end
 
 
+#if defined(__IPHONE_27_1) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_27_1
+static void RTUpdateBackItemForVerticalBar(UIBarButtonItem *item, UIViewController *viewController, UIImage *verticalImage)
+{
+    if (@available(iOS 27.1, *)) {
+        if (!item || viewController.navigationItem.leftBarButtonItem != item) {
+            return;
+        }
+        BOOL needsVerticalImage = viewController.traitCollection.verticalBarEdge != UIVerticalBarEdgeUnspecified &&
+            item.axisBehavior != UIBarButtonItemAxisBehaviorHorizontalOnly;
+        if (needsVerticalImage && !item.image) {
+            item.image = verticalImage;
+        } else if (!needsVerticalImage && item.image == verticalImage) {
+            item.image = nil;
+        }
+    }
+}
+#endif
+
+
 @implementation RTRootNavigationController
 
 #pragma mark - Methods
@@ -664,23 +683,40 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     BOOL isRootVC = viewController == RTSafeUnwrapViewController(self.viewControllers.firstObject);
     BOOL hasSetLeftItem = viewController.navigationItem.leftBarButtonItem != nil;
     if (!isRootVC && !self.useSystemBackBarButtonItem && !hasSetLeftItem) {
+        UIBarButtonItem *backItem;
         if ([viewController respondsToSelector:@selector(rt_customBackItemWithTarget:action:)]) {
-            viewController.navigationItem.leftBarButtonItem = [viewController rt_customBackItemWithTarget:self
-                                                                                                   action:@selector(onBack:)];
+            backItem = [viewController rt_customBackItemWithTarget:self action:@selector(onBack:)];
         }
         else if ([viewController respondsToSelector:@selector(customBackItemWithTarget:action:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            viewController.navigationItem.leftBarButtonItem = [viewController customBackItemWithTarget:self
-                                                                                                action:@selector(onBack:)];
+            backItem = [viewController customBackItemWithTarget:self action:@selector(onBack:)];
 #pragma clang diagnostic pop
         }
         else {
-            viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
-                                                                                               style:UIBarButtonItemStylePlain
-                                                                                              target:self
-                                                                                              action:@selector(onBack:)];
+            backItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
+                                                       style:UIBarButtonItemStylePlain
+                                                      target:self
+                                                      action:@selector(onBack:)];
         }
+        viewController.navigationItem.leftBarButtonItem = backItem;
+#if defined(__IPHONE_27_1) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_27_1
+        if (@available(iOS 27.1, *)) {
+            if (backItem && backItem.axisBehavior == UIBarButtonItemAxisBehaviorAutomatic) {
+                backItem.axisBehavior = UIBarButtonItemAxisBehaviorVerticalPreferred;
+                if (!backItem.customView && !backItem.image && backItem.title.length > 0) {
+                    // Keep the text-only appearance unless the system can use a vertical bar.
+                    UIImage *verticalImage = [UIImage systemImageNamed:@"chevron.backward"];
+                    __weak UIBarButtonItem *weakItem = backItem;
+                    [viewController registerForTraitChanges:UITraitCollection.systemTraitsAffectingVerticalBarEdge
+                                                withHandler:^(__kindof id<UITraitEnvironment> environment, __unused UITraitCollection *previousTraits) {
+                        RTUpdateBackItemForVerticalBar(weakItem, (UIViewController *)environment, verticalImage);
+                    }];
+                    RTUpdateBackItemForVerticalBar(backItem, viewController, verticalImage);
+                }
+            }
+        }
+#endif
     }
 }
 
