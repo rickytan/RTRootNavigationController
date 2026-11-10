@@ -114,6 +114,14 @@ system-back mode are not changed.
 也可以在自定义方法中设置 `axisBehavior` 为
 `UIBarButtonItemAxisBehaviorHorizontalOnly` 来保持横向显示。
 
+The Example app on the iPhone Duo simulator, before and after folding:
+
+示例应用在 iPhone Duo 模拟器上展开和折叠时的效果：
+
+| Unfolded / 展开 | Folded, outer display / 折叠（外屏） |
+| :---: | :---: |
+| <img src="./ScreenShot/iphone-duo-back-unfolded.png" alt="Example app on the unfolded iPhone Duo with the back button on the right" width="520"> | <img src="./ScreenShot/iphone-duo-back-folded.png" alt="Example app on the folded iPhone Duo outer display with the back button on the right" width="255"> |
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## __Notice__(Only for below v0.6)
