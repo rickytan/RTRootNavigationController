@@ -42,6 +42,8 @@
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    button.accessibilityLabel = NSLocalizedString(@"Back", nil);
+    button.accessibilityIdentifier = @"custom-back";
     [button sizeToFit];
     [button addTarget:target
                action:action

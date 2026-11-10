@@ -112,6 +112,26 @@ you can implement following method to customize back bar button item (**Recommen
 
 or just set `useSystemBackBarButtonItem` to **YES** and use the default one.
 
+When built with the iOS 27.1 SDK or later, simulated back items can appear in
+vertical bars on iPhone Duo. Text-only items temporarily use a back chevron
+when a vertical bar is available. Custom back views should fit the bar's width;
+set `axisBehavior` to `UIBarButtonItemAxisBehaviorHorizontalOnly` in the
+custom-back-item method to keep a view horizontal. Existing left items and
+system-back mode are not changed.
+
+使用 iOS 27.1 或更新的 SDK 编译时，模拟返回按钮可显示在 iPhone Duo 的竖栏中。
+纯文字按钮在可使用竖栏时会暂时显示返回箭头；自定义返回视图应适合竖栏宽度，
+也可以在自定义方法中设置 `axisBehavior` 为
+`UIBarButtonItemAxisBehaviorHorizontalOnly` 来保持横向显示。
+
+The Example app on the iPhone Duo simulator, before and after folding:
+
+示例应用在 iPhone Duo 模拟器上展开和折叠时的效果：
+
+| Unfolded / 展开 | Folded, outer display / 折叠（外屏） |
+| :---: | :---: |
+| <img src="./ScreenShot/iphone-duo-back-unfolded.png" alt="Example app on the unfolded iPhone Duo with the back button on the right" width="520"> | <img src="./ScreenShot/iphone-duo-back-folded.png" alt="Example app on the folded iPhone Duo outer display with the back button on the right" width="255"> |
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## __Notice__(Only for below v0.6)
