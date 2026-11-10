@@ -27,7 +27,7 @@ jobs:
           bundle install
           bundle exec pod install --project-directory=Example
 
-      - name: Boot iPhone Duo
+      - name: Select iPhone Duo
         id: simulator
         run: |
           xcrun simctl list devices available --json > "$RUNNER_TEMP/simulator-devices.json"
@@ -44,10 +44,7 @@ jobs:
           fi
           DEVICE_ID="$(jq -r .udid <<< "$DEVICE")"
           echo "id=$DEVICE_ID" >> "$GITHUB_OUTPUT"
-          if [ "$(jq -r .state <<< "$DEVICE")" != "Booted" ]; then
-            xcrun simctl boot "$DEVICE_ID"
-          fi
-          xcrun simctl bootstatus "$DEVICE_ID" -b
+          echo "state=$(jq -r .state <<< "$DEVICE")" >> "$GITHUB_OUTPUT"
 
       - name: Build Example app
         run: |
@@ -59,6 +56,14 @@ jobs:
             -derivedDataPath "$RUNNER_TEMP/example-build" \
             CODE_SIGNING_ALLOWED=NO \
             build
+
+      - name: Boot iPhone Duo
+        run: |
+          DEVICE_ID='${{ steps.simulator.outputs.id }}'
+          if [ '${{ steps.simulator.outputs.state }}' != "Booted" ]; then
+            xcrun simctl boot "$DEVICE_ID"
+          fi
+          xcrun simctl bootstatus "$DEVICE_ID" -b
 
       - name: Install, launch, and capture
         run: |
