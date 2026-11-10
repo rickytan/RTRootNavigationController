@@ -1,3 +1,12 @@
+0.9.0
+
+- Support automatically installed back buttons in iPhone Duo vertical bars on iOS 27.1 and later, including custom back views and text-only items. #325
+- Propagate navigation item appearances, non-default back button display modes, and title menu providers from the root controller to the internal navigation controllers. #319
+- Fix an unexpected back button on the root controller after `popToRootViewControllerAnimated:` on iOS 14. #297
+- Migrate the Example app to the UIScene lifecycle and require iOS 15 for the Example. The library continues to support iOS 11 and later. #323
+- Add iPhone Duo screenshots and a simulator capture workflow. #324
+- Build and test the Example on iOS 26 and iOS 27 in GitHub Actions. #323 #325
+
 0.7.0
 
 - fix iOS 12 navigationBar subview is empty in `-viewDidLoad`, #222 #224; drop support for #11, if you are using **RDVTabBarController**, DO NOT update.
