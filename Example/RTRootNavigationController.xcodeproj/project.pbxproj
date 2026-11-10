@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3113052758FC9C6CC2910C0E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
+		48CCA95148CDD5890E732653 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* RTAppDelegate.m */; };
-		A102030405060708090A0B0C /* RTSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A102030405060708090A0B0E /* RTSceneDelegate.m */; };
 		6003F5A7195388D20070C39A /* RTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* RTViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
@@ -22,6 +23,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		7754DE23C98A4856C653731B /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041DF0A8B0027264C4093D15 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */; };
+		7D384940DD6A7A9C807E92A3 /* BackNavigationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EDA860553A946E9583A4E4 /* BackNavigationUITests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		93A95D8D8AF7C67635D9CF27 /* Pods_RTRootNavigationController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC461907B53EF1711816DC02 /* Pods_RTRootNavigationController_Example.framework */; };
 		9C16AF1F1D09518100873B86 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C16AF1E1D09518100873B86 /* Launch.storyboard */; };
@@ -36,9 +38,18 @@
 		9C7832C11D09111F00693F14 /* RTHideNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C01D09111F00693F14 /* RTHideNavigationBarViewController.m */; };
 		9C7832C41D09152900693F14 /* RTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7832C31D09152900693F14 /* RTCollectionViewController.m */; };
 		9C9863FD1F32BDE400CF307B /* RTStatusHiddenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9863FC1F32BDE400CF307B /* RTStatusHiddenViewController.m */; };
+		A102030405060708090A0B0C /* RTSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A102030405060708090A0B0E /* RTSceneDelegate.m */; };
+		AA158A4B50E90FAC082D4AD5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5C6CCBC7161C5FDE284AAB66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6003F589195388D20070C39A;
+			remoteInfo = RTRootNavigationController_Example;
+		};
 		6003F5B3195388D20070C39A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6003F582195388D10070C39A /* Project object */;
@@ -52,6 +63,7 @@
 		041DF0A8B0027264C4093D15 /* Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example_RTRootNavigationController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B6ECD73E96DEED1827971A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		4C78C63219178A258FA60E34 /* Pods-RTRootNavigationController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example/Pods-RTRootNavigationController_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		507D57ED7CC8B2765DE98E13 /* RTRootNavigationController_UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTRootNavigationController_UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* RTRootNavigationController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTRootNavigationController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,8 +74,6 @@
 		6003F59B195388D20070C39A /* RTRootNavigationController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RTRootNavigationController-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* RTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* RTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTAppDelegate.m; sourceTree = "<group>"; };
-		A102030405060708090A0B0D /* RTSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTSceneDelegate.h; sourceTree = "<group>"; };
-		A102030405060708090A0B0E /* RTSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTSceneDelegate.m; sourceTree = "<group>"; };
 		6003F5A5195388D20070C39A /* RTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* RTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -74,6 +84,7 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		67C2BF2B52D3057E8417FB63 /* RTRootNavigationController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RTRootNavigationController.podspec; path = ../RTRootNavigationController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		69EDA860553A946E9583A4E4 /* BackNavigationUITests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BackNavigationUITests.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9C16AF1E1D09518100873B86 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		9C16AF201D09551E00873B86 /* RTPushRemoveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPushRemoveViewController.h; sourceTree = "<group>"; };
@@ -97,6 +108,8 @@
 		9C7832C31D09152900693F14 /* RTCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCollectionViewController.m; sourceTree = "<group>"; };
 		9C9863FB1F32BDE400CF307B /* RTStatusHiddenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStatusHiddenViewController.h; sourceTree = "<group>"; };
 		9C9863FC1F32BDE400CF307B /* RTStatusHiddenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStatusHiddenViewController.m; sourceTree = "<group>"; };
+		A102030405060708090A0B0D /* RTSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTSceneDelegate.h; sourceTree = "<group>"; };
+		A102030405060708090A0B0E /* RTSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTSceneDelegate.m; sourceTree = "<group>"; };
 		A5267346A018343C32093DA1 /* Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests/Pods-RTRootNavigationController_Example-RTRootNavigationController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AC461907B53EF1711816DC02 /* Pods_RTRootNavigationController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RTRootNavigationController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B930DAFF5ACFE0FF66B80F25 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -105,6 +118,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		43F3FB59B6BCBAE84109590A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3113052758FC9C6CC2910C0E /* XCTest.framework in Frameworks */,
+				48CCA95148CDD5890E732653 /* Foundation.framework in Frameworks */,
+				AA158A4B50E90FAC082D4AD5 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6003F587195388D20070C39A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,6 +162,7 @@
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				F96BE6D2D993D004DBE65F76 /* Pods */,
+				D1A71A8F839607DDD3305721 /* UITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +171,7 @@
 			children = (
 				6003F58A195388D20070C39A /* RTRootNavigationController_Example.app */,
 				6003F5AE195388D20070C39A /* RTRootNavigationController_Tests.xctest */,
+				507D57ED7CC8B2765DE98E13 /* RTRootNavigationController_UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,6 +284,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		D1A71A8F839607DDD3305721 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				69EDA860553A946E9583A4E4 /* BackNavigationUITests.m */,
+			);
+			name = UITests;
+			path = UITests;
+			sourceTree = "<group>";
+		};
 		F96BE6D2D993D004DBE65F76 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +307,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		40B5EB7C158AAA4741ACABFA /* RTRootNavigationController_UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE2E7F40BC07CE60DBC09597 /* Build configuration list for PBXNativeTarget "RTRootNavigationController_UITests" */;
+			buildPhases = (
+				2F5CD91F14EA597A41093554 /* Sources */,
+				43F3FB59B6BCBAE84109590A /* Frameworks */,
+				FFA1241E71E0DE664584FBE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				756C857F4E426FB5D93FC9CE /* PBXTargetDependency */,
+			);
+			name = RTRootNavigationController_UITests;
+			productName = RTRootNavigationController_UITests;
+			productReference = 507D57ED7CC8B2765DE98E13 /* RTRootNavigationController_UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		6003F589195388D20070C39A /* RTRootNavigationController_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "RTRootNavigationController_Example" */;
@@ -322,6 +374,9 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = rickytan;
 				TargetAttributes = {
+					40B5EB7C158AAA4741ACABFA = {
+						TestTargetID = 6003F589195388D20070C39A;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -343,6 +398,7 @@
 			targets = (
 				6003F589195388D20070C39A /* RTRootNavigationController_Example */,
 				6003F5AD195388D20070C39A /* RTRootNavigationController_Tests */,
+				40B5EB7C158AAA4741ACABFA /* RTRootNavigationController_UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -364,6 +420,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFA1241E71E0DE664584FBE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +512,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2F5CD91F14EA597A41093554 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D384940DD6A7A9C807E92A3 /* BackNavigationUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6003F586195388D20070C39A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -486,6 +557,12 @@
 			isa = PBXTargetDependency;
 			target = 6003F589195388D20070C39A /* RTRootNavigationController_Example */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
+		};
+		756C857F4E426FB5D93FC9CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RTRootNavigationController_Example;
+			target = 6003F589195388D20070C39A /* RTRootNavigationController_Example */;
+			targetProxy = 5C6CCBC7161C5FDE284AAB66 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -688,6 +765,45 @@
 			};
 			name = Release;
 		};
+		6A9F844C6437813ED80423A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RTRootNavigationController-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RTRootNavigationController_Example;
+			};
+			name = Debug;
+		};
+		CB555B51BF5F3E213AE53BD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RTRootNavigationController-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RTRootNavigationController_Example;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -714,6 +830,15 @@
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,
 				6003F5C4195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE2E7F40BC07CE60DBC09597 /* Build configuration list for PBXNativeTarget "RTRootNavigationController_UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB555B51BF5F3E213AE53BD3 /* Release */,
+				6A9F844C6437813ED80423A9 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
