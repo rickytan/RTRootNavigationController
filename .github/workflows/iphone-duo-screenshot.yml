@@ -71,8 +71,6 @@ jobs:
           APP="$RUNNER_TEMP/example-build/Build/Products/Debug-iphonesimulator/RTRootNavigationController_Example.app"
           test -d "$APP"
           BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")"
-          xcrun simctl ui "$DEVICE_ID" appearance light
-          xcrun simctl status_bar "$DEVICE_ID" override --time "9:41"
           xcrun simctl install "$DEVICE_ID" "$APP"
           LAUNCH_RESULT="$(xcrun simctl launch "$DEVICE_ID" "$BUNDLE_ID")"
           echo "$LAUNCH_RESULT"
@@ -83,8 +81,9 @@ jobs:
             exit 1
           fi
           mkdir -p "$RUNNER_TEMP/iphone-duo-screenshot"
-          xcrun simctl io "$DEVICE_ID" screenshot "$RUNNER_TEMP/iphone-duo-screenshot/iphone-duo.png"
-          sips -g pixelWidth -g pixelHeight "$RUNNER_TEMP/iphone-duo-screenshot/iphone-duo.png"
+          xcrun simctl io "$DEVICE_ID" screenshot --display=1 "$RUNNER_TEMP/iphone-duo-screenshot/iphone-duo-primary.png"
+          xcrun simctl io "$DEVICE_ID" screenshot --display=3 "$RUNNER_TEMP/iphone-duo-screenshot/iphone-duo-secondary.png"
+          sips -g pixelWidth -g pixelHeight "$RUNNER_TEMP/iphone-duo-screenshot/"*.png
           {
             echo "Device: iPhone Duo"
             echo "Simulator ID: $DEVICE_ID"
