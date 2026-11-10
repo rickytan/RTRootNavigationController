@@ -31,6 +31,16 @@ iOS 15 上苹果改变了导航条的部分默认行为，开发者可以自己�
 }
 ```
 
+## iPhone Duo
+
+The Example app automatically runs on iPhone Duo using the UIScene lifecycle, without device-specific navigation code. The screenshot shows the simulator's primary display.
+
+示例应用使用 UIScene 生命周期，可在 iPhone Duo 上自动运行，无需针对设备编写额外的导航代码。截图展示的是模拟器的主显示屏。
+
+![Example app running on the primary display of the iPhone Duo simulator](./ScreenShot/iphone-duo.png)
+
+To capture new screenshots and a simulator-only app bundle, run the [Capture iPhone Duo screenshot](https://github.com/rickytan/RTRootNavigationController/actions/workflows/iphone-duo-screenshot.yml) workflow and download its artifacts. The workflow captures both display outputs in the default simulator state; it does not switch folded states.
+
 ## iPhone X
 How many lines of code should I write to fit in iPhone X? Zero.
 

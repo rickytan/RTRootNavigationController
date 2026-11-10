@@ -1,0 +1,107 @@
+name: Capture iPhone Duo screenshot
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: xcode-27
+    timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Install dependencies
+        run: |
+          bundle install
+          bundle exec pod install --project-directory=Example
+
+      - name: Select iPhone Duo
+        id: simulator
+        run: |
+          xcrun simctl list devices available --json > "$RUNNER_TEMP/simulator-devices.json"
+          DEVICE="$(jq -c '
+            [.devices | to_entries[]
+              | select(.key | startswith("com.apple.CoreSimulator.SimRuntime.iOS-27-"))
+              | .value[] | select(.name == "iPhone Duo" and .isAvailable == true)]
+            | first // empty
+          ' "$RUNNER_TEMP/simulator-devices.json")"
+          if [ -z "$DEVICE" ]; then
+            echo "::error::No available iPhone Duo simulator running iOS 27 was found."
+            xcrun simctl list devices available
+            exit 1
+          fi
+          DEVICE_ID="$(jq -r .udid <<< "$DEVICE")"
+          echo "id=$DEVICE_ID" >> "$GITHUB_OUTPUT"
+          echo "state=$(jq -r .state <<< "$DEVICE")" >> "$GITHUB_OUTPUT"
+
+      - name: Build Example app
+        run: |
+          xcodebuild \
+            -workspace Example/RTRootNavigationController.xcworkspace \
+            -scheme RTRootNavigationController-Example \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,id=${{ steps.simulator.outputs.id }}' \
+            -derivedDataPath "$RUNNER_TEMP/example-build" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Boot iPhone Duo
+        run: |
+          DEVICE_ID='${{ steps.simulator.outputs.id }}'
+          if [ '${{ steps.simulator.outputs.state }}' != "Booted" ]; then
+            xcrun simctl boot "$DEVICE_ID"
+          fi
+          xcrun simctl bootstatus "$DEVICE_ID" -b
+
+      - name: Install, launch, and capture
+        run: |
+          DEVICE_ID='${{ steps.simulator.outputs.id }}'
+          APP="$RUNNER_TEMP/example-build/Build/Products/Debug-iphonesimulator/RTRootNavigationController_Example.app"
+          test -d "$APP"
+          BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")"
+          xcrun simctl install "$DEVICE_ID" "$APP"
+          LAUNCH_RESULT="$(xcrun simctl launch "$DEVICE_ID" "$BUNDLE_ID")"
+          echo "$LAUNCH_RESULT"
+          PID="${LAUNCH_RESULT##*: }"
+          sleep 12
+          if [[ ! "$PID" =~ ^[0-9]+$ ]] || ! kill -0 "$PID" 2>/dev/null; then
+            echo "::error::The Example app stopped before the screenshot was captured."
+            exit 1
+          fi
+          mkdir -p "$RUNNER_TEMP/iphone-duo-screenshot"
+          xcrun simctl io "$DEVICE_ID" screenshot --display=1 "$RUNNER_TEMP/iphone-duo-screenshot/iphone-duo-primary.png"
+          xcrun simctl io "$DEVICE_ID" screenshot --display=3 "$RUNNER_TEMP/iphone-duo-screenshot/iphone-duo-secondary.png"
+          sips -g pixelWidth -g pixelHeight "$RUNNER_TEMP/iphone-duo-screenshot/"*.png
+          {
+            echo "Device: iPhone Duo"
+            echo "Simulator ID: $DEVICE_ID"
+            echo "Bundle ID: $BUNDLE_ID"
+            xcodebuild -version
+          } > "$RUNNER_TEMP/iphone-duo-screenshot/metadata.txt"
+          ditto -c -k --sequesterRsrc --keepParent "$APP" \
+            "$RUNNER_TEMP/RTRootNavigationController_Example-iPhone-Duo.app.zip"
+
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: iphone-duo-screenshot
+          path: ${{ runner.temp }}/iphone-duo-screenshot/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload simulator app
+        uses: actions/upload-artifact@v4
+        with:
+          name: iphone-duo-simulator-app
+          path: ${{ runner.temp }}/RTRootNavigationController_Example-iPhone-Duo.app.zip
+          if-no-files-found: error
+          retention-days: 30
