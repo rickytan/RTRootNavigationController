@@ -18,9 +18,9 @@
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [app launch];
 
-    XCUIElement *cell = app.cells[cellTitle];
-    XCTAssertTrue([cell waitForExistenceWithTimeout:30], @"%@", app.debugDescription);
-    [cell tap];
+    XCUIElement *rowTitle = app.staticTexts[cellTitle];
+    XCTAssertTrue([rowTitle waitForExistenceWithTimeout:30], @"%@", app.debugDescription);
+    [rowTitle tap];
 
     XCUIElement *backButton = app.buttons[buttonIdentifier];
     XCTAssertTrue([backButton waitForExistenceWithTimeout:30], @"%@", app.debugDescription);
@@ -28,8 +28,8 @@
     XCTAssertGreaterThan(CGRectGetMidX(backButton.frame), CGRectGetWidth(app.frame) * 0.75);
     [backButton tap];
 
-    XCTAssertTrue([cell waitForExistenceWithTimeout:30], @"%@", app.debugDescription);
-    XCTAssertTrue(cell.hittable, @"%@", app.debugDescription);
+    XCTAssertTrue([rowTitle waitForExistenceWithTimeout:30], @"%@", app.debugDescription);
+    XCTAssertTrue(rowTitle.hittable, @"%@", app.debugDescription);
 }
 
 - (void)testDefaultBackButtonOnOuterDisplay
