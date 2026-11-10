@@ -699,24 +699,27 @@ static void RTUpdateBackItemForVerticalBar(UIBarButtonItem *item, UIViewControll
                                                       target:self
                                                       action:@selector(onBack:)];
         }
-        viewController.navigationItem.leftBarButtonItem = backItem;
 #if defined(__IPHONE_27_1) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_27_1
         if (@available(iOS 27.1, *)) {
             if (backItem && backItem.axisBehavior == UIBarButtonItemAxisBehaviorAutomatic) {
+                // Configure placement before the navigation item installs the button.
                 backItem.axisBehavior = UIBarButtonItemAxisBehaviorVerticalPreferred;
                 if (!backItem.customView && !backItem.image && backItem.title.length > 0) {
                     // Keep the text-only appearance unless the system can use a vertical bar.
                     UIImage *verticalImage = [UIImage systemImageNamed:@"chevron.backward"];
+                    if (viewController.traitCollection.verticalBarEdge != UIVerticalBarEdgeUnspecified) {
+                        backItem.image = verticalImage;
+                    }
                     __weak UIBarButtonItem *weakItem = backItem;
                     [viewController registerForTraitChanges:UITraitCollection.systemTraitsAffectingVerticalBarEdge
                                                 withHandler:^(__kindof id<UITraitEnvironment> environment, __unused UITraitCollection *previousTraits) {
                         RTUpdateBackItemForVerticalBar(weakItem, (UIViewController *)environment, verticalImage);
                     }];
-                    RTUpdateBackItemForVerticalBar(backItem, viewController, verticalImage);
                 }
             }
         }
 #endif
+        viewController.navigationItem.leftBarButtonItem = backItem;
     }
 }
 
