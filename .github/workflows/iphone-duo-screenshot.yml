@@ -2,9 +2,6 @@ name: Capture iPhone Duo screenshot
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - feature/iphone-duo-screenshot
 
 permissions:
   contents: read
