@@ -150,10 +150,51 @@ So, if you access `self.navigationController` it returns a container navigation 
 
 ## Requirements
 
-* **iOS 7** and up
-* **Xcode 7** and up
+* **iOS 11** and up
+* **Xcode 14** and up
 
 ## Installation
+
+### Swift Package Manager
+
+In Xcode, choose **File > Add Package Dependencies...** and enter:
+
+```
+https://github.com/rickytan/RTRootNavigationController.git
+```
+
+Select the `master` branch until a release containing `Package.swift` is tagged;
+after that, select that release or a newer version. Add the
+`RTRootNavigationController` product to your target.
+
+在 Xcode 中添加上述包地址；在包含 `Package.swift` 的版本发布之前，选择 `master`
+分支，发布后可选择该版本或更新版本。将 `RTRootNavigationController` 产品添加到目标。
+
+For a package manifest, the current branch-based dependency is:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/rickytan/RTRootNavigationController.git", branch: "master")
+],
+targets: [
+    .target(
+        name: "YourTarget",
+        dependencies: [.product(name: "RTRootNavigationController", package: "RTRootNavigationController")]
+    )
+]
+```
+
+Import the module with `import RTRootNavigationController` in Swift or
+`@import RTRootNavigationController;` in Objective-C.
+
+The Swift package provides the default Core functionality. The optional
+`Push` subspec still requires CocoaPods because its `RTInteractivePush`
+dependency does not provide a Swift package.
+
+Swift 包提供默认的 Core 功能；可选的 `Push` 子组件仍需使用 CocoaPods，
+因为其 `RTInteractivePush` 依赖尚未提供 Swift 包。
+
+### CocoaPods
 
 RTRootNavigationController is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
