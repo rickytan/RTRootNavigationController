@@ -187,12 +187,15 @@ targets: [
 Import the module with `import RTRootNavigationController` in Swift or
 `@import RTRootNavigationController;` in Objective-C.
 
-The Swift package provides the default Core functionality. The optional
-`Push` subspec still requires CocoaPods because its `RTInteractivePush`
-dependency does not provide a Swift package.
+The Swift package currently provides the default Core functionality.
+[RTInteractivePush](https://github.com/rickytan/RTInteractivePush) now supports
+Swift Package Manager on its `master` branch, but this package does not yet
+integrate the optional `Push` functionality. Use CocoaPods for that integration.
 
-Swift 包提供默认的 Core 功能；可选的 `Push` 子组件仍需使用 CocoaPods，
-因为其 `RTInteractivePush` 依赖尚未提供 Swift 包。
+本 Swift 包目前提供默认的 Core 功能。虽然
+[RTInteractivePush](https://github.com/rickytan/RTInteractivePush) 的 `master`
+分支已支持 Swift Package Manager，本包尚未集成可选的 Push 功能；如需该功能，
+请使用 CocoaPods。
 
 ### CocoaPods
 
